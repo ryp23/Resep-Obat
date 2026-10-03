@@ -3,32 +3,35 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Perhitungan Obat Gigi - Dental Clinical Pharmacy Workstation</title>
+  <title>Perhitungan Obat</title>
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Font Lucide Icons -->
+  <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <!-- Google Fonts: Plus Jakarta Sans -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
 
   <style>
     * {
       font-family: 'Plus Jakarta Sans', sans-serif;
     }
+    .font-mono-code {
+      font-family: 'JetBrains Mono', monospace;
+    }
 
-    /* === LIQUID GLASS BACKGROUND STYLING === */
+    /* === LIQUID GLASSMORPHISM GRADIENT BACKGROUND === */
     body {
       min-height: 100vh;
-      background: #0d1f2d;
+      background: #091924;
       color: #0f172a;
       overflow-x: hidden;
       position: relative;
     }
 
-    /* Background dynamic liquid blobs (Kuning - Hijau - Biru) */
-    .liquid-canvas {
+    /* Floating Liquid Blobs (Kuning - Hijau - Biru) */
+    .liquid-wrapper {
       position: fixed;
       top: 0;
       left: 0;
@@ -36,122 +39,117 @@
       height: 100vh;
       z-index: -10;
       overflow: hidden;
-      filter: blur(80px);
-      transform: scale(1.1);
+      filter: blur(85px);
+      transform: scale(1.15);
+      pointer-events: none;
     }
 
     .blob {
       position: absolute;
       border-radius: 50%;
-      animation: floatMotion 22s infinite alternate ease-in-out;
-      opacity: 0.65;
+      animation: liquidMotion 24s infinite alternate ease-in-out;
+      opacity: 0.68;
     }
 
     .blob-yellow {
-      width: 48vw;
-      height: 48vw;
-      background: radial-gradient(circle, #fde047 10%, #eab308 60%, transparent 80%);
-      top: -10%;
-      left: -10%;
-      animation-duration: 25s;
+      width: 50vw;
+      height: 50vw;
+      background: radial-gradient(circle, #facc15 15%, #eab308 55%, transparent 80%);
+      top: -12%;
+      left: -8%;
+      animation-duration: 26s;
     }
 
     .blob-green {
-      width: 52vw;
-      height: 52vw;
-      background: radial-gradient(circle, #4ade80 15%, #10b981 60%, transparent 80%);
-      top: 25%;
-      right: -15%;
-      animation-duration: 28s;
+      width: 55vw;
+      height: 55vw;
+      background: radial-gradient(circle, #34d399 20%, #059669 60%, transparent 85%);
+      top: 22%;
+      right: -12%;
+      animation-duration: 30s;
       animation-direction: alternate-reverse;
     }
 
     .blob-blue {
-      width: 55vw;
-      height: 55vw;
-      background: radial-gradient(circle, #38bdf8 15%, #0284c7 65%, transparent 85%);
+      width: 58vw;
+      height: 58vw;
+      background: radial-gradient(circle, #38bdf8 20%, #0284c7 65%, transparent 85%);
       bottom: -15%;
-      left: 20%;
-      animation-duration: 24s;
+      left: 15%;
+      animation-duration: 25s;
     }
 
-    @keyframes floatMotion {
+    @keyframes liquidMotion {
       0% {
         transform: translate(0, 0) scale(1) rotate(0deg);
       }
       50% {
-        transform: translate(80px, 60px) scale(1.15) rotate(90deg);
+        transform: translate(90px, 70px) scale(1.18) rotate(90deg);
       }
       100% {
-        transform: translate(-60px, 90px) scale(0.9) rotate(180deg);
+        transform: translate(-70px, 100px) scale(0.92) rotate(180deg);
       }
     }
 
-    /* === LIQUID GLASSMORPHISM CARDS === */
+    /* === FROSTED GLASS PANELS === */
     .glass-card {
-      background: rgba(255, 255, 255, 0.42);
-      backdrop-filter: blur(25px);
-      -webkit-backdrop-filter: blur(25px);
-      border: 1px solid rgba(255, 255, 255, 0.65);
-      box-shadow: 0 16px 40px 0 rgba(31, 38, 135, 0.12),
-                  inset 0 1px 1px 0 rgba(255, 255, 255, 0.8);
+      background: rgba(255, 255, 255, 0.45);
+      backdrop-filter: blur(28px);
+      -webkit-backdrop-filter: blur(28px);
+      border: 1px solid rgba(255, 255, 255, 0.7);
+      box-shadow: 0 16px 40px 0 rgba(15, 23, 42, 0.12),
+                  inset 0 1px 1px 0 rgba(255, 255, 255, 0.85);
       transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     .glass-card:hover {
-      box-shadow: 0 20px 48px 0 rgba(31, 38, 135, 0.18),
-                  inset 0 1px 2px 0 rgba(255, 255, 255, 0.9);
-      border-color: rgba(255, 255, 255, 0.85);
-    }
-
-    .glass-header {
-      background: rgba(255, 255, 255, 0.55);
-      backdrop-filter: blur(20px);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.6);
+      box-shadow: 0 20px 48px 0 rgba(15, 23, 42, 0.16),
+                  inset 0 1px 2px 0 rgba(255, 255, 255, 0.95);
+      border-color: rgba(255, 255, 255, 0.9);
     }
 
     .glass-input {
-      background: rgba(255, 255, 255, 0.65);
-      border: 1px solid rgba(255, 255, 255, 0.8);
-      backdrop-filter: blur(8px);
+      background: rgba(255, 255, 255, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(10px);
       transition: all 0.2s ease;
     }
 
     .glass-input:focus {
-      background: rgba(255, 255, 255, 0.95);
+      background: rgba(255, 255, 255, 0.98);
       border-color: #0284c7;
       outline: none;
       box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.25);
     }
 
-    /* Tab Active Styles */
+    /* Navigation Tab Active */
     .tab-btn.active {
-      background: rgba(255, 255, 255, 0.85);
+      background: rgba(255, 255, 255, 0.9);
       color: #0369a1;
       font-weight: 700;
       box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
-      border-color: rgba(255, 255, 255, 0.9);
+      border-color: rgba(255, 255, 255, 0.95);
     }
 
-    /* Print styling */
+    /* Print Preview */
     @media print {
       body {
         background: white !important;
         color: black !important;
       }
-      .no-print, .liquid-canvas, header, nav, #quick-calc-section {
+      .no-print, .liquid-wrapper, header, .nav-tabs-wrapper {
         display: none !important;
       }
       .print-area {
         box-shadow: none !important;
-        border: 1px solid #ddd !important;
+        border: 1px solid #ccc !important;
         background: white !important;
         color: black !important;
         width: 100% !important;
       }
     }
 
-    /* Custom scrollbar */
+    /* Custom Scrollbar */
     ::-webkit-scrollbar {
       width: 7px;
       height: 7px;
@@ -160,18 +158,18 @@
       background: rgba(255, 255, 255, 0.2);
     }
     ::-webkit-scrollbar-thumb {
-      background: rgba(14, 165, 233, 0.4);
+      background: rgba(14, 165, 233, 0.45);
       border-radius: 4px;
     }
     ::-webkit-scrollbar-thumb:hover {
-      background: rgba(14, 165, 233, 0.7);
+      background: rgba(14, 165, 233, 0.75);
     }
   </style>
 </head>
 <body class="p-3 md:p-6 antialiased selection:bg-emerald-200">
 
-  <!-- Background Liquid Mesh Canvas -->
-  <div class="liquid-canvas">
+  <!-- Background Liquid Blobs -->
+  <div class="liquid-wrapper">
     <div class="blob blob-yellow"></div>
     <div class="blob blob-green"></div>
     <div class="blob blob-blue"></div>
@@ -179,499 +177,610 @@
 
   <div class="max-w-7xl mx-auto space-y-6">
 
-    <!-- TOP BAR: HEADER, REALTIME CLOCK & CELESTIAL SKY (Matahari / Bulan) -->
+    <!-- ==================== HEADER BAR: ORNAMEN WAKTU NYATA & CELESTIAL SKY ==================== -->
     <header class="glass-card rounded-3xl p-5 md:p-6 flex flex-col md:flex-row items-center justify-between gap-6 shadow-xl relative overflow-hidden">
-      <!-- Ornamen Cahaya Dinamis -->
+      <!-- Sisi Kiri: Ornamen Langit Dinamis & Judul -->
       <div class="flex items-center gap-4">
-        <!-- Celestial Orbit Container -->
         <div id="celestial-orb" class="relative w-16 h-16 rounded-2xl flex items-center justify-center shadow-lg transition-transform duration-700 hover:rotate-12">
-          <!-- Ikon Matahari / Bulan akan disisipkan via JavaScript -->
+          <!-- Ikon Matahari / Bulan disisipkan otomatis oleh JS berdasarkan realtime -->
         </div>
 
         <div>
-          <div class="flex items-center gap-2">
-            <span class="px-2.5 py-0.5 rounded-full text-xs font-bold uppercase tracking-wider bg-emerald-600/10 text-emerald-800 border border-emerald-500/20">
-              <i class="fa-solid fa-stethoscope mr-1"></i> Professional Medical Workstation
+          <div class="flex flex-wrap items-center gap-2">
+            <span class="px-2.5 py-0.5 rounded-full text-xs font-bold uppercase tracking-wider bg-emerald-600/10 text-emerald-900 border border-emerald-500/20">
+              <i class="fa-solid fa-user-doctor mr-1"></i> Professional Medical Workstation
             </span>
-            <span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-amber-500/10 text-amber-800 border border-amber-500/20">
-              KDA 5th Ed & Mosby 10th Ed
+            <span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-amber-500/10 text-amber-900 border border-amber-500/20">
+              KDA 5th Ed • Mosby 10th Ed • BNF 69 • IDAI
             </span>
           </div>
           <h1 class="text-2xl md:text-3xl font-extrabold text-slate-800 tracking-tight mt-1">
-            Perhitungan Obat & Panduan Terapi Gigi
+            Perhitungan Obat
           </h1>
           <p class="text-xs md:text-sm text-slate-600 font-medium">
-            Sistem kalkulasi preskripsi, pulvis puyer, pedoman lesi oral, & formularium klinis dokter
+            Sistem kalkulasi preskripsi terpadu, evaluasi rentang dosis pediatrik-dewasa, komorbid, & resep pulvis
           </p>
         </div>
       </div>
 
-      <!-- Realtime Clock & Calendar Widget -->
+      <!-- Sisi Kanan: Realtime Clock, Kalender, & Cetak -->
       <div class="flex flex-wrap items-center gap-3">
         <div class="glass-input px-4 py-2.5 rounded-2xl flex items-center gap-3 border shadow-sm">
-          <div class="w-10 h-10 rounded-xl bg-sky-500/20 flex items-center justify-center text-sky-700 font-bold text-lg">
+          <div class="w-10 h-10 rounded-xl bg-sky-500/20 flex items-center justify-center text-sky-800 font-bold text-lg">
             <i class="fa-regular fa-clock"></i>
           </div>
           <div>
-            <p class="text-[10px] uppercase font-bold text-slate-500 tracking-wider">Waktu Lokal</p>
+            <p class="text-[10px] uppercase font-bold text-slate-500 tracking-wider">Jam Real-Time</p>
             <p id="digital-clock" class="text-lg font-black text-slate-800 tabular-nums">00:00:00 WIB</p>
           </div>
         </div>
 
         <div class="glass-input px-4 py-2.5 rounded-2xl flex items-center gap-3 border shadow-sm">
-          <div class="w-10 h-10 rounded-xl bg-emerald-500/20 flex items-center justify-center text-emerald-700 font-bold text-lg">
+          <div class="w-10 h-10 rounded-xl bg-emerald-500/20 flex items-center justify-center text-emerald-800 font-bold text-lg">
             <i class="fa-regular fa-calendar-check"></i>
           </div>
           <div>
-            <p class="text-[10px] uppercase font-bold text-slate-500 tracking-wider">Kalender Klinis</p>
+            <p class="text-[10px] uppercase font-bold text-slate-500 tracking-wider">Kalender Praktik</p>
             <p id="calendar-date" class="text-sm font-bold text-slate-800">Senin, 1 Jan 2026</p>
           </div>
         </div>
 
         <button onclick="window.print()" class="no-print bg-gradient-to-r from-sky-600 to-teal-600 hover:from-sky-700 hover:to-teal-700 text-white font-semibold px-4 py-3 rounded-2xl shadow-md flex items-center gap-2 text-sm transition-all transform active:scale-95">
-          <i class="fa-solid fa-print"></i> Cetak Dokumen R/
+          <i class="fa-solid fa-print"></i> Cetak Lembar R/
         </button>
       </div>
     </header>
 
-    <!-- NAVIGATION TABS -->
-    <div class="flex flex-wrap gap-2 p-1.5 glass-card rounded-2xl no-print">
+    <!-- ==================== NAVIGATION TABS ==================== -->
+    <div class="nav-tabs-wrapper flex flex-wrap gap-2 p-1.5 glass-card rounded-2xl no-print">
       <button onclick="switchTab('tab-calc')" id="btn-tab-calc" class="tab-btn active flex-1 py-3 px-4 rounded-xl text-sm font-semibold transition-all flex items-center justify-center gap-2">
-        <i class="fa-solid fa-calculator text-sky-600"></i> Kalkulator Dosis Terpadu
+        <i class="fa-solid fa-calculator text-sky-600"></i> Kalkulator & Keputusan Dosis
+      </button>
+      <button onclick="switchTab('tab-drug-list')" id="btn-tab-drug-list" class="tab-btn flex-1 py-3 px-4 rounded-xl text-sm font-semibold transition-all flex items-center justify-center gap-2 text-slate-600 hover:text-slate-900">
+        <i class="fa-solid fa-book-medical text-amber-600"></i> Basis Data 15 Obat Terverifikasi
       </button>
       <button onclick="switchTab('tab-disease')" id="btn-tab-disease" class="tab-btn flex-1 py-3 px-4 rounded-xl text-sm font-semibold transition-all flex items-center justify-center gap-2 text-slate-600 hover:text-slate-900">
-        <i class="fa-solid fa-notes-medical text-emerald-600"></i> Kategori Penyakit & Terapi (Mosby's)
-      </button>
-      <button onclick="switchTab('tab-drugs')" id="btn-tab-drugs" class="tab-btn flex-1 py-3 px-4 rounded-xl text-sm font-semibold transition-all flex items-center justify-center gap-2 text-slate-600 hover:text-slate-900">
-        <i class="fa-solid fa-pills text-amber-600"></i> Formularium Obat Gigi (KDA)
+        <i class="fa-solid fa-notes-medical text-emerald-600"></i> Kategori Penyakit Pasien (Mosby's)
       </button>
       <button onclick="switchTab('tab-rx')" id="btn-tab-rx" class="tab-btn flex-1 py-3 px-4 rounded-xl text-sm font-semibold transition-all flex items-center justify-center gap-2 text-slate-600 hover:text-slate-900">
         <i class="fa-solid fa-file-prescription text-teal-600"></i> Lembar Resep & Rekam Medis
       </button>
     </div>
 
-    <!-- ==================== TAB 1: KALKULATOR DOSIS ==================== -->
+    <!-- =========================================================================
+         TAB 1: KALKULATOR DOSIS, FORM PENCARIAN OBAT & KOTAK KEPUTUSAN DOKTER
+         ========================================================================= -->
     <div id="tab-calc" class="tab-content space-y-6">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
 
-        <!-- Panel Input Perhitungan (Kiri) -->
+        <!-- Kolom Kiri: Input Pasien, Searchable Drug Box, & Kotak Keputusan Dosis -->
         <div class="lg:col-span-7 space-y-6">
-          <div class="glass-card rounded-3xl p-6 shadow-xl">
-            <div class="flex items-center justify-between border-b border-white/60 pb-4 mb-5">
+          <div class="glass-card rounded-3xl p-6 shadow-xl space-y-5">
+
+            <div class="flex items-center justify-between border-b border-white/60 pb-3">
               <h2 class="text-lg font-bold text-slate-800 flex items-center gap-2">
-                <span class="w-8 h-8 rounded-lg bg-sky-500/20 text-sky-700 flex items-center justify-center text-sm">
-                  <i class="fa-solid fa-sliders"></i>
+                <span class="w-8 h-8 rounded-lg bg-sky-500/20 text-sky-800 flex items-center justify-center text-sm">
+                  <i class="fa-solid fa-pills"></i>
                 </span>
-                Parameter Pasien & Perhitungan
+                Pilih Obat & Tentukan Dosis Klinis
               </h2>
-              <span class="text-xs font-semibold px-2.5 py-1 bg-white/70 text-slate-600 rounded-lg">Kalkulasi Cepat</span>
+              <span class="text-xs font-semibold px-2.5 py-1 bg-white/70 text-slate-600 rounded-lg">Langkah 1 & 2</span>
             </div>
 
-            <!-- Pilihan Metode Dosis -->
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-2 mb-5">
-              <label class="cursor-pointer">
-                <input type="radio" name="calc_mode" value="bb" checked onchange="updateCalcModeUI()" class="peer sr-only">
-                <div class="p-3 text-center rounded-xl border border-white/70 glass-input peer-checked:bg-sky-600 peer-checked:text-white peer-checked:border-sky-600 text-xs font-bold text-slate-700 transition-all">
-                  <i class="fa-solid fa-weight-scale block text-base mb-1"></i> Berat Badan
-                </div>
+            <!-- PENCARIAN OBAT INTERAKTIF (SEARCHABLE INPUT & SCROLLABLE DROPDOWN) -->
+            <div class="relative">
+              <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5 flex items-center justify-between">
+                <span>Pencarian Obat (Ketik / Gulir Pilihan)</span>
+                <span class="text-[11px] font-normal text-slate-500 lowercase">15 obat terdaftar</span>
               </label>
 
-              <label class="cursor-pointer">
-                <input type="radio" name="calc_mode" value="fried" onchange="updateCalcModeUI()" class="peer sr-only">
-                <div class="p-3 text-center rounded-xl border border-white/70 glass-input peer-checked:bg-amber-600 peer-checked:text-white peer-checked:border-amber-600 text-xs font-bold text-slate-700 transition-all">
-                  <i class="fa-solid fa-baby block text-base mb-1"></i> Rumus Fried
-                </div>
-              </label>
+              <div class="relative">
+                <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3.5 text-slate-400 text-xs pointer-events-none"></i>
+                <input type="text" id="drug-search-input" onkeyup="filterDrugDropdown()" onfocus="showDrugDropdown()" placeholder="Ketik nama obat (misal: Amoxicillin, Ibuprofen, Cefixime)..." class="w-full pl-9 pr-10 py-3 rounded-xl glass-input text-sm font-semibold text-slate-800 placeholder:text-slate-400">
+                <button type="button" onclick="toggleDrugDropdown()" class="absolute right-3 top-3 text-slate-500 hover:text-slate-800">
+                  <i class="fa-solid fa-chevron-down text-xs"></i>
+                </button>
+              </div>
 
-              <label class="cursor-pointer">
-                <input type="radio" name="calc_mode" value="bsa" onchange="updateCalcModeUI()" class="peer sr-only">
-                <div class="p-3 text-center rounded-xl border border-white/70 glass-input peer-checked:bg-emerald-600 peer-checked:text-white peer-checked:border-emerald-600 text-xs font-bold text-slate-700 transition-all">
-                  <i class="fa-solid fa-child-reaching block text-base mb-1"></i> BSA / LTP
-                </div>
-              </label>
-
-              <label class="cursor-pointer">
-                <input type="radio" name="calc_mode" value="pulvis" onchange="updateCalcModeUI()" class="peer sr-only">
-                <div class="p-3 text-center rounded-xl border border-white/70 glass-input peer-checked:bg-teal-600 peer-checked:text-white peer-checked:border-teal-600 text-xs font-bold text-slate-700 transition-all">
-                  <i class="fa-solid fa-mortar-pestle block text-base mb-1"></i> Resep Pulvis
-                </div>
-              </label>
+              <!-- Scrollable List Options -->
+              <div id="drug-dropdown-list" class="hidden absolute left-0 right-0 top-full mt-1.5 max-h-60 overflow-y-auto glass-card bg-white/95 rounded-2xl shadow-2xl border border-white z-50 p-1.5 space-y-1">
+                <!-- Diisi otomatis dari Javascript -->
+              </div>
             </div>
 
-            <!-- Input Fields -->
-            <div class="space-y-4">
-              <!-- Preset Obat Cepat -->
+            <!-- KOTAK INFORMASI OBAT TERPILIH, RENTANG DOSIS, & PERINGATAN USIA / KOMORBID -->
+            <div id="selected-drug-brief" class="p-4 rounded-2xl bg-white/60 border border-white/80 space-y-3">
+              <!-- Header Obat Terpilih -->
+              <div class="flex items-start justify-between gap-3 border-b border-slate-200/60 pb-3">
+                <div>
+                  <div class="flex items-center gap-2">
+                    <span id="brief-cat" class="px-2 py-0.5 rounded-md text-[10px] font-bold bg-sky-100 text-sky-800 uppercase">Antibiotik</span>
+                    <span id="brief-sources" class="text-[10px] font-semibold text-slate-500">KDA 5th Ed • BNF 69</span>
+                  </div>
+                  <h3 id="brief-name" class="text-base font-extrabold text-slate-800 mt-1">Amoxicillin</h3>
+                  <p id="brief-forms" class="text-xs text-slate-600">Sediaan: Kapsul 500mg, Sirup 125mg/5ml, 250mg/5ml</p>
+                </div>
+                <div id="brief-age-warning-pill" class="text-right">
+                  <!-- Pill peringatan usia -->
+                </div>
+              </div>
+
+              <!-- RENTANG DOSIS RESMI BERDASARKAN USIA (BAYI, BALITA, ANAK, DEWASA) -->
               <div>
-                <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">Preset Obat Gigi Populer</label>
-                <select id="preset-drug" onchange="applyDrugPreset()" class="w-full p-3 rounded-xl glass-input text-sm text-slate-800 font-medium">
-                  <option value="">-- Pilih Obat atau Masukkan Manual --</option>
-                  <option value="amox">Amoxicillin (Ped: 25-50 mg/kg/hari | Dewasa 500 mg tid)</option>
-                  <option value="augmentin">Co-Amoxiclav / Augmentin (Ped: 20-40 mg/kg/hari | Dewasa 1g q12h)</option>
-                  <option value="paracetamol">Parasetamol (Ped: 10-15 mg/kg/kali | Dewasa 500-1000 mg q4-6h)</option>
-                  <option value="ibuprofen">Ibuprofen (Ped: 4-10 mg/kg/kali | Dewasa 400 mg q6-8h)</option>
-                  <option value="clindamycin">Klindamisin (Ped: 8-25 mg/kg/hari | Dewasa 150-300 mg tid-qid)</option>
-                  <option value="metronidazole">Metronidazol (Ped: 15-35 mg/kg/hari | Dewasa 200-400 mg tid)</option>
-                  <option value="cephalexin">Sefaleksin (Ped: 25-50 mg/kg/hari | Dewasa 250-500 mg tid-qid)</option>
-                  <option value="mefenamic">Asam Mefenamat (Dewasa: 250-500 mg tid)</option>
-                </select>
-              </div>
-
-              <!-- Baris Input Berat Badan, Tinggi, Umur -->
-              <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
-                <div id="field-bb">
-                  <label class="block text-xs font-bold text-slate-700 mb-1">Berat Badan Pasien (kg)</label>
-                  <input type="number" id="input-weight" value="20" step="0.5" class="w-full p-2.5 rounded-xl glass-input text-sm font-semibold" placeholder="Contoh: 18">
-                </div>
-                <div id="field-height">
-                  <label class="block text-xs font-bold text-slate-700 mb-1">Tinggi Badan (cm)</label>
-                  <input type="number" id="input-height" value="110" step="1" class="w-full p-2.5 rounded-xl glass-input text-sm font-semibold" placeholder="Contoh: 110">
-                </div>
-                <div id="field-age-months">
-                  <label class="block text-xs font-bold text-slate-700 mb-1">Usia Bayi / Anak (Bulan)</label>
-                  <input type="number" id="input-age-months" value="18" step="1" class="w-full p-2.5 rounded-xl glass-input text-sm font-semibold" placeholder="Untuk Fried (<24 bln)">
+                <p class="text-xs font-bold text-slate-700 uppercase tracking-wide mb-2 flex items-center gap-1.5">
+                  <i class="fa-solid fa-layer-group text-sky-600"></i> Rentang Dosis Berdasarkan Kelompok Usia:
+                </p>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-2 text-xs">
+                  <div class="p-2 rounded-xl bg-blue-50/80 border border-blue-100">
+                    <span class="block font-bold text-blue-900 text-[11px]">👶 Bayi (&lt;1 th):</span>
+                    <span id="range-bayi" class="text-slate-700 font-medium">20 - 30 mg/kg/hari</span>
+                  </div>
+                  <div class="p-2 rounded-xl bg-emerald-50/80 border border-emerald-100">
+                    <span class="block font-bold text-emerald-900 text-[11px]">🧒 Balita (1-5 th):</span>
+                    <span id="range-balita" class="text-slate-700 font-medium">25 - 50 mg/kg/hari</span>
+                  </div>
+                  <div class="p-2 rounded-xl bg-amber-50/80 border border-amber-100">
+                    <span class="block font-bold text-amber-900 text-[11px]">🧑 Anak (6-12 th):</span>
+                    <span id="range-anak" class="text-slate-700 font-medium">25 - 50 mg/kg/hari</span>
+                  </div>
+                  <div class="p-2 rounded-xl bg-purple-50/80 border border-purple-100">
+                    <span class="block font-bold text-purple-900 text-[11px]">🧑‍🦰 Dewasa (&gt;12 th):</span>
+                    <span id="range-dewasa" class="text-slate-700 font-medium">500 mg q8h (1.5g/hari)</span>
+                  </div>
                 </div>
               </div>
 
-              <!-- Baris Target Dosis Obat -->
-              <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
-                <div id="field-target-dose">
-                  <label id="label-target-dose" class="block text-xs font-bold text-slate-700 mb-1">Dosis Target (mg/kg/hari)</label>
-                  <input type="number" id="input-target-dose" value="30" step="1" class="w-full p-2.5 rounded-xl glass-input text-sm font-semibold">
+              <!-- PERINGATAN PENGINGAT KOMORBID PASIEN & KONTRAINDIKASI -->
+              <div class="space-y-2 pt-1 border-t border-slate-200/60">
+                <div class="flex items-start gap-2 p-2.5 rounded-xl bg-rose-50/80 border border-rose-200 text-xs">
+                  <i class="fa-solid fa-ban text-rose-600 mt-0.5"></i>
+                  <div>
+                    <span class="font-bold text-rose-900">Kontraindikasi & Larangan Usia:</span>
+                    <p id="brief-contra" class="text-rose-800 mt-0.5 leading-relaxed">Hipersensitivitas terhadap penisilin atau antibiotik beta-laktam.</p>
+                  </div>
+                </div>
+
+                <div class="flex items-start gap-2 p-2.5 rounded-xl bg-amber-50/80 border border-amber-200 text-xs">
+                  <i class="fa-solid fa-triangle-exclamation text-amber-600 mt-0.5"></i>
+                  <div>
+                    <span class="font-bold text-amber-900">Pengingat Komorbid & Perhatian Khusus:</span>
+                    <p id="brief-cautions" class="text-amber-800 mt-0.5 leading-relaxed">Hati-hati pada gangguan fungsi ginjal berat. Risiko superinfeksi bila digunakan tanpa indikasi jelas.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- PARAMETER PASIEN (BB, TB, USIA BULAN, KATEGORI USIA) -->
+            <div class="space-y-3 pt-2 border-t border-white/60">
+              <p class="text-xs font-bold text-slate-700 uppercase tracking-wide flex items-center gap-1.5">
+                <i class="fa-solid fa-user text-sky-600"></i> Parameter Fisik Pasien
+              </p>
+              <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+                <div>
+                  <label class="block text-[11px] font-bold text-slate-700 mb-1">Kategori Usia Pasien</label>
+                  <select id="patient-category" onchange="autoFillDoseFromCategory()" class="w-full p-2.5 rounded-xl glass-input text-xs font-semibold">
+                    <option value="dewasa">Dewasa (&gt;12 th)</option>
+                    <option value="anak" selected>Anak (6 - 12 th)</option>
+                    <option value="balita">Balita (1 - 5 th)</option>
+                    <option value="bayi">Bayi (&lt; 1 th)</option>
+                  </select>
                 </div>
                 <div>
-                  <label class="block text-xs font-bold text-slate-700 mb-1">Frekuensi Pemberian</label>
-                  <select id="input-frequency" class="w-full p-2.5 rounded-xl glass-input text-sm font-semibold">
-                    <option value="3">3 kali sehari (q8h / t.i.d)</option>
+                  <label class="block text-[11px] font-bold text-slate-700 mb-1">Berat Badan (kg)</label>
+                  <input type="number" id="input-weight" value="22" step="0.5" class="w-full p-2.5 rounded-xl glass-input text-xs font-semibold">
+                </div>
+                <div>
+                  <label class="block text-[11px] font-bold text-slate-700 mb-1">Tinggi Badan (cm)</label>
+                  <input type="number" id="input-height" value="115" step="1" class="w-full p-2.5 rounded-xl glass-input text-xs font-semibold">
+                </div>
+                <div>
+                  <label class="block text-[11px] font-bold text-slate-700 mb-1">Usia Bayi (Bulan)</label>
+                  <input type="number" id="input-age-months" value="18" step="1" class="w-full p-2.5 rounded-xl glass-input text-xs font-semibold" placeholder="Khusus Fried">
+                </div>
+              </div>
+            </div>
+
+            <!-- METODE PERHITUNGAN (BB / FRIED / BSA / PULVIS) -->
+            <div>
+              <label class="block text-[11px] font-bold text-slate-700 mb-1.5 uppercase">Metode Perhitungan Dosis Acuan</label>
+              <div class="grid grid-cols-2 md:grid-cols-4 gap-2">
+                <label class="cursor-pointer">
+                  <input type="radio" name="calc_mode" value="bb" checked onchange="handleModeChange()" class="peer sr-only">
+                  <div class="p-2.5 text-center rounded-xl border border-white/70 glass-input peer-checked:bg-sky-600 peer-checked:text-white text-xs font-bold transition-all">
+                    Berat Badan (BB)
+                  </div>
+                </label>
+                <label class="cursor-pointer">
+                  <input type="radio" name="calc_mode" value="fried" onchange="handleModeChange()" class="peer sr-only">
+                  <div class="p-2.5 text-center rounded-xl border border-white/70 glass-input peer-checked:bg-amber-600 peer-checked:text-white text-xs font-bold transition-all">
+                    Rumus Fried (Bayi)
+                  </div>
+                </label>
+                <label class="cursor-pointer">
+                  <input type="radio" name="calc_mode" value="bsa" onchange="handleModeChange()" class="peer sr-only">
+                  <div class="p-2.5 text-center rounded-xl border border-white/70 glass-input peer-checked:bg-emerald-600 peer-checked:text-white text-xs font-bold transition-all">
+                    BSA / Mosteller
+                  </div>
+                </label>
+                <label class="cursor-pointer">
+                  <input type="radio" name="calc_mode" value="pulvis" onchange="handleModeChange()" class="peer sr-only">
+                  <div class="p-2.5 text-center rounded-xl border border-white/70 glass-input peer-checked:bg-teal-600 peer-checked:text-white text-xs font-bold transition-all">
+                    Racikan Pulvis
+                  </div>
+                </label>
+              </div>
+            </div>
+
+            <!-- ==================== KOTAK UNTUK DOKTER MEMUTUSKAN DOSIS ==================== -->
+            <div class="p-4 rounded-2xl bg-amber-500/15 border-2 border-amber-500/40 shadow-inner space-y-3">
+              <div class="flex items-center justify-between">
+                <p class="text-xs font-extrabold text-amber-950 uppercase tracking-wide flex items-center gap-1.5">
+                  <i class="fa-solid fa-gavel text-amber-700"></i> Kotak Keputusan Dosis Dokter (Dokter Memutuskan)
+                </p>
+                <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-amber-200 text-amber-900">Validasi Pre-Rangkuman</span>
+              </div>
+              <p class="text-xs text-amber-900 leading-relaxed">
+                Silakan tinjau rentang resmi di atas, lalu masukkan <strong>nilai keputusan dosis klinis</strong> yang Anda putuskan untuk pasien ini sebelum rangkuman akhir dieksekusi:
+              </p>
+
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+                <div>
+                  <label id="label-decision-dose" class="block text-xs font-bold text-slate-800 mb-1">
+                    Keputusan Dosis (mg/kg/hari atau mg)
+                  </label>
+                  <input type="number" id="input-decision-dose" value="35" step="0.5" class="w-full p-2.5 rounded-xl glass-input text-xs font-black text-amber-950 bg-white shadow-sm">
+                </div>
+                <div>
+                  <label class="block text-xs font-bold text-slate-800 mb-1">Frekuensi Pemberian</label>
+                  <select id="input-freq" class="w-full p-2.5 rounded-xl glass-input text-xs font-bold text-slate-800 bg-white">
+                    <option value="3" selected>3 kali sehari (q8h / t.i.d)</option>
                     <option value="2">2 kali sehari (q12h / b.i.d)</option>
                     <option value="4">4 kali sehari (q6h / q.i.d)</option>
                     <option value="1">1 kali sehari (q24h / s.d.d)</option>
                   </select>
                 </div>
                 <div>
-                  <label class="block text-xs font-bold text-slate-700 mb-1">Durasi Terapi Dokter (Hari)</label>
-                  <input type="number" id="input-days" value="5" step="1" class="w-full p-2.5 rounded-xl glass-input text-sm font-semibold" placeholder="Standar 5 hari">
+                  <label class="block text-xs font-bold text-slate-800 mb-1">Durasi Terapi Anjuran (Hari)</label>
+                  <input type="number" id="input-days" value="5" step="1" class="w-full p-2.5 rounded-xl glass-input text-xs font-bold text-slate-800 bg-white" placeholder="Misal: 5 hari">
                 </div>
               </div>
 
-              <!-- Sediaan Sirup / Tablet Acuan -->
-              <div class="grid grid-cols-1 md:grid-cols-2 gap-3 pt-1 border-t border-white/50">
+              <!-- Sediaan Farmasi Acuan (Sirup / Tablet) -->
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-3 pt-1 border-t border-amber-300/60">
                 <div>
-                  <label class="block text-xs font-bold text-slate-700 mb-1">Kekuatan Sediaan Tersedia (mg)</label>
-                  <input type="number" id="input-stock-dose" value="125" step="5" class="w-full p-2.5 rounded-xl glass-input text-sm font-semibold" placeholder="Misal: 125, 250, 500">
+                  <label class="block text-xs font-bold text-slate-800 mb-1">Kekuatan Sediaan Farmasi (mg)</label>
+                  <input type="number" id="input-stock-mg" value="125" class="w-full p-2 rounded-xl glass-input text-xs font-semibold">
                 </div>
                 <div>
-                  <label class="block text-xs font-bold text-slate-700 mb-1">Volume Per Sediaan (ml) - Jika Sirup</label>
-                  <input type="number" id="input-stock-vol" value="5" step="1" class="w-full p-2.5 rounded-xl glass-input text-sm font-semibold" placeholder="Misal: 5 ml (bila sirup)">
+                  <label class="block text-xs font-bold text-slate-800 mb-1">Volume Sediaan (ml) - Isi 1 jika tablet</label>
+                  <input type="number" id="input-stock-vol" value="5" class="w-full p-2 rounded-xl glass-input text-xs font-semibold">
                 </div>
               </div>
 
-              <!-- Input Khusus Pulvis Puyer (Jika Tab Pulvis dipilih) -->
-              <div id="pulvis-options" class="p-4 rounded-2xl bg-white/40 border border-teal-300/40 space-y-3">
-                <p class="text-xs font-bold text-teal-900 uppercase tracking-wide flex items-center gap-1.5">
-                  <i class="fa-solid fa-prescription-bottle"></i> Opsi Racikan Puyer (Pulvis)
-                </p>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+              <!-- Pulvis Option Box (Bila mode pulvis aktif) -->
+              <div id="pulvis-details-box" class="hidden p-3 rounded-xl bg-white/80 border border-teal-300 space-y-2 text-xs">
+                <span class="font-bold text-teal-900 block"><i class="fa-solid fa-mortar-pestle mr-1"></i>Spesifikasi Pulvis (Puyer):</span>
+                <div class="grid grid-cols-3 gap-2">
                   <div>
-                    <label class="block text-xs font-semibold text-slate-700 mb-1">Metode Penulisan</label>
-                    <select id="pulvis-method" class="w-full p-2 rounded-xl glass-input text-xs font-semibold">
-                      <option value="dtd">Metode d.t.d (Dosis per bungkus)</option>
-                      <option value="nondtd">Metode Non-dtd (Dosis total dibagi)</option>
+                    <label class="block text-[11px] text-slate-700">Metode</label>
+                    <select id="pulvis-method" class="w-full p-1.5 rounded-lg border glass-input text-xs">
+                      <option value="dtd">d.t.d (per bungkus)</option>
+                      <option value="nondtd">non-dtd (total dibagi)</option>
                     </select>
                   </div>
                   <div>
-                    <label class="block text-xs font-semibold text-slate-700 mb-1">Jumlah Bungkus (No.)</label>
-                    <input type="number" id="pulvis-count" value="15" step="1" class="w-full p-2 rounded-xl glass-input text-xs font-semibold" placeholder="Misal: 15 bungkus">
+                    <label class="block text-[11px] text-slate-700">Jumlah Puyer (No.)</label>
+                    <input type="number" id="pulvis-count" value="15" class="w-full p-1.5 rounded-lg border glass-input text-xs">
                   </div>
                   <div>
-                    <label class="block text-xs font-semibold text-slate-700 mb-1">Kekuatan Tablet Asal (mg)</label>
-                    <input type="number" id="pulvis-orig-strength" value="500" class="w-full p-2 rounded-xl glass-input text-xs font-semibold" placeholder="Misal: Tab 500 mg">
+                    <label class="block text-[11px] text-slate-700">Kekuatan Tablet Asal (mg)</label>
+                    <input type="number" id="pulvis-origin-mg" value="500" class="w-full p-1.5 rounded-lg border glass-input text-xs">
                   </div>
                 </div>
               </div>
 
-              <div class="flex gap-3 pt-2">
-                <button onclick="calculateDose()" class="flex-1 bg-gradient-to-r from-emerald-600 via-teal-600 to-sky-600 hover:from-emerald-700 hover:to-sky-700 text-white font-bold py-3.5 px-6 rounded-2xl shadow-lg transition-all transform active:scale-95 flex items-center justify-center gap-2">
-                  <i class="fa-solid fa-calculator"></i> Hitung Dosis Lengkap
-                </button>
-                <button onclick="resetCalculator()" class="px-5 py-3.5 rounded-2xl glass-input hover:bg-white/80 text-slate-700 font-semibold text-sm transition-all">
-                  Reset
+              <!-- Tombol Eksekusi Putusan -->
+              <div class="pt-2">
+                <button onclick="calculateFinalDose()" class="w-full bg-gradient-to-r from-emerald-600 via-teal-600 to-sky-600 hover:from-emerald-700 hover:to-sky-700 text-white font-extrabold py-3 rounded-xl shadow-lg transition-all transform active:scale-95 flex items-center justify-center gap-2 text-xs uppercase tracking-wider">
+                  <i class="fa-solid fa-check-double"></i> Kunci Putusan & Buat Rangkuman Akhir Dosis
                 </button>
               </div>
-
             </div>
+
           </div>
         </div>
 
-        <!-- Panel Hasil Perhitungan & Dosis Terapi (Kanan) -->
+        <!-- Kolom Kanan: Rangkuman Akhir Dosis & Keterangan Dokter -->
         <div class="lg:col-span-5 space-y-6">
-          <div class="glass-card rounded-3xl p-6 shadow-xl border-l-4 border-l-emerald-500">
-            <div class="flex items-center justify-between border-b border-white/60 pb-3 mb-4">
+          <div class="glass-card rounded-3xl p-6 shadow-xl border-l-4 border-l-emerald-500 space-y-4">
+
+            <div class="flex items-center justify-between border-b border-white/60 pb-3">
               <h3 class="text-base font-bold text-slate-800 flex items-center gap-2">
-                <i class="fa-solid fa-chart-line text-emerald-600"></i> Hasil Evaluasi Dosis Medis
+                <i class="fa-solid fa-clipboard-check text-emerald-600"></i> Rangkuman Akhir Dosis Terapi
               </h3>
-              <span id="badge-mode" class="text-[11px] font-bold px-2 py-0.5 rounded-md bg-emerald-100 text-emerald-800">
-                Berat Badan (mg/kg)
+              <span id="summary-badge-status" class="text-[11px] font-bold px-2 py-0.5 rounded-md bg-emerald-100 text-emerald-800">
+                Tervalidasi Dokter
               </span>
             </div>
 
-            <!-- Kartu Highlight Dosis -->
-            <div class="space-y-3.5">
-              <!-- Per Kali Minum -->
-              <div class="p-4 rounded-2xl bg-white/60 border border-white/80 shadow-sm flex items-center justify-between">
+            <!-- TIGA KOTAK UTAMA: PERKALI MINUM, HARIAN, & TOTAL TERAPI DOKTER -->
+            <div class="space-y-3">
+
+              <!-- 1. Dosis Perkalis Minum -->
+              <div class="p-4 rounded-2xl bg-white/70 border border-white shadow-sm flex items-center justify-between">
                 <div>
-                  <p class="text-xs font-semibold text-slate-500 uppercase">Dosis Sekali Minum</p>
-                  <p id="res-dose-single" class="text-2xl font-black text-sky-700">-- mg</p>
-                  <p id="res-dose-single-vol" class="text-xs font-medium text-slate-600 mt-0.5">Sediaan: -- ml / -- tablet</p>
+                  <p class="text-[11px] font-bold text-slate-500 uppercase tracking-wider">Dosis Sekali Minum</p>
+                  <p id="res-single-mg" class="text-2xl font-black text-sky-800">-- mg</p>
+                  <p id="res-single-measure" class="text-xs font-semibold text-slate-600 mt-0.5">Setara: -- ml sirup / -- tablet</p>
                 </div>
                 <div class="w-12 h-12 rounded-2xl bg-sky-100 text-sky-700 flex items-center justify-center text-xl font-bold">
                   1x
                 </div>
               </div>
 
-              <!-- Dosis Harian -->
-              <div class="p-4 rounded-2xl bg-white/60 border border-white/80 shadow-sm flex items-center justify-between">
+              <!-- 2. Dosis Harian (24 Jam) -->
+              <div class="p-4 rounded-2xl bg-white/70 border border-white shadow-sm flex items-center justify-between">
                 <div>
-                  <p class="text-xs font-semibold text-slate-500 uppercase">Dosis Total Harian (24 Jam)</p>
-                  <p id="res-dose-daily" class="text-2xl font-black text-emerald-700">-- mg / hari</p>
-                  <p id="res-dose-daily-freq" class="text-xs font-medium text-slate-600 mt-0.5">Frekuensi: --</p>
+                  <p class="text-[11px] font-bold text-slate-500 uppercase tracking-wider">Dosis Harian (24 Jam)</p>
+                  <p id="res-daily-mg" class="text-2xl font-black text-emerald-800">-- mg / hari</p>
+                  <p id="res-daily-freq" class="text-xs font-semibold text-slate-600 mt-0.5">Frekuensi: -- kali sehari</p>
                 </div>
                 <div class="w-12 h-12 rounded-2xl bg-emerald-100 text-emerald-700 flex items-center justify-center text-xl font-bold">
                   24h
                 </div>
               </div>
 
-              <!-- Dosis Terapi Penuh (5 Hari atau sesuai anjuran) -->
-              <div class="p-4 rounded-2xl bg-white/70 border border-amber-300/60 shadow-sm flex items-center justify-between">
+              <!-- 3. Dosis Terapi Yang Dianjurkan Dokter (Misal 5 Hari) -->
+              <div class="p-4 rounded-2xl bg-white/80 border border-amber-300 shadow-sm flex items-center justify-between">
                 <div>
-                  <p class="text-xs font-semibold text-amber-900 uppercase">Dosis Terapi Total Anjuran Dokter</p>
-                  <p id="res-dose-course" class="text-2xl font-black text-amber-700">-- mg</p>
-                  <p id="res-course-summary" class="text-xs font-medium text-amber-900 mt-0.5">Untuk durasi: -- hari (-- sediaan)</p>
+                  <p class="text-[11px] font-bold text-amber-900 uppercase tracking-wider">Dosis Terapi Total Anjuran Dokter</p>
+                  <p id="res-course-mg" class="text-2xl font-black text-amber-800">-- mg</p>
+                  <p id="res-course-desc" class="text-xs font-semibold text-amber-950 mt-0.5">Kebutuhan untuk -- hari: -- botol / -- tablet</p>
                 </div>
-                <div class="w-12 h-12 rounded-2xl bg-amber-100 text-amber-700 flex items-center justify-center text-xl font-bold">
+                <div class="w-12 h-12 rounded-2xl bg-amber-100 text-amber-800 flex items-center justify-center text-xl font-bold">
                   Rx
                 </div>
               </div>
+
             </div>
 
-            <!-- Detail Perhitungan Rumus -->
-            <div class="mt-4 p-4 rounded-2xl bg-slate-50/60 border border-white/80 text-xs space-y-2">
-              <p class="font-bold text-slate-700 flex items-center gap-1.5">
-                <i class="fa-solid fa-square-root-variable text-sky-600"></i> Rumus & Parameter Digunakan:
+            <!-- Kotak Keterangan Formula & Langkah Perhitungan -->
+            <div class="p-4 rounded-2xl bg-slate-50/70 border border-white text-xs space-y-2">
+              <p class="font-bold text-slate-800 flex items-center gap-1.5">
+                <i class="fa-solid fa-square-root-variable text-sky-600"></i> Keterangan & Rumus Perhitungan:
               </p>
-              <p id="calc-explanation" class="text-slate-600 leading-relaxed">
-                Pilih parameter pasien dan klik tombol "Hitung Dosis Lengkap" di sebelah kiri untuk meninjau formulasi perhitungan terperinci.
+              <p id="res-formula-explanation" class="text-slate-600 leading-relaxed">
+                Pilih obat, tentukan parameter pasien, dan klik "Kunci Putusan & Buat Rangkuman Akhir Dosis" untuk menampilkan uraian formulasi klinis.
               </p>
             </div>
 
-            <button onclick="transferToRxSheet()" class="mt-4 w-full py-2.5 rounded-xl border border-sky-600 text-sky-700 hover:bg-sky-600 hover:text-white font-semibold text-xs transition-all flex items-center justify-center gap-1.5 shadow-sm">
-              <i class="fa-solid fa-file-arrow-up"></i> Pindahkan Hasil ke Lembar Resep R/
+            <!-- Kotak Catatan Dokter -->
+            <div class="space-y-1">
+              <label class="block text-xs font-bold text-slate-700">Kotak Catatan Klinis / Peringatan Pasien:</label>
+              <textarea id="calc-doc-notes" rows="3" class="w-full p-2.5 rounded-xl glass-input text-xs text-slate-800" placeholder="Catatan efek samping, cara minum sesudah makan, tanda bahaya alergi..."></textarea>
+            </div>
+
+            <button onclick="sendToPrescriptionSheet()" class="w-full py-3 rounded-xl bg-sky-700 hover:bg-sky-800 text-white font-bold text-xs shadow-md transition-all flex items-center justify-center gap-2">
+              <i class="fa-solid fa-file-arrow-up"></i> Teruskan ke Lembar Resep (R/) Resmi
             </button>
+
           </div>
         </div>
 
       </div>
     </div>
 
-    <!-- ==================== TAB 2: KATEGORI PENYAKIT PASIEN (MOSBY'S REFERENCE) ==================== -->
-    <div id="tab-disease" class="tab-content hidden space-y-6">
-      <div class="glass-card rounded-3xl p-6 shadow-xl">
-        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-white/60 pb-4 mb-6">
+    <!-- =========================================================================
+         TAB 2: BASIS DATA 15 OBAT LENGKAP DENGAN DOSIS PER USIA & VALIDASI SUMBER
+         ========================================================================= -->
+    <div id="tab-drug-list" class="tab-content hidden space-y-6">
+      <div class="glass-card rounded-3xl p-6 shadow-xl space-y-6">
+
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-white/60 pb-4">
           <div>
             <div class="flex items-center gap-2">
-              <span class="px-2.5 py-0.5 rounded-md text-[11px] font-bold bg-emerald-100 text-emerald-800">
-                Mosby's Dental Drug Reference (10th Ed)
+              <span class="px-2.5 py-0.5 rounded-md text-[11px] font-bold bg-amber-100 text-amber-900">
+                15 Obat Terverifikasi Farmasi Gigi
               </span>
-              <span class="text-xs text-slate-500 font-medium">Berdasarkan Bab Common Oral Lesions</span>
+              <span class="text-xs text-slate-500 font-medium">Handbook of Commonly Used Drugs (KDA) & Mosby's Dental Drug Reference</span>
             </div>
             <h2 class="text-xl font-extrabold text-slate-800 mt-1">
-              Kategori Diagnosa Penyakit Rongga Mulut & Terapi Obat
+              Daftar Obat Lengkap & Dosis per Kelompok Usia Pasien
             </h2>
             <p class="text-xs text-slate-600 mt-0.5">
-              Kenali tanda dan gejala yang dialami pasien, tentukan tata laksana, dan pilih regimen obat yang dianjurkan.
+              Dilengkapi rentang dosis per hari, batasan usia, indikasi, kontraindikasi penyakit penyerta, dan sumber validasi ilmiah.
             </p>
           </div>
 
-          <!-- Filter Pencarian Penyakit -->
+          <!-- Filter Kategori Cepat -->
+          <div class="flex flex-wrap gap-1.5">
+            <button onclick="filterDrugTable('all')" class="drug-filter-pill px-3 py-1.5 rounded-xl text-xs font-semibold glass-input bg-white/90 text-sky-800 active-pill">Semua (15)</button>
+            <button onclick="filterDrugTable('antibiotik')" class="drug-filter-pill px-3 py-1.5 rounded-xl text-xs font-semibold glass-input text-slate-700">Antibiotik (6)</button>
+            <button onclick="filterDrugTable('analgesik')" class="drug-filter-pill px-3 py-1.5 rounded-xl text-xs font-semibold glass-input text-slate-700">Analgesik & NSAID (4)</button>
+            <button onclick="filterDrugTable('steroid')" class="drug-filter-pill px-3 py-1.5 rounded-xl text-xs font-semibold glass-input text-slate-700">Kortikosteroid (2)</button>
+            <button onclick="filterDrugTable('vitamin')" class="drug-filter-pill px-3 py-1.5 rounded-xl text-xs font-semibold glass-input text-slate-700">Vitamin & Adjuvan (2)</button>
+            <button onclick="filterDrugTable('antipiretik')" class="drug-filter-pill px-3 py-1.5 rounded-xl text-xs font-semibold glass-input text-slate-700">Antipiretik (1)</button>
+          </div>
+        </div>
+
+        <!-- Tabel / Kartu 15 Obat -->
+        <div id="drugs-card-grid" class="grid grid-cols-1 md:grid-cols-2 gap-5">
+          <!-- Rendered by JavaScript -->
+        </div>
+
+      </div>
+    </div>
+
+    <!-- =========================================================================
+         TAB 3: KATEGORI PENYAKIT PASIEN SESUAI MOSBY'S DENTAL DRUG REFERENCE
+         ========================================================================= -->
+    <div id="tab-disease" class="tab-content hidden space-y-6">
+      <div class="glass-card rounded-3xl p-6 shadow-xl space-y-6">
+
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-white/60 pb-4">
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="px-2.5 py-0.5 rounded-md text-[11px] font-bold bg-emerald-100 text-emerald-900">
+                Mosby’s Dental Drug Reference (10th Ed)
+              </span>
+              <span class="text-xs text-slate-500 font-medium">Therapeutic Management of Common Oral Lesions</span>
+            </div>
+            <h2 class="text-xl font-extrabold text-slate-800 mt-1">
+              Kategori Penyakit, Gejala Pasien, & Panduan Terapi
+            </h2>
+            <p class="text-xs text-slate-600 mt-0.5">
+              Kenali gejala klinis yang dirasakan pasien, tentukan tata laksana, dan pilih obat yang harus diberikan untuk dikonsumsi pasien.
+            </p>
+          </div>
+
           <div class="w-full md:w-80">
             <div class="relative">
               <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3.5 text-slate-400 text-xs"></i>
-              <input type="text" id="search-disease" onkeyup="filterDiseases()" placeholder="Cari penyakit atau gejala..." class="w-full pl-9 pr-4 py-2.5 rounded-xl glass-input text-xs font-medium">
+              <input type="text" id="disease-search" onkeyup="filterOralDiseases()" placeholder="Cari penyakit / gejala klinis..." class="w-full pl-9 pr-4 py-2.5 rounded-xl glass-input text-xs font-semibold">
             </div>
           </div>
         </div>
 
-        <!-- Daftar Kategori Penyakit (Grid) -->
-        <div id="disease-container" class="grid grid-cols-1 md:grid-cols-2 gap-5">
-          <!-- Item Penyakit akan dimuat secara dinamis melalui JavaScript -->
+        <div id="oral-diseases-grid" class="grid grid-cols-1 md:grid-cols-2 gap-5">
+          <!-- Rendered by JavaScript -->
         </div>
+
       </div>
     </div>
 
-    <!-- ==================== TAB 3: KATALOG OBAT GIGI (KDA 5TH ED) ==================== -->
-    <div id="tab-drugs" class="tab-content hidden space-y-6">
-      <div class="glass-card rounded-3xl p-6 shadow-xl">
-        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-white/60 pb-4 mb-6">
-          <div>
-            <div class="flex items-center gap-2">
-              <span class="px-2.5 py-0.5 rounded-md text-[11px] font-bold bg-amber-100 text-amber-800">
-                Handbook of Commonly Used Drugs in Dentistry
-              </span>
-              <span class="text-xs text-slate-500 font-medium">Kuwait Dental Association (5th Edition)</span>
-            </div>
-            <h2 class="text-xl font-extrabold text-slate-800 mt-1">
-              Katalog Formularium & Sediaan Obat Gigi
-            </h2>
-            <p class="text-xs text-slate-600 mt-0.5">
-              Daftar obat lengkap dengan visual sediaan medis, indikasi Bahasa Indonesia, sediaan paten, dan dosis lazim.
-            </p>
-          </div>
-
-          <!-- Kategori Filter Obat -->
-          <div class="flex flex-wrap gap-1.5">
-            <button onclick="filterDrugCategory('all')" class="drug-cat-btn px-3 py-1.5 rounded-xl text-xs font-semibold glass-input bg-white/80 text-sky-800 active-cat">Semua</button>
-            <button onclick="filterDrugCategory('analgesik')" class="drug-cat-btn px-3 py-1.5 rounded-xl text-xs font-semibold glass-input text-slate-700">Analgesik & NSAID</button>
-            <button onclick="filterDrugCategory('antibiotik')" class="drug-cat-btn px-3 py-1.5 rounded-xl text-xs font-semibold glass-input text-slate-700">Antibiotik / Antimikroba</button>
-            <button onclick="filterDrugCategory('antijamur')" class="drug-cat-btn px-3 py-1.5 rounded-xl text-xs font-semibold glass-input text-slate-700">Antivirus & Antijamur</button>
-            <button onclick="filterDrugCategory('topikal')" class="drug-cat-btn px-3 py-1.5 rounded-xl text-xs font-semibold glass-input text-slate-700">Topikal & Antiseptik</button>
-          </div>
-        </div>
-
-        <!-- Drug Grid -->
-        <div id="drug-catalog-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-          <!-- Kartu obat disisipkan via JavaScript -->
-        </div>
-      </div>
-    </div>
-
-    <!-- ==================== TAB 4: LEMBAR RESEP R/ & REKAM MEDIS DOKTER ==================== -->
+    <!-- =========================================================================
+         TAB 4: LEMBAR RESEP RESMI R/ & REKAM MEDIS DOKTER
+         ========================================================================= -->
     <div id="tab-rx" class="tab-content hidden space-y-6">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
 
-        <!-- Form Input Resep & Catatan Klinis (Kiri) -->
+        <!-- Formulir Rekam Medis (Kiri) -->
         <div class="lg:col-span-5 space-y-5 no-print">
           <div class="glass-card rounded-3xl p-6 shadow-xl space-y-4">
             <h3 class="text-base font-bold text-slate-800 flex items-center gap-2 border-b border-white/60 pb-3">
-              <i class="fa-solid fa-user-doctor text-sky-600"></i> Identitas & Keterangan Klinis
+              <i class="fa-solid fa-user-doctor text-sky-600"></i> Data Dokter & Pasien
             </h3>
 
             <div class="space-y-3">
               <div>
-                <label class="block text-xs font-bold text-slate-700 mb-1">Nama Dokter / SIP</label>
-                <input type="text" id="doc-name" value="drg. Rizky Yana Putri" class="w-full p-2.5 rounded-xl glass-input text-xs font-semibold">
+                <label class="block text-xs font-bold text-slate-700 mb-1">Nama Dokter & SIP</label>
+                <input type="text" id="rx-doctor-name" value="drg. Rizky Yana Putri" class="w-full p-2.5 rounded-xl glass-input text-xs font-semibold">
               </div>
               <div class="grid grid-cols-2 gap-2">
                 <div>
                   <label class="block text-xs font-bold text-slate-700 mb-1">Nama Pasien</label>
-                  <input type="text" id="rx-patient-name" value="Ananda Pratama" class="w-full p-2.5 rounded-xl glass-input text-xs font-semibold">
+                  <input type="text" id="rx-pat-name" value="Ananda Rifqi" class="w-full p-2.5 rounded-xl glass-input text-xs font-semibold">
                 </div>
                 <div>
-                  <label class="block text-xs font-bold text-slate-700 mb-1">Usia / BB</label>
-                  <input type="text" id="rx-patient-age" value="6 Tahun / 20 kg" class="w-full p-2.5 rounded-xl glass-input text-xs font-semibold">
+                  <label class="block text-xs font-bold text-slate-700 mb-1">Usia / BB Pasien</label>
+                  <input type="text" id="rx-pat-age-bb" value="7 Tahun / 22 kg" class="w-full p-2.5 rounded-xl glass-input text-xs font-semibold">
                 </div>
               </div>
               <div>
-                <label class="block text-xs font-bold text-slate-700 mb-1">Diagnosa Klinis Pasien</label>
-                <input type="text" id="rx-diagnosis" value="Abses Dentoalveolar Akut ec Nekrosis Gigi 75" class="w-full p-2.5 rounded-xl glass-input text-xs font-semibold">
+                <label class="block text-xs font-bold text-slate-700 mb-1">Diagnosa Klinis</label>
+                <input type="text" id="rx-pat-diagnosis" value="Abses Dentoalveolar Akut ec Nekrosis Pulpa Gigi 85" class="w-full p-2.5 rounded-xl glass-input text-xs font-semibold">
               </div>
               <div>
                 <label class="block text-xs font-bold text-slate-700 mb-1">Riwayat Alergi Obat</label>
-                <input type="text" id="rx-allergy" value="Tidak Ada Riwayat Alergi (NKDA)" class="w-full p-2.5 rounded-xl glass-input text-xs font-semibold text-rose-700">
+                <input type="text" id="rx-pat-allergy" value="Tidak Ada Alergi Obat (NKDA)" class="w-full p-2.5 rounded-xl glass-input text-xs font-semibold text-rose-700">
               </div>
             </div>
 
-            <!-- Kotak Catatan Dokter -->
             <div>
-              <label class="block text-xs font-bold text-slate-700 mb-1">Kotak Catatan & Instruksi Pasien</label>
-              <textarea id="rx-doc-notes" rows="3" class="w-full p-3 rounded-xl glass-input text-xs text-slate-700 leading-relaxed" placeholder="Instruksi khusus, pantangan makanan, waktu kontrol ulang, dll...">Antibiotik diminum teratur sampai habis selama 5 hari berturut-turut. Analgesik diminum bila merasa nyeri. Jaga kebersihan mulut dengan sikat gigi perlahan.</textarea>
+              <label class="block text-xs font-bold text-slate-700 mb-1">Instruksi Khusus Dokter</label>
+              <textarea id="rx-special-instruction" rows="3" class="w-full p-3 rounded-xl glass-input text-xs leading-relaxed text-slate-800">Antibiotik diminum teratur tiap 8 jam sampai habis selama 5 hari berturut-turut. Analgesik diminum bila merasa nyeri. Jaga kebersihan rongga mulut.</textarea>
             </div>
 
-            <div class="pt-2">
-              <button onclick="updatePrescriptionPreview()" class="w-full bg-sky-600 hover:bg-sky-700 text-white font-bold py-3 rounded-xl text-xs shadow-md transition-all">
-                <i class="fa-solid fa-arrows-rotate mr-1"></i> Perbarui Tampilan Resep
-              </button>
-            </div>
+            <button onclick="refreshRxPreview()" class="w-full bg-sky-700 hover:bg-sky-800 text-white font-bold py-3 rounded-xl text-xs transition-all shadow-md">
+              <i class="fa-solid fa-arrows-rotate mr-1"></i> Sinkronkan Lembar Resep
+            </button>
           </div>
         </div>
 
-        <!-- Lembar Resep Format Standar Resmi Dokter (Kanan) -->
+        <!-- Lembar Resep Resmi (Kanan - Print-Ready) -->
         <div class="lg:col-span-7">
-          <div class="print-area glass-card rounded-3xl p-8 shadow-2xl bg-white/80 border border-white text-slate-800 relative">
+          <div class="print-area glass-card rounded-3xl p-8 shadow-2xl bg-white/90 border border-white text-slate-800 relative space-y-4">
 
-            <!-- Kop Resep -->
-            <div class="border-b-2 border-slate-800 pb-4 mb-4 text-center relative">
-              <div class="absolute left-0 top-0">
-                <i class="fa-solid fa-tooth text-3xl text-sky-700"></i>
+            <!-- KOP RESEP DOKTER GIGI -->
+            <div class="border-b-2 border-slate-900 pb-3 text-center relative">
+              <div class="absolute left-0 top-0 text-sky-700 text-3xl">
+                <i class="fa-solid fa-tooth"></i>
               </div>
               <h2 id="view-doc-name" class="text-lg font-black uppercase tracking-wider text-slate-900">drg. Rizky Yana Putri</h2>
-              <p class="text-[11px] font-medium text-slate-600">Surat Izin Praktik (SIP): 503/SIP-DRG/2026/0411</p>
-              <p class="text-[11px] text-slate-500">Praktek Mandiri Dokter Gigi • Medan, Sumatera Utara</p>
-              <p class="text-[10px] text-slate-500 font-mono">Telp / Emergency: (061) 786-9021 • Buka Setiap Hari Kerja</p>
+              <p class="text-[11px] font-semibold text-slate-600">Surat Izin Praktik (SIP): 503/SIP-DRG/2026/0411</p>
+              <p class="text-[11px] text-slate-500">Klinik Pratama & Praktek Mandiri Kedokteran Gigi • Medan, Sumatera Utara</p>
+              <p class="text-[10px] text-slate-400 font-mono">Layanan Pasien & Konsultasi Telepon: (061) 786-9021</p>
             </div>
 
-            <!-- Info Pasien -->
-            <div class="grid grid-cols-2 gap-4 text-xs mb-4 pb-3 border-b border-dashed border-slate-300">
+            <!-- IDENTITAS PASIEN -->
+            <div class="grid grid-cols-2 gap-4 text-xs pb-3 border-b border-dashed border-slate-300">
               <div>
-                <p><span class="font-bold text-slate-700">Nama Pasien:</span> <span id="view-patient-name" class="font-semibold">Ananda Pratama</span></p>
-                <p><span class="font-bold text-slate-700">Umur / BB:</span> <span id="view-patient-age">6 Tahun / 20 kg</span></p>
+                <p><span class="font-bold text-slate-700">Nama Pasien:</span> <span id="view-pat-name" class="font-semibold">Ananda Rifqi</span></p>
+                <p><span class="font-bold text-slate-700">Umur / BB:</span> <span id="view-pat-age-bb">7 Tahun / 22 kg</span></p>
+                <p><span class="font-bold text-slate-700">Diagnosa:</span> <span id="view-pat-diag" class="italic text-slate-600">Abses Dentoalveolar Akut</span></p>
               </div>
               <div class="text-right">
-                <p><span class="font-bold text-slate-700">Tanggal:</span> <span id="view-rx-date">Medan, --</span></p>
-                <p><span class="font-bold text-slate-700">Alergi:</span> <span id="view-rx-allergy" class="text-rose-600 font-bold">NKDA</span></p>
+                <p><span class="font-bold text-slate-700">Tanggal:</span> <span id="view-rx-date-now">Medan, --</span></p>
+                <p><span class="font-bold text-slate-700">Riwayat Alergi:</span> <span id="view-pat-allergy-text" class="text-rose-600 font-bold">NKDA</span></p>
               </div>
             </div>
 
-            <!-- Isi Resep (R/) -->
-            <div class="min-h-[220px] space-y-4 py-2 text-sm font-serif">
+            <!-- ISI PRESKRIPSI R/ -->
+            <div class="min-h-[200px] space-y-4 py-2 text-sm font-serif">
+              <!-- Item 1 -->
               <div class="flex items-start gap-3">
                 <span class="text-2xl font-serif font-black italic text-sky-900 leading-none">R/</span>
                 <div class="flex-1">
-                  <p id="view-rx-item-1" class="font-bold text-slate-900 font-mono text-xs">
+                  <p id="view-item-1-name" class="font-bold text-slate-900 font-mono text-xs">
                     Amoxicillin Syr 125 mg / 5 ml -- Fl. No. II
                   </p>
-                  <p id="view-rx-signa-1" class="text-xs italic text-slate-700 font-mono mt-0.5">
-                    S. 3 d d cth 1 1/2 (q8h) p.c. habiskan (5 hari)
+                  <p id="view-item-1-signa" class="text-xs italic text-slate-700 font-mono mt-0.5">
+                    S. 3 d d cth 2 (tiap 8 jam) p.c. -- Habiskan selama 5 hari
                   </p>
                 </div>
               </div>
 
+              <!-- Item 2 -->
               <div class="flex items-start gap-3">
                 <span class="text-2xl font-serif font-black italic text-sky-900 leading-none">R/</span>
                 <div class="flex-1">
-                  <p id="view-rx-item-2" class="font-bold text-slate-900 font-mono text-xs">
+                  <p id="view-item-2-name" class="font-bold text-slate-900 font-mono text-xs">
                     Paracetamol Syr 120 mg / 5 ml -- Fl. No. I
                   </p>
-                  <p id="view-rx-signa-2" class="text-xs italic text-slate-700 font-mono mt-0.5">
-                    S. p.r.n. 3 d d cth 1 (bila demam/nyeri)
+                  <p id="view-item-2-signa" class="text-xs italic text-slate-700 font-mono mt-0.5">
+                    S. p.r.n. 3 d d cth 1 1/2 bila merasa nyeri atau demam
                   </p>
                 </div>
               </div>
 
-              <!-- Pulvis Placeholder (Jika dibuat racikan) -->
-              <div id="view-rx-pulvis-block" class="hidden flex items-start gap-3 border-t border-slate-200 pt-3">
+              <!-- Item Pulvis Racikan (Dinamis jika mode puyer) -->
+              <div id="view-pulvis-item-block" class="hidden flex items-start gap-3 border-t border-slate-200 pt-3">
                 <span class="text-2xl font-serif font-black italic text-teal-900 leading-none">R/</span>
                 <div class="flex-1 font-mono text-xs">
-                  <p id="view-rx-pulvis-item" class="font-bold text-slate-900">Racikan Pulvis</p>
-                  <p id="view-rx-pulvis-signa" class="italic text-slate-700">m.f. pulv. d.t.d. No. XV -- S. 3 d.d. pulv I p.c.</p>
+                  <p id="view-pulvis-formula" class="font-bold text-slate-900">Racikan Pulvis D.t.d</p>
+                  <p id="view-pulvis-signa" class="italic text-slate-700">m.f. pulv. d.t.d No. XV -- S. 3 d.d. pulv I p.c.</p>
                 </div>
               </div>
             </div>
 
-            <!-- Kotak Catatan Dokter di Resep -->
-            <div class="p-3 rounded-xl bg-slate-100/70 border border-slate-200 text-xs text-slate-700 mb-6">
-              <span class="font-bold block text-[10px] uppercase tracking-wider text-slate-500 mb-0.5">Catatan Khusus Dokter:</span>
-              <p id="view-doc-notes" class="text-[11px] italic">Antibiotik diminum teratur sampai habis selama 5 hari berturut-turut.</p>
+            <!-- CATATAN KHUSUS DOKTER -->
+            <div class="p-3 rounded-xl bg-slate-100/80 border border-slate-200 text-xs">
+              <span class="font-bold block text-[10px] uppercase tracking-wider text-slate-500 mb-0.5">Instruksi Khusus Dokter:</span>
+              <p id="view-notes-box" class="text-[11px] italic text-slate-700 leading-relaxed">
+                Antibiotik diminum teratur tiap 8 jam sampai habis selama 5 hari berturut-turut.
+              </p>
             </div>
 
-            <!-- Tanda Tangan Dokter -->
+            <!-- TANDA TANGAN DOKTER -->
             <div class="flex justify-between items-end pt-4 border-t border-slate-300 text-xs">
               <div class="text-[10px] text-slate-400">
-                Dokumen resmi preskripsi kefarmasian dokter gigi.<br>
-                Validasi elektronik terintegrasi.
+                Dokumen preskripsi sah profesional medis gigi.<br>
+                Sesuai standar pelayanan farmasi klinis.
               </div>
               <div class="text-center w-48">
                 <p class="text-[10px] text-slate-500 mb-12">Tanda Tangan & Cap Dokter:</p>
-                <div class="border-b border-slate-800 w-36 mx-auto"></div>
-                <p id="view-doc-sign-name" class="font-bold text-xs mt-1 text-slate-800">drg. Rizky Yana Putri</p>
+                <div class="border-b border-slate-900 w-36 mx-auto"></div>
+                <p id="view-sign-doc-name" class="font-bold text-xs mt-1 text-slate-900">drg. Rizky Yana Putri</p>
               </div>
             </div>
 
@@ -683,366 +792,465 @@
 
   </div>
 
-  <!-- JAVASCRIPT LOGIC & COMPREHENSIVE DATA -->
+  <!-- =========================================================================
+       JAVASCRIPT LOGIC & DATABASE 15 OBAT LENGKAP
+       ========================================================================= -->
   <script>
     /* =========================================================
-       1. DATA PENYAKIT & GEJALA PASIEN (MOSBY'S 10TH ED)
+       1. DATABASE LENGKAP 15 OBAT DENGAN DOSIS USIA & KOMORBID
+       ========================================================= */
+    const completeDrugDatabase = [
+      {
+        id: "metronidazole",
+        name: "Metronidazol",
+        category: "antibiotik",
+        categoryLabel: "Antibiotik Anaerob",
+        forms: "Tablet 200mg, 400mg, 500mg, Suspensi 125mg/5ml",
+        sources: "KDA 5th Ed (Hal 29), Mosby 10th Ed, BNF 69",
+        indications: "Infeksi bakteri anaerob obligat, ANUG (Acute Necrotizing Ulcerative Gingivitis), periodontitis agresif, abses dentoalveolar kombinasi.",
+        ageRange: {
+          bayi: "10 - 20 mg/kg/hari dibagi 3 dosis (hati-hati neonatus)",
+          balita: "15 - 30 mg/kg/hari dibagi 3 dosis (tiap 8 jam)",
+          anak: "20 - 35 mg/kg/hari dibagi 3 dosis (tiap 8 jam)",
+          dewasa: "400 - 500 mg tiap 8 jam (1200 - 1500 mg/hari)"
+        },
+        defaultDosePerKg: 25,
+        defaultAdultDose: 500,
+        ageWarning: "Hindari pada neonatus < 4 minggu kecuali kondisi darurat. Evaluasi ketat pada anak < 1 tahun.",
+        contraindications: "Hipersensitivitas metronidazol. KONTRAINDIKASI dengan ALKOHOL (reaksi disulfiram-like hebat: mual, muntah, palpitasi, flushing). Trimester 1 kehamilan.",
+        comorbidCautions: "Gangguan fungsi hepar berat (kurangi dosis 50%), riwayat kejang/epilepsi, diskrasia darah aktif.",
+        defaultFreq: 3,
+        defaultStockMg: 125,
+        defaultStockVol: 5
+      },
+      {
+        id: "amoxicillin",
+        name: "Amoxicillin",
+        category: "antibiotik",
+        categoryLabel: "Antibiotik Aminopenisilin",
+        forms: "Kapsul 250mg, 500mg, Sirup 125mg/5ml, 250mg/5ml",
+        sources: "KDA 5th Ed (Hal 21), Mosby 10th Ed, AAPD Guidelines",
+        indications: "Lini pertama infeksi orofasial odontogenik dengan manifestasi sistemik, abses periapikal, profilaksis endokarditis infektif (2g oral).",
+        ageRange: {
+          bayi: "20 - 30 mg/kg/hari dibagi 3 dosis (tiap 8 jam)",
+          balita: "25 - 45 mg/kg/hari dibagi 3 dosis (tiap 8 jam)",
+          anak: "25 - 50 mg/kg/hari dibagi 3 dosis (tiap 8 jam)",
+          dewasa: "500 mg tiap 8 jam atau 875 mg tiap 12 jam (1500 - 2000 mg/hari)"
+        },
+        defaultDosePerKg: 35,
+        defaultAdultDose: 500,
+        ageWarning: "Aman untuk semua kelompok usia dengan penyesuaian dosis berat badan akurat.",
+        contraindications: "Riwayat hipersensitivitas/anafilaksis terhadap penisilin atau antibiotik beta-laktam.",
+        comorbidCautions: "Gangguan fungsi ginjal berat (CrCl < 30 ml/menit: turunkan frekuensi q12h), mononukleosis infeksiosa (risiko tinggi erupsi ruam kulit makulopapular).",
+        defaultFreq: 3,
+        defaultStockMg: 125,
+        defaultStockVol: 5
+      },
+      {
+        id: "co-amoxiclav",
+        name: "Co-Amoxiclav (Augmentin)",
+        category: "antibiotik",
+        categoryLabel: "Penisilin + Inhibitor Beta-Laktamase",
+        forms: "Tablet 625mg, 1000mg, Suspensi 156mg/5ml, 228mg/5ml, 457mg/5ml",
+        sources: "KDA 5th Ed (Hal 22), Mosby 10th Ed",
+        indications: "Infeksi odontogenik refrakter penghasil beta-laktamase, selulitis spasium fasial, abses rekuren yang gagal dengan amoksisilin tunggal.",
+        ageRange: {
+          bayi: "20 - 30 mg/kg/hari (suspensi 125) dibagi 2-3 dosis",
+          balita: "25 - 40 mg/kg/hari dibagi 3 dosis",
+          anak: "25 - 45 mg/kg/hari dibagi 3 dosis",
+          dewasa: "625 mg tiap 8 jam atau 1000 mg tiap 12 jam (Augmentin 1g)"
+        },
+        defaultDosePerKg: 30,
+        defaultAdultDose: 625,
+        ageWarning: "Aman untuk anak dengan penyesuaian dosis. Hindari tablet 1000mg pada anak berat badan < 40 kg.",
+        contraindications: "Alergi penisilin, riwayat ikterus kolestatik atau disfungsi hepar akibat amoksisilin-klavulanat sebelumnya.",
+        comorbidCautions: "Gangguan hepar, gangguan ginjal berat, hati-hati diare akut terkait asam klavulanat.",
+        defaultFreq: 3,
+        defaultStockMg: 156,
+        defaultStockVol: 5
+      },
+      {
+        id: "clindamycin",
+        name: "Clindamycine (Klindamisin)",
+        category: "antibiotik",
+        categoryLabel: "Antibiotik Linkosamid",
+        forms: "Kapsul 150mg, 300mg, Suspensi 75mg/5ml, Ampul 300mg/2ml",
+        sources: "KDA 5th Ed (Hal 23), Mosby 10th Ed, AHA Guidelines",
+        indications: "Infeksi bakteri anaerob tulang rahang, penetrasi tulang prima, lini pertama pengganti penisilin bagi pasien alergi berat.",
+        ageRange: {
+          bayi: "8 - 15 mg/kg/hari dibagi 3-4 dosis (hindari sediaan benzil alkohol)",
+          balita: "10 - 20 mg/kg/hari dibagi 3-4 dosis",
+          anak: "10 - 25 mg/kg/hari dibagi 3-4 dosis (tiap 6-8 jam)",
+          dewasa: "150 - 300 mg tiap 6 jam atau 300 mg tiap 8 jam (maks 1800 mg/hari)"
+        },
+        defaultDosePerKg: 15,
+        defaultAdultDose: 300,
+        ageWarning: "Neonatus prematur dilarang sediaan parenteral berpengawet benzil alkohol (gasping syndrome).",
+        contraindications: "Hipersensitivitas klindamisin/linkomisin, riwayat kolitis ulserativa atau kolitis pseudomembranosa (Clostridium difficile).",
+        comorbidCautions: "Wajib diminum dengan 1 gelas penuh air dan posisi tegak untuk mencegah ulserasi esofagus. Hentikan segera jika diare berat berdarah.",
+        defaultFreq: 3,
+        defaultStockMg: 150,
+        defaultStockVol: 1
+      },
+      {
+        id: "cefadroxil",
+        name: "Cefadroxil (Sefadroksil)",
+        category: "antibiotik",
+        categoryLabel: "Sefalosporin Generasi 1",
+        forms: "Kapsul 500mg, Sirup Kering 125mg/5ml, 250mg/5ml",
+        sources: "BNF 69, Pediatrik Formularium IDAI, Mosby 10th Ed",
+        indications: "Infeksi jaringan lunak orofasial, selulitis ringan, alternatif alergi penisilin non-anafilaktik.",
+        ageRange: {
+          bayi: "25 - 30 mg/kg/hari dibagi 2 dosis (usia > 6 bulan)",
+          balita: "25 - 40 mg/kg/hari dibagi 2 dosis (tiap 12 jam)",
+          anak: "30 - 50 mg/kg/hari dibagi 2 dosis (tiap 12 jam)",
+          dewasa: "500 mg - 1000 mg tiap 12 jam (1000 - 2000 mg/hari)"
+        },
+        defaultDosePerKg: 30,
+        defaultAdultDose: 500,
+        ageWarning: "Keamanan pada bayi usia < 6 bulan belum ditetapkan secara definitif.",
+        contraindications: "Hipersensitivitas berat (anafilaksis, angioedema) terhadap antibiotik sefalosporin.",
+        comorbidCautions: "Cross-sensitivity 5-10% pada pasien alergi penisilin sejati. Sesuaikan dosis pada insufisiensi ginjal.",
+        defaultFreq: 2,
+        defaultStockMg: 125,
+        defaultStockVol: 5
+      },
+      {
+        id: "cefixime",
+        name: "Cefixime (Sefiksim)",
+        category: "antibiotik",
+        categoryLabel: "Sefalosporin Generasi 3",
+        forms: "Kapsul 100mg, 200mg, Sirup 100mg/5ml",
+        sources: "IDAI Pediatrik, BNF 69, Mosby 10th Ed",
+        indications: "Infeksi bakteri gram negatif orofasial refrakter, sinusitis maksilaris dentogenik berat.",
+        ageRange: {
+          bayi: "Belum direkomendasikan rutin pada bayi < 6 bulan",
+          balita: "8 mg/kg/hari dosis tunggal atau dibagi 2 dosis (tiap 12 jam)",
+          anak: "8 - 10 mg/kg/hari dosis tunggal atau dibagi 2 dosis (tiap 12 jam)",
+          dewasa: "200 - 400 mg/hari (bisa 200 mg q12h atau 400 mg q24h)"
+        },
+        defaultDosePerKg: 8,
+        defaultAdultDose: 200,
+        ageWarning: "PERINGATAN: KONTRAINDIKASI / Tidak dianjurkan untuk bayi usia < 6 bulan.",
+        contraindications: "Alergi berat terhadap sefalosporin.",
+        comorbidCautions: "Gangguan fungsi ginjal berat (CrCl < 20 ml/menit: kurangi dosis hingga 50%), riwayat kolitis.",
+        defaultFreq: 2,
+        defaultStockMg: 100,
+        defaultStockVol: 5
+      },
+      {
+        id: "ibuprofen",
+        name: "Ibuprofen",
+        category: "analgesik",
+        categoryLabel: "NSAID Analgesik Antiinflamasi",
+        forms: "Tablet 200mg, 400mg, Suspensi 100mg/5ml, 200mg/5ml",
+        sources: "KDA 5th Ed (Hal 11), Mosby 10th Ed, AAPD Guidelines",
+        indications: "Nyeri inflamasi akut dental sedang-berat, pulpitis, pasca bedah impaksi molar tiga, artritis TMJ.",
+        ageRange: {
+          bayi: "KONTRAINDIKASI < 3-6 bulan! (Kecuali indikasi penutupan PDA di RS)",
+          balita: "5 - 10 mg/kg/kali minum tiap 6-8 jam (maks 30 mg/kg/hari)",
+          anak: "5 - 10 mg/kg/kali minum tiap 6-8 jam (maks 40 mg/kg/hari)",
+          dewasa: "400 mg tiap 6-8 jam sesudah makan (maksimal 2400 mg/hari)"
+        },
+        defaultDosePerKg: 20,
+        defaultAdultDose: 400,
+        ageWarning: "PERINGATAN USIA: KONTRAINDIKASI untuk bayi di bawah usia 3 - 6 bulan atau BB < 5 kg.",
+        contraindications: "Tukak lambung/ulkus peptikum aktif, asma bronkial yang terpicu aspirin/NSAID, gagal jantung kongestif berat, kehamilan trimester ke-3.",
+        comorbidCautions: "Hipertensi tak terkontrol, penyakit ginjal kronis, gangguan koagulasi darah, riwayat perdarahan GI.",
+        defaultFreq: 3,
+        defaultStockMg: 100,
+        defaultStockVol: 5
+      },
+      {
+        id: "paracetamol",
+        name: "Paracetamol (Acetaminophen)",
+        category: "antipiretik",
+        categoryLabel: "Analgesik & Antipiretik Non-Opioid",
+        forms: "Tablet 500mg, Sirup 120mg/5ml, 160mg/5ml, 250mg/5ml, Drop 100mg/ml",
+        sources: "KDA 5th Ed (Hal 8), Mosby 10th Ed, BNF 69",
+        indications: "Lini pertama pereda nyeri ringan-sedang pasca restorasi/ekstraksi, penurun demam infeksi dentoalveolar.",
+        ageRange: {
+          bayi: "10 - 15 mg/kg/kali minum tiap 6-8 jam (maks 60 mg/kg/hari)",
+          balita: "10 - 15 mg/kg/kali minum tiap 4-6 jam (maks 5 kali / 24 jam)",
+          anak: "10 - 15 mg/kg/kali (250-500 mg/kali) tiap 4-6 jam",
+          dewasa: "500 mg - 1000 mg tiap 4-6 jam (maksimal 4000 mg / 24 jam)"
+        },
+        defaultDosePerKg: 40,
+        defaultAdultDose: 500,
+        ageWarning: "Aman untuk segala usia dari neonatus sampai geriatri dengan dosis ketat sesuai berat badan.",
+        contraindications: "Penyakit hepar aktif berat, sirosis hati dekompensata, hipersensitivitas parasetamol.",
+        comorbidCautions: "Alkoholisme kronis, malnutrisi berat, defisiensi G6PD. Jangan melebihi 4000 mg/hari untuk mencegah nekrosis tubular hepar.",
+        defaultFreq: 3,
+        defaultStockMg: 120,
+        defaultStockVol: 5
+      },
+      {
+        id: "dexamethasone",
+        name: "Dexametason (Dexamethasone)",
+        category: "steroid",
+        categoryLabel: "Kortikosteroid Antiinflamasi Kuat",
+        forms: "Tablet 0.5mg, 4mg, Ampul 5mg/ml, Eliksir 0.5mg/5ml",
+        sources: "Mosby 10th Ed (Hal 7, 15), BNF 69",
+        indications: "Pencegahan edema fasial masif & trismus pasca odontektomi kompleks, stomatitis aftosa rekuren berat (eliksir kumur).",
+        ageRange: {
+          bayi: "0.08 - 0.2 mg/kg/hari dibagi 2-4 dosis (hanya indikasi emergensi)",
+          balita: "0.08 - 0.25 mg/kg/hari dibagi 2-3 dosis",
+          anak: "0.08 - 0.3 mg/kg/hari dibagi 2-3 dosis",
+          dewasa: "0.5 - 4 mg/hari oral, atau 4 - 8 mg IV/IM dosis tunggal perioperatif"
+        },
+        defaultDosePerKg: 0.15,
+        defaultAdultDose: 2,
+        ageWarning: "Hindari penggunaan jangka panjang pada bayi dan anak karena menekan aksis hipotalamus-hipofisis dan memicu gangguan pertumbuhan.",
+        contraindications: "Infeksi jamur atau herpes simpleks aktif tanpa antivirus (risiko penyebaran agresif), ulkus peptikum aktif.",
+        comorbidCautions: "Diabetes melitus (memicu lonjakan hiperglikemia tajam), hipertensi, tuberkulosis aktif, osteoporosis.",
+        defaultFreq: 2,
+        defaultStockMg: 0.5,
+        defaultStockVol: 1
+      },
+      {
+        id: "natrium-diklofenak",
+        name: "Natrium Diklofenak (Diclofenac Sodium)",
+        category: "analgesik",
+        categoryLabel: "NSAID Saluran Cerna / Sendi",
+        forms: "Tablet Salut Enterik 25mg, 50mg, Injeksi 75mg/3ml",
+        sources: "KDA 5th Ed (Hal 14), Mosby 10th Ed",
+        indications: "Nyeri hebat pasca bedah maksilofasial, periostitis rahang, osteoartritis sendi temporomandibula (TMJ).",
+        ageRange: {
+          bayi: "KONTRAINDIKASI MUTLAK!",
+          balita: "KONTRAINDIKASI MUTLAK!",
+          anak: "Tidak dianjurkan untuk anak < 14 tahun",
+          dewasa: "50 mg 2-3 kali sehari sesudah makan (maks 150 mg/hari)"
+        },
+        defaultDosePerKg: 1,
+        defaultAdultDose: 50,
+        ageWarning: "PERINGATAN KETAT: KONTRAINDIKASI pada BAYI, BALITA, dan ANAK < 14 tahun untuk kasus kedokteran gigi umum.",
+        contraindications: "Ulkus lambung/perdarahan GI aktif, penyakit jantung iskemik, gagal jantung kongestif (NYHA II-IV), stroke.",
+        comorbidCautions: "Retensi cairan dan hipertensi. Batasi durasi pengobatan maksimal 3-5 hari saja.",
+        defaultFreq: 3,
+        defaultStockMg: 50,
+        defaultStockVol: 1
+      },
+      {
+        id: "etoricoxib",
+        name: "Etoricoxib",
+        category: "analgesik",
+        categoryLabel: "Penghambat Selektif COX-2",
+        forms: "Tablet 60mg, 90mg, 120mg",
+        sources: "BNF 69, Consensus Guidelines Orofacial Pain",
+        indications: "Nyeri pasca bedah impaksi gigi molar tiga (dosis 90-120mg jangka pendek), nyeri kronis disfungsi sendi temporomandibula.",
+        ageRange: {
+          bayi: "KONTRAINDIKASI MUTLAK!",
+          balita: "KONTRAINDIKASI MUTLAK!",
+          anak: "KONTRAINDIKASI MUTLAK!",
+          dewasa: "60 - 90 mg sekali sehari (akut bedah gigi maks 120 mg s.d.d, maks 3-8 hari)"
+        },
+        defaultDosePerKg: 0,
+        defaultAdultDose: 90,
+        ageWarning: "PERINGATAN MUTLAK: KONTRAINDIKASI pada ANAK & REMAJA di bawah usia 16 TAHUN.",
+        contraindications: "Usia < 16 tahun, hipertensi berat yang tidak terkontrol (> 140/90 mmHg), riwayat infark miokard, bypass koroner, stroke.",
+        comorbidCautions: "Pantau ketat tekanan darah pasien. Jangan diberikan pada pasien gagal jantung kongestif atau penyakit arteri perifer.",
+        defaultFreq: 1,
+        defaultStockMg: 90,
+        defaultStockVol: 1
+      },
+      {
+        id: "methylprednisolone",
+        name: "Metilprednisolone",
+        category: "steroid",
+        categoryLabel: "Kortikosteroid Glukokortikoid",
+        forms: "Tablet 4mg, 8mg, 16mg",
+        sources: "Mosby 10th Ed, Pediatrik Endokrin Formularium",
+        indications: "Supresi inflamasi lesi oral eritematosa berat (Eritema Multiforme, Lichen Planus), pembengkakan masif pasca osteotomi.",
+        ageRange: {
+          bayi: "0.5 - 1 mg/kg/hari dibagi 2-4 dosis (kondisi kritis saja)",
+          balita: "0.5 - 1.5 mg/kg/hari dibagi 2-3 dosis",
+          anak: "0.5 - 1.5 mg/kg/hari dibagi 2-3 dosis",
+          dewasa: "4 - 16 mg/hari (dapat dititrasi menurun / taper off)"
+        },
+        defaultDosePerKg: 0.8,
+        defaultAdultDose: 8,
+        ageWarning: "Hindari pemberian terus-menerus pada anak tanpa tapering-off untuk mencegah supresi kelenjar adrenal.",
+        contraindications: "Infeksi sistemik parah tanpa terapi antimikroba adekuat, infeksi virus herpetik aktif.",
+        comorbidCautions: "Tukak lambung (berikan bersama antasida/PPI), osteoporosis, diabetes melitus, katarak.",
+        defaultFreq: 2,
+        defaultStockMg: 4,
+        defaultStockVol: 1
+      },
+      {
+        id: "kalium-diklofenak",
+        name: "Kalium Diklofenak (Diclofenac Potassium)",
+        category: "analgesik",
+        categoryLabel: "NSAID Onset Cepat (Cataflam)",
+        forms: "Tablet Salut 25mg, 50mg, Drop 15mg/ml",
+        sources: "KDA 5th Ed (Hal 14), Mosby 10th Ed",
+        indications: "Pereda nyeri akut onset sangat cepat pada sakit gigi berdenyut, pulpitis akut, dry socket, pasca odontektomi.",
+        ageRange: {
+          bayi: "KONTRAINDIKASI MUTLAK!",
+          balita: "KONTRAINDIKASI MUTLAK!",
+          anak: "Tidak dianjurkan untuk anak < 14 tahun",
+          dewasa: "50 mg tiap 8 jam sesudah makan (100 - 150 mg/hari)"
+        },
+        defaultDosePerKg: 1,
+        defaultAdultDose: 50,
+        ageWarning: "PERINGATAN: KONTRAINDIKASI pada BAYI, BALITA, dan ANAK di bawah 14 TAHUN.",
+        contraindications: "Tukak lambung/duodenum aktif, perdarahan saluran cerna, penyakit jantung koroner.",
+        comorbidCautions: "Minum segera sesudah makan. Hati-hati pada pasien asma dan lansia.",
+        defaultFreq: 3,
+        defaultStockMg: 50,
+        defaultStockVol: 1
+      },
+      {
+        id: "vitamin-c",
+        name: "Vitamin C (Asam Askorbat)",
+        category: "vitamin",
+        categoryLabel: "Vitamin Antioksidan & Kolagen",
+        forms: "Tablet 50mg, 100mg, 250mg, 500mg, Tablet Hisap 500mg",
+        sources: "Formularium Nasional, Nutritional Reference Intake",
+        indications: "Mempercepat sintesis kolagen pasca bedah flap periodontal, luka soket pencabutan gigi, perdarahan gingiva akibat defisiensi.",
+        ageRange: {
+          bayi: "Kebutuhan harian 40 - 50 mg/hari",
+          balita: "50 - 100 mg/hari (terapi)",
+          anak: "100 - 250 mg/hari (terapi)",
+          dewasa: "250 - 500 mg 1-2 kali sehari (500 - 1000 mg/hari)"
+        },
+        defaultDosePerKg: 10,
+        defaultAdultDose: 500,
+        ageWarning: "Aman untuk semua kelompok umur. Hindari dosis megadose berlebih pada anak.",
+        contraindications: "Hipersensitivitas asam askorbat, riwayat hiperoksaluria atau nefrolitiasis batu ginjal.",
+        comorbidCautions: "Defisiensi G6PD (pada dosis sangat masif), hemokromatosis (meningkatkan penyerapan zat besi).",
+        defaultFreq: 2,
+        defaultStockMg: 500,
+        defaultStockVol: 1
+      },
+      {
+        id: "vitamin-b12",
+        name: "Vitamin B12 (Cyanocobalamin) / Neurobion",
+        category: "vitamin",
+        categoryLabel: "Vitamin Neurotropik / B-Kompleks",
+        forms: "Tablet 50mcg, 100mcg, 500mcg, Ampul Injeksi IM 1000mcg/ml",
+        sources: "KDA 5th Ed (Hal 45), Mosby 10th Ed (Hal 21)",
+        indications: "Adjuvan parestesia n. alveolaris inferior pasca cabut gigi molar tiga, glositis atrofik, neuralgia trigeminal, Burning Mouth Syndrome.",
+        ageRange: {
+          bayi: "0.4 - 0.5 mcg/hari (kebutuhan dasar)",
+          balita: "0.9 - 1.5 mcg/hari",
+          anak: "1.5 - 2.5 mcg/hari",
+          dewasa: "50 - 500 mcg oral sekali sehari (atau injeksi IM 1000mcg selang sehari)"
+        },
+        defaultDosePerKg: 1,
+        defaultAdultDose: 100,
+        ageWarning: "Sediaan injeksi Neurobion dosis tinggi dikontraindikasikan pada anak-anak (KDA Handbook).",
+        contraindications: "Hipersensitivitas kobalt, penyakit neuropati optik herediter (Leber’s disease).",
+        comorbidCautions: "Pasien yang menerima terapi Levodopa (B6 dalam kombinasi dapat mengantagonis efek obat Parkinson).",
+        defaultFreq: 1,
+        defaultStockMg: 100,
+        defaultStockVol: 1
+      }
+    ];
+
+    /* =========================================================
+       2. DATABASE PENYAKIT & GEJALA PASIEN (MOSBY'S REFERENCE)
        ========================================================= */
     const oralDiseasesData = [
       {
         id: "herpes-primary",
         title: "Gingivostomatitis Herpetik Primer",
-        category: "Infeksi Viral",
-        etiology: "Herpes Simplex Virus (HSV-1, jarang HSV-2)",
+        category: "Infeksi Viral Akut",
         symptoms: [
-          "Vesikel bening-kekuningan di mukosa mulut & bibir yang cepat pecah menjadi ulkus dangkal multipel yang sangat nyeri",
-          "Gingiva merah terang (eritematosa), membesar, bengkak, dan mudah berdarah",
-          "Demam tinggi mendadak, malaise, lemas, nafsu makan turun drastis (anoreksia)",
-          "Pembesaran kelenjar getah bening leher anterior (limfadenopati servikal)",
-          "Sulit menelan dan nyeri hebat saat berkumur atau makan"
+          "Vesikel bening-kekuningan di mukosa mulut yang cepat pecah menjadi ulkus dangkal multipel yang sangat perih dan nyeri",
+          "Gingiva membesar, merah cerah menyala (eritematosa), bengkak dan mudah berdarah",
+          "Demam tinggi mendadak (38-40°C), lemas, malaise, tidak mau makan (anoreksia)",
+          "Pembesaran kelenjar limfe servikal leher anterior yang nyeri tekan",
+          "Hipersalivasi dan kesulitan menelan cairan maupun makanan"
         ],
-        drugs: [
-          {
-            name: "Acyclovir 400 mg Tablet / Kapsul",
-            dose: "400 mg diminum 3-5 kali sehari selama 10 hari (efektif bila diberikan dlm 48 jam pertama)",
-            sig: "5 x sehari 1 tablet (tiap 4 jam saat bangun) selama 10 hari"
-          },
-          {
-            name: "Kumur Anestetik & Coating (Diphenhydramine + Al(OH)3/Mg(OH)2 1:1)",
-            dose: "Campuran Difenhidramin sirup 12.5mg/5ml + Mylanta cair perbandingan 1:1 volume",
-            sig: "Kumur 5-10 ml selama 1-2 menit tiap 2-4 jam lalu buang (jangan ditelan)"
-          },
-          {
-            name: "Paracetamol 500 mg Tablet / Sirup 125mg/5ml",
-            dose: "Dewasa: 500-1000 mg q4-6h | Anak: 10-15 mg/kgBB per kali minum",
-            sig: "3-4 kali sehari bila demam atau nyeri hebat"
-          }
-        ],
-        notes: "HINDARI kortikosteroid topikal karena dapat memicu penyebaran virus ke kornea mata (okular). Jaga hidrasi cairan tubuh."
-      },
-      {
-        id: "herpes-recurrent",
-        title: "Herpes Simpleks Rekuren (Herpes Labialis / Cold Sore)",
-        category: "Infeksi Viral",
-        etiology: "Reaktivasi virus herpes laten di ganglion sensoris n. trigeminus akibat stres, demam, sinar matahari, trauma dental",
-        symptoms: [
-          "Sensasi prodromal: rasa gatal, kesemutan, terbakar atau baal di tepi vermilion bibir 24 jam sebelum vesikel timbul",
-          "Muncul gerombolan vesikel kecil berisi cairan di bibir atau palatum durum",
-          "Vesikel pecah dalam hitungan jam membentuk ulkus basah berkerak kuning-kecoklatan (crusting)",
-          "Nyeri lokal sedang saat bibir digerakkan atau tersentuh makanan pedas"
-        ],
-        drugs: [
-          {
-            name: "Penciclovir 1% Krim (Denavir) / Acyclovir 5% Krim",
-            dose: "Oleskan tipis pada lesi setiap 2 jam (Penciclovir) atau 5x sehari (Acyclovir) selama 4-5 hari",
-            sig: "Oleskan sedini mungkin menggunakan cotton bud sejak timbul gejala prodromal"
-          },
-          {
-            name: "Valacyclovir 1 g Tablet (Valtrex)",
-            dose: "Dewasa: 2 tablet (2 g) diminum 2 kali sehari selang 12 jam (terapi 1 hari)",
-            sig: "Diminum segera pada saat awal merasakan gejala rasa terbakar"
-          },
-          {
-            name: "Sunscreen Lip Balm SPF 30+",
-            dose: "Oleskan ke bibir 1 jam sebelum paparan sinar matahari untuk pencegahan rekurensi",
-            sig: "Gunakan berulang setiap jam selama berada di luar ruangan"
-          }
-        ],
-        notes: "Gunakan cotton-bud saat mengoleskan salep dan cuci tangan bersih untuk mencegah autoinokulasi ke mata atau jari."
+        therapy: [
+          "Acyclovir 400 mg oral 3-5 kali sehari (tiap 4 jam) selama 10 hari",
+          "Paracetamol sirup / tablet untuk meredakan demam dan nyeri",
+          "Kumur kombinasi Diphenhydramine + Antasida 1:1 untuk anastesi topikal",
+          "HINDARI kortikosteroid topikal karena dapat memicu penyebaran virus ke okular kornea!"
+        ]
       },
       {
         id: "aphthous-stomatitis",
-        title: "Stomatitis Aftosa Rekuren (SAR / Canker Sores / Sariawan)",
-        category: "Penyakit Lesi Ulseratif",
-        etiology: "Respon imun mukosa diperantarai sel T dipicu stres, trauma gesekan gigi tiruan, defisiensi B12/Fe/Folat, pasta gigi SLS",
+        title: "Stomatitis Aftosa Rekuren (SAR / Sariawan)",
+        category: "Lesi Ulseratif Imun",
         symptoms: [
-          "Ulkus bulat atau oval dengan dasar selaput fibrinous kuning-keabuan dikelilingi tepi eritematosa (halo merah)",
-          "Sangat perih dan menusuk saat berbicara, makan, minum asam, atau tersikat gigi",
-          "Tipe Minor (< 1 cm, sembuh 7-14 hari tanpa parut) pada mukosa non-keratin (pipi dalam, bibir, dasar mulut)",
-          "Tipe Mayor (> 1 cm, dalam, sembuh 2-6 minggu dengan meninggalkan jaringan parut)",
-          "Tipe Herpetiform: kelompok ulkus multipel berukuran kecil yang sangat sakit"
+          "Ulkus bulat/oval berbatas jelas, dasar selaput fibrinous kuning-keabuan dikelilingi halo merah",
+          "Rasa sangat perih, menusuk saat tersikat gigi atau terkena makanan asin/pedas",
+          "Tipe minor (<1 cm) sembuh 7-14 hari; tipe mayor (>1 cm) sangat dalam dan sembuh berminggu-minggu meninggalkan parut",
+          "Tidak disertai demam tinggi atau pembesaran kelenjar sistemik yang luas"
         ],
-        drugs: [
-          {
-            name: "Triamcinolone Acetonide 0.1% in Dental Paste (Kenalog in Orabase)",
-            dose: "Oleskan lapisan tipis pada ulkus setelah makan dan menjelang tidur malam",
-            sig: "3 kali sehari setelah mengeringkan permukaan lesi dengan kasa steril"
-          },
-          {
-            name: "Dexamethasone Elixir 0.5 mg / 5 ml",
-            dose: "Kumur 5 ml selama 2 menit, buang, 4 kali sehari setelah makan. Jangan makan/minum 30 menit pasca kumur",
-            sig: "Kumur 4 kali sehari sampai rasa sakit mereda (maksimal 2 minggu)"
-          },
-          {
-            name: "Chlorhexidine Gluconate 0.12% Oral Rinse",
-            dose: "Kumur 15 ml selama 30 detik 2 kali sehari untuk mencegah infeksi sekunder bakteri",
-            sig: "Kumur pagi setelah sarapan dan malam sebelum tidur"
-          }
-        ],
-        notes: "Hentikan kortikosteroid bila lesi telah sembuh. Penggunaan jangka panjang (>2 minggu) dapat memicu kandidiasis oral sekunder."
+        therapy: [
+          "Triamcinolone Acetonide 0.1% in Dental Paste dioles tipis 3x sehari setelah makan",
+          "Dexamethasone Elixir 0.5mg/5ml untuk kumur 4x sehari pada SAR multipel",
+          "Chlorhexidine 0.12% oral rinse untuk cegah infeksi sekunder bakteri",
+          "Suplemen Vitamin C 500 mg dan Vitamin B12 untuk regenerasi mukosa"
+        ]
       },
       {
-        id: "candidiasis-oral",
-        title: "Kandidiasis Rongga Mulut (Oral Thrush / Moniliasis)",
+        id: "candidiasis",
+        title: "Kandidiasis Oral (Oral Thrush)",
         category: "Infeksi Fungal",
-        etiology: "Proliferasi oportunistik jamur Candida albicans akibat antibiotik broad-spectrum, kortikosteroid inhaler, xerostomia, DM",
         symptoms: [
-          "Bercak putih menyerupai gumpalan susu (curd) pada lidah, pipi dalam, atau langit-langit yang dapat dikerok",
-          "Setelah dikerok meninggalkan permukaan mukosa yang merah cerah, kasar, dan mudah berdarah",
-          "Sensasi rasa logam, tidak nyaman, rasa terbakar, atau kehilangan daya kecap makanan",
-          "Bentuk atrofik: mukosa kemerahan tanpa plak putih di bawah pelat protesa gigi tiruan"
+          "Plak putih seperti gumpalan susu di lidah, palatum, atau mukosa pipi yang DAPAT DIKEROK",
+          "Dasar mukosa merah berdarah dan perih setelah plak dikerok",
+          "Rasa terbakar konstan di lidah, sensasi rasa logam atau penurunan daya kecap",
+          "Sering muncul pasca konsumsi antibiotik jangka panjang atau pengguna gigi tiruan"
         ],
-        drugs: [
-          {
-            name: "Nystatin Oral Suspension 100.000 IU/ml",
-            dose: "Dewasa: 5 ml (500.000 IU) q6h | Anak: 1-2 ml q6h dikumur tahan di mulut 2 menit lalu telan/buang",
-            sig: "4 kali sehari selama 7-14 hari (lanjutkan 48 jam setelah lesi hilang)"
-          },
-          {
-            name: "Fluconazole 50 mg - 100 mg Kapsul / Tablet",
-            dose: "Dewasa: 200 mg hari pertama, dilanjutkan 100 mg sekali sehari selama 7-14 hari",
-            sig: "1 kali sehari 1 tablet setelah makan"
-          },
-          {
-            name: "Miconazole Oral Gel 2% (Daktarin Oral Gel)",
-            dose: "Oleskan 2.5 ml pada lesi atau permukaan fitting protesa 4 kali sehari",
-            sig: "Gunakan setelah makan selama 7-14 hari"
-          }
-        ],
-        notes: "Rendam gigi tiruan dalam larutan klorheksidin atau nistatin setiap malam untuk membasmi koloni jamur pada basis akrilik."
-      },
-      {
-        id: "angular-cheilitis",
-        title: "Angular Cheilitis (Perlèche)",
-        category: "Infeksi Fungal & Bakteri Campuran",
-        etiology: "Maserasi kulit di sudut bibir akibat saliva berlebih, penurunan dimensi vertikal oklusi (VD), Candida albicans & S. aureus",
-        symptoms: [
-          "Sudut mulut tampak pecah-pecah, fisura eritematosa, mengelupas, dan berkerak kekuningan",
-          "Perih dan pedih hebat saat membuka mulut lebar untuk makan, menguap, atau berbicara",
-          "Rasa terbakar konstan di kedua sudut bibir yang sering dijilat oleh pasien"
-        ],
-        drugs: [
-          {
-            name: "Kombinasi Nystatin / Triamcinolone Acetonide Ointment",
-            dose: "Oleskan tipis pada kedua sudut bibir setelah makan dan menjelang tidur malam",
-            sig: "Oleskan 2-3 kali sehari selama maksimal 14 hari"
-          },
-          {
-            name: "Miconazole Nitrate Cream 2%",
-            dose: "Oleskan pada sudut mulut yang lecet 2-3 kali sehari",
-            sig: "Gunakan teratur selama 1-2 minggu"
-          }
-        ],
-        notes: "Koreksi dimensi vertikal gigi tiruan jika pasien memakai gigi tiruan lama yang sudah aus."
-      },
-      {
-        id: "xerostomia-drymouth",
-        title: "Xerostomia (Mulut Kering) & Pencegahan Karies Servikal",
-        category: "Gangguan Saliva & Pencegahan Karies",
-        etiology: "Efek samping obat antihistamin/antihipertensi/antidepresan, radioterapi kepala-leher, sindrom Sjögren, dehidrasi",
-        symptoms: [
-          "Mulut terasa berpasir, kering, lengket, dan saliva berserabut kental",
-          "Lidah tampak merah, atrofi, licin gundul tanpa papila filiformis, dan mengalami fisura",
-          "Sulit mengunyah dan menelan makanan kering tanpa bantuan air minum",
-          "Karies servikal merajalela (rampant caries) di leher gigi dan akar yang terbuka"
-        ],
-        drugs: [
-          {
-            name: "Saliva Buatan (Sodium Carboxymethylcellulose 0.5% Oral Solution)",
-            dose: "Gunakan untuk membasahi mukosa mulut sesering yang dibutuhkan",
-            sig: "Kumur atau semprotkan ke rongga mulut p.r.n (bila kering)"
-          },
-          {
-            name: "Pilocarpine HCl 5 mg Tablet (Salagen) - Saliva Stimulant",
-            dose: "1 tablet (5 mg) 3 kali sehari, 30 menit sebelum makan (titrasi s/d 10 mg tid jika perlu)",
-            sig: "3 kali sehari 1 tablet sebelum makan"
-          },
-          {
-            name: "PreviDent 5000 Plus (Neutral NaF 1.1% Dental Cream 5000 ppm)",
-            dose: "Oleskan 1 inci pada sikat gigi, sikat selama 2 menit 2 kali sehari, ludahkan tanpa berkumur",
-            sig: "Gunakan pagi dan malam pengganti pasta gigi biasa untuk mencegah karies akar"
-          }
-        ],
-        notes: "Hindari obat kumur beralkohol. Anjurkan minum air putih teratur dan mengunyah permen karet bebas gula (xylitol)."
+        therapy: [
+          "Nystatin suspensi oral 100.000 IU/ml: kumur tahan 2 menit lalu telan 4x sehari selama 7-14 hari",
+          "Fluconazole 100 mg oral 1x sehari jika lesi meluas / refrakter",
+          "Rendam gigi tiruan dalam larutan antiseptik klorheksidin tiap malam"
+        ]
       },
       {
         id: "abscess-odontogenic",
-        title: "Infeksi Odontogenik Akut (Abses Periapikal / Dentoalveolar)",
+        title: "Infeksi Odontogenik Akut (Abses Dentoalveolar / Periapikal)",
         category: "Infeksi Bakteri Akut",
-        etiology: "Invasi polimikrobial anaerob & aerob dari pulpa nekrotik atau poket periodontal dalam",
         symptoms: [
-          "Nyeri berdenyut hebat dan spontan yang menjalar ke rahang atau pelipis",
-          "Gigi terasa menonjol, sangat sakit saat diketuk (perkusi positif) atau saat mengunyah",
-          "Pembengkakan mukosa gusi atau wajah yang teraba hangat dan fluktuatif",
-          "Trismus (sulit membuka mulut), demam, badan menggigil, dan malaise"
+          "Nyeri berdenyut spontan yang hebat dan menjalar ke telinga atau rahang",
+          "Gigi terasa memanjang dan sangat sakit saat diketuk (perkusi positif) atau saat dipakai mengunyah",
+          "Pembengkakan gusi (fluktuasi) atau pembengkakan wajah yang hangat saat diraba",
+          "Demam, trismus (sulit membuka mulut lebar), dan malaise umum"
         ],
-        drugs: [
-          {
-            name: "Amoxicillin 500 mg Kapsul / Tablet",
-            dose: "Dewasa: 500 mg tid (q8h) selama 5-7 hari | Anak: 25-50 mg/kg/hari dibagi 3 dosis",
-            sig: "3 kali sehari 1 tablet setelah makan (harus dihabiskan)"
-          },
-          {
-            name: "Co-Amoxiclav (Augmentin) 625 mg / 1 g Tablet",
-            dose: "1 tablet q12h selama 5-7 hari bila infeksi dicurigai resisten penisilinase",
-            sig: "2 kali sehari 1 tablet bersama makanan"
-          },
-          {
-            name: "Metronidazole 400 mg - 500 mg Tablet",
-            dose: "Dewasa: 400-500 mg tid (q8h) sebagai adjuvan untuk membasmi bakteri anaerob obligat",
-            sig: "3 kali sehari 1 tablet sesudah makan selama 5 hari"
-          },
-          {
-            name: "Clindamycin 150 mg - 300 mg Kapsul (Pilihan Alergi Penisilin)",
-            dose: "Dewasa: 150-300 mg q6-8h | Anak: 8-25 mg/kg/hari dibagi 3-4 dosis",
-            sig: "3-4 kali sehari 1 kapsul diminum dengan segelas penuh air"
-          },
-          {
-            name: "Ibuprofen 400 mg - 600 mg Tablet (Analgesik Antiinflamasi)",
-            dose: "Dewasa: 400 mg q6-8h p.c. (maksimal 2.4 g/hari)",
-            sig: "3 kali sehari 1 tablet sesudah makan bila nyeri"
-          }
-        ],
-        notes: "Antibiotik adalah penunjang! Terapi definitif utama berupa drainase abses, perawatan saluran akar, atau ekstraksi harus tetap dilakukan."
+        therapy: [
+          "Drainase pus abses & perawatan saluran akar / ekstraksi kausa gigi",
+          "Amoxicillin 500 mg tid (atau Co-amoxiclav bila dicurigai resisten) selama 5 hari",
+          "Kombinasi Metronidazol 400-500 mg tid untuk membasmi kuman anaerob",
+          "Bila alergi penisilin: Klindamisin 150-300 mg tiap 6-8 jam",
+          "Ibuprofen 400 mg tid atau Kalium Diklofenak 50 mg tid untuk atasi nyeri"
+        ]
       }
     ];
 
     /* =========================================================
-       2. DATA FORMULARIUM OBAT GIGI (KDA 5TH ED)
+       3. INISIALISASI REALTIME CLOCK & CELESTIAL SKY ORBIT
        ========================================================= */
-    const kdaDrugsData = [
-      {
-        name: "Paracetamol (Acetaminophen)",
-        brand: "Panadol, Tylenol, Adol, Sanmol",
-        cat: "analgesik",
-        form: "Tablet 500mg, Sirup 120mg/5ml, 250mg/5ml",
-        indication: "Meredakan nyeri ringan-sedang pasca restorasi/ekstraksi dan antipiretik (menurunkan demam).",
-        doseAdult: "500 mg - 1000 mg tiap 4-6 jam (Maks 4000 mg / 24 jam)",
-        dosePed: "10-15 mg/kg/kali minum tiap 4-6 jam (Maks 5 dosis / 24 jam)",
-        contra: "Gangguan fungsi hepar berat, hipersensitivitas, alkoholisme aktif.",
-        color: "bg-blue-500"
-      },
-      {
-        name: "Ibuprofen",
-        brand: "Brufen, Profinal, Proris",
-        cat: "analgesik",
-        form: "Tablet 200mg, 400mg, Suspensi 100mg/5ml, 200mg/5ml",
-        indication: "Analgesik dan antiinflamasi pilihan pada pulpitis akut, periostitis, dan nyeri pasca bedah impaksi.",
-        doseAdult: "400 mg tiap 6-8 jam sesudah makan (Maks 2400 mg / 24 jam)",
-        dosePed: "4-10 mg/kg/kali minum tiap 6-8 jam (Maks 40 mg/kg/hari)",
-        contra: "Tukak lambung peptik aktif, riwayat asma yang dipicu aspirin/NSAID, trimester ke-3 kehamilan.",
-        color: "bg-amber-500"
-      },
-      {
-        name: "Asam Mefenamat (Mefenamic Acid)",
-        brand: "Ponstan, Mefinal 500",
-        cat: "analgesik",
-        form: "Kapsul 250mg, Kaplet 500mg",
-        indication: "Nyeri akut sedang pada trauma dental, abses gigi, dan nyeri pasca cabut gigi dewasa.",
-        doseAdult: "250 mg - 500 mg 3 kali sehari sesudah makan",
-        dosePed: "Tidak dianjurkan untuk anak < 12 tahun",
-        contra: "Ulkus peptikum, radang usus inflamatori, gangguan ginjal berat.",
-        color: "bg-orange-500"
-      },
-      {
-        name: "Kalium Diklofenak / Natrium Diklofenak",
-        brand: "Cataflam (Kalium), Voltaren (Natrium)",
-        cat: "analgesik",
-        form: "Tablet 25mg, 50mg, Ampul injeksi 75mg/3ml",
-        indication: "Nyeri hebat pasca bedah odontektomi molar ketiga atau reduksi fraktur rahang.",
-        doseAdult: "50 mg 2-3 kali sehari sesudah makan (Maks 150 mg / 24 jam)",
-        dosePed: "Hanya untuk dewasa dan anak di atas 14 tahun",
-        contra: "Gagal jantung kongestif, riwayat stroke, tukak lambung aktif.",
-        color: "bg-rose-500"
-      },
-      {
-        name: "Amoxicillin Trihydrate",
-        brand: "Amoxil, Kalmoxillin, Yusimox",
-        cat: "antibiotik",
-        form: "Kapsul 500mg, Sirup Kering 125mg/5ml, 250mg/5ml",
-        indication: "Lini pertama infeksi orofasial odontogenik dengan keterlibatan sistemik & profilaksis endokarditis.",
-        doseAdult: "500 mg tiap 8 jam (tid) selama 5 hari",
-        dosePed: "25-50 mg/kg/hari dibagi dalam 3 dosis terbagi tiap 8 jam",
-        contra: "Alergi berat terhadap penisilin atau antibiotik beta-laktam.",
-        color: "bg-emerald-500"
-      },
-      {
-        name: "Co-Amoxiclav (Amoxicillin + Asam Klavulanat)",
-        brand: "Augmentin, Claneksi, Clavamox",
-        cat: "antibiotik",
-        form: "Tablet 625mg, 1000mg, Suspensi 156mg/5ml, 457mg/5ml",
-        indication: "Infeksi odontogenik refrakter penghasil beta-laktamase, selulitis fasial, abses submandibula.",
-        doseAdult: "1000 mg tiap 12 jam atau 625 mg tiap 8 jam selama 5-7 hari",
-        dosePed: "20-40 mg/kg/hari dibagi dalam 3 dosis (berdasarkan amoksisilin)",
-        contra: "Riwayat ikterus kolestatik terkait amoksisilin-klavulanat.",
-        color: "bg-teal-600"
-      },
-      {
-        name: "Klindamisin (Clindamycin)",
-        brand: "Dalacin C, Clinmas, Prolic",
-        cat: "antibiotik",
-        form: "Kapsul 150mg, 300mg",
-        indication: "Infeksi bakteri anaerob odontogenik dan pilihan utama pasien yang alergi terhadap penisilin.",
-        doseAdult: "150 mg - 300 mg tiap 6-8 jam (Maks 1800 mg / 24 jam)",
-        dosePed: "8-25 mg/kg/hari dibagi dalam 3-4 dosis terbagi",
-        contra: "Riwayat kolitis pseudomembranosa terkait antibiotik. Minum dengan segelas air penuh.",
-        color: "bg-cyan-600"
-      },
-      {
-        name: "Metronidazol",
-        brand: "Flagyl, Trogyll",
-        cat: "antibiotik",
-        form: "Tablet 200mg, 400mg, 500mg, Suspensi 125mg/5ml",
-        indication: "Necrotizing Ulcerative Gingivitis (ANUG), periodontitis agresif, kombinasi abses anaerobik dalam.",
-        doseAdult: "400 mg - 500 mg tiap 8 jam selama 5 hari",
-        dosePed: "15-35 mg/kg/hari dibagi dalam 3 dosis terbagi",
-        contra: "Trimester pertama kehamilan. Hindari alkohol (efek disulfiram-like).",
-        color: "bg-indigo-600"
-      },
-      {
-        name: "Klorheksidin Glukonat 0.12% - 0.2%",
-        brand: "Minosep, Corsodyl, Betadine Dental Flavour",
-        cat: "topikal",
-        form: "Obat kumur botol 60ml, 150ml, 300ml",
-        indication: "Antiseptik rongga mulut spektrum luas, pasca bedah periodontal, irigasi subgingiva.",
-        doseAdult: "Kumur 15 ml selama 30-60 detik 2 kali sehari",
-        dosePed: "Dapat digunakan pada anak yang sudah mampu meludah mandiri",
-        contra: "Hipersensitivitas. Efek samping: pewarnaan ekstrinsik gigi (staining).",
-        color: "bg-purple-600"
-      }
-    ];
-
-    /* =========================================================
-       3. INISIALISASI JAM REALTIME & CELESTIAL SKY DINAMIS
-       ========================================================= */
-    function updateCelestialSkyAndClock() {
+    function updateClockAndSky() {
       const now = new Date();
 
-      // Digital Clock Format
-      const hours = String(now.getHours()).padStart(2, '0');
-      const minutes = String(now.getMinutes()).padStart(2, '0');
-      const seconds = String(now.getSeconds()).padStart(2, '0');
-      document.getElementById('digital-clock').innerText = `${hours}:${minutes}:${seconds} WIB`;
+      // Digital Clock
+      const hh = String(now.getHours()).padStart(2, '0');
+      const mm = String(now.getMinutes()).padStart(2, '0');
+      const ss = String(now.getSeconds()).padStart(2, '0');
+      document.getElementById('digital-clock').innerText = `${hh}:${mm}:${ss} WIB`;
 
-      // Calendar Format Bahasa Indonesia
-      const days = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
-      const months = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
-      const dayName = days[now.getDay()];
-      const monthName = months[now.getMonth()];
-      const dateStr = `${dayName}, ${now.getDate()} ${monthName} ${now.getFullYear()}`;
-      document.getElementById('calendar-date').innerText = dateStr;
-      document.getElementById('view-rx-date').innerText = `Medan, ${now.getDate()} ${monthName} ${now.getFullYear()}`;
+      // Kalender Lokal
+      const dayNames = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
+      const monthNames = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
+      const dateText = `${dayNames[now.getDay()]}, ${now.getDate()} ${monthNames[now.getMonth()]} ${now.getFullYear()}`;
+      document.getElementById('calendar-date').innerText = dateText;
+      document.getElementById('view-rx-date-now').innerText = `Medan, ${now.getDate()} ${monthNames[now.getMonth()]} ${now.getFullYear()}`;
 
-      // Deteksi Matahari vs Bulan (Jam 06:00 s/d 18:00 = Siang/Matahari, selainnya Malam/Bulan)
-      const currentHour = now.getHours();
+      // Deteksi Matahari vs Bulan Sesuai Jam Realtime
+      const hour = now.getHours();
       const celestialContainer = document.getElementById('celestial-orb');
 
-      if (currentHour >= 6 && currentHour < 18) {
-        // Mode Siang: MATAHARI
-        celestialContainer.className = "relative w-16 h-16 rounded-2xl flex items-center justify-center shadow-lg bg-gradient-to-tr from-amber-400 to-yellow-300 border border-yellow-200 shadow-amber-300/50 transition-all";
+      if (hour >= 6 && hour < 18) {
+        // Mode Matahari (Siang)
+        celestialContainer.className = "relative w-16 h-16 rounded-2xl flex items-center justify-center shadow-lg bg-gradient-to-tr from-amber-400 via-yellow-400 to-amber-200 border border-yellow-200 shadow-amber-300/60 transition-all";
         celestialContainer.innerHTML = `
           <div class="relative flex items-center justify-center">
-            <i class="fa-solid fa-sun text-2xl text-amber-900 animate-spin" style="animation-duration: 40s;"></i>
+            <i class="fa-solid fa-sun text-2xl text-amber-900 animate-spin" style="animation-duration: 35s;"></i>
             <span class="absolute -top-1 -right-1 flex h-2.5 w-2.5">
               <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-yellow-400 opacity-75"></span>
               <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-yellow-500"></span>
@@ -1050,8 +1258,8 @@
           </div>
         `;
       } else {
-        // Mode Malam: BULAN
-        celestialContainer.className = "relative w-16 h-16 rounded-2xl flex items-center justify-center shadow-lg bg-gradient-to-tr from-slate-800 to-indigo-900 border border-indigo-400/40 shadow-indigo-900/50 transition-all";
+        // Mode Bulan (Malam)
+        celestialContainer.className = "relative w-16 h-16 rounded-2xl flex items-center justify-center shadow-lg bg-gradient-to-tr from-slate-900 via-indigo-950 to-sky-950 border border-indigo-400/50 shadow-indigo-950/70 transition-all";
         celestialContainer.innerHTML = `
           <div class="relative flex items-center justify-center">
             <i class="fa-solid fa-moon text-2xl text-sky-200"></i>
@@ -1060,278 +1268,386 @@
         `;
       }
     }
-    setInterval(updateCelestialSkyAndClock, 1000);
-    updateCelestialSkyAndClock();
+    setInterval(updateClockAndSky, 1000);
+    updateClockAndSky();
 
     /* =========================================================
-       4. TABS NAVIGATION CONTROL
+       4. PENGATURAN TABS & NAVIGASI
        ========================================================= */
-    function switchTab(tabId) {
-      document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+    function switchTab(targetTabId) {
+      document.querySelectorAll('.tab-content').forEach(tab => tab.classList.add('hidden'));
       document.querySelectorAll('.tab-btn').forEach(btn => {
         btn.classList.remove('active');
         btn.classList.add('text-slate-600');
       });
 
-      document.getElementById(tabId).classList.remove('hidden');
-      const activeBtn = document.getElementById('btn-' + tabId);
+      document.getElementById(targetTabId).classList.remove('hidden');
+      const activeBtn = document.getElementById('btn-' + targetTabId);
       activeBtn.classList.add('active');
       activeBtn.classList.remove('text-slate-600');
     }
 
     /* =========================================================
-       5. LOGIKA PERHITUNGAN DOSIS (BB, FRIED, BSA/LTP, PULVIS)
+       5. LOGIKA PENCARIAN & SELEKSI OBAT (SEARCH & SCROLLABLE SELECT)
        ========================================================= */
-    function updateCalcModeUI() {
-      const mode = document.querySelector('input[name="calc_mode"]:checked').value;
-      const labelTarget = document.getElementById('label-target-dose');
-      const fieldHeight = document.getElementById('field-height');
-      const fieldAgeMonths = document.getElementById('field-age-months');
-      const pulvisOptions = document.getElementById('pulvis-options');
-      const badgeMode = document.getElementById('badge-mode');
+    let currentSelectedDrug = completeDrugDatabase[1]; // default Amoxicillin
 
-      // Tampilkan/Sembunyikan field sesuai mode
-      if (mode === 'bb') {
-        badgeMode.innerText = "Dosis Berat Badan (mg/kg/hari)";
-        badgeMode.className = "text-[11px] font-bold px-2 py-0.5 rounded-md bg-sky-100 text-sky-800";
-        labelTarget.innerText = "Dosis Target (mg/kg/hari)";
-        pulvisOptions.classList.add('hidden');
-      } else if (mode === 'fried') {
-        badgeMode.innerText = "Rumus Fried (Bayi/Balita)";
-        badgeMode.className = "text-[11px] font-bold px-2 py-0.5 rounded-md bg-amber-100 text-amber-800";
-        labelTarget.innerText = "Dosis Dewasa Normal (mg)";
-        pulvisOptions.classList.add('hidden');
-      } else if (mode === 'bsa') {
-        badgeMode.innerText = "Luas Permukaan Tubuh (BSA / Mosteller)";
-        badgeMode.className = "text-[11px] font-bold px-2 py-0.5 rounded-md bg-emerald-100 text-emerald-800";
-        labelTarget.innerText = "Dosis Target (mg/m²/hari)";
-        pulvisOptions.classList.add('hidden');
-      } else if (mode === 'pulvis') {
-        badgeMode.innerText = "Resep Pulvis / Puyer Racikan";
-        badgeMode.className = "text-[11px] font-bold px-2 py-0.5 rounded-md bg-teal-100 text-teal-800";
-        labelTarget.innerText = "Dosis Bahan Aktif (mg)";
-        pulvisOptions.classList.remove('hidden');
+    function initDrugDropdown() {
+      const listContainer = document.getElementById('drug-dropdown-list');
+      listContainer.innerHTML = "";
+
+      completeDrugDatabase.forEach(drug => {
+        const item = document.createElement('div');
+        item.className = "p-2.5 rounded-xl hover:bg-sky-50 cursor-pointer flex items-center justify-between transition-colors border border-transparent hover:border-sky-200";
+        item.onclick = () => selectDrug(drug.id);
+        item.innerHTML = `
+          <div>
+            <p class="font-bold text-xs text-slate-800">${drug.name}</p>
+            <p class="text-[10px] text-slate-500">${drug.categoryLabel} • ${drug.forms.split(',')[0]}</p>
+          </div>
+          <span class="text-[10px] font-semibold px-2 py-0.5 rounded bg-slate-100 text-slate-600 uppercase">${drug.category}</span>
+        `;
+        listContainer.appendChild(item);
+      });
+    }
+
+    function toggleDrugDropdown() {
+      const list = document.getElementById('drug-dropdown-list');
+      list.classList.toggle('hidden');
+    }
+
+    function showDrugDropdown() {
+      document.getElementById('drug-dropdown-list').classList.remove('hidden');
+    }
+
+    function filterDrugDropdown() {
+      const keyword = document.getElementById('drug-search-input').value.toLowerCase();
+      const listContainer = document.getElementById('drug-dropdown-list');
+      listContainer.classList.remove('hidden');
+
+      const items = listContainer.children;
+      for (let i = 0; i < completeDrugDatabase.length; i++) {
+        const drug = completeDrugDatabase[i];
+        const match = drug.name.toLowerCase().includes(keyword) ||
+                      drug.categoryLabel.toLowerCase().includes(keyword) ||
+                      drug.indications.toLowerCase().includes(keyword);
+        items[i].style.display = match ? "flex" : "none";
       }
     }
 
-    function calculateDose() {
+    function selectDrug(drugId) {
+      const drug = completeDrugDatabase.find(d => d.id === drugId);
+      if (!drug) return;
+
+      currentSelectedDrug = drug;
+      document.getElementById('drug-search-input').value = drug.name;
+      document.getElementById('drug-dropdown-list').classList.add('hidden');
+
+      // Update Brief Card di Kalkulator
+      document.getElementById('brief-name').innerText = drug.name;
+      document.getElementById('brief-cat').innerText = drug.categoryLabel;
+      document.getElementById('brief-sources').innerText = drug.sources;
+      document.getElementById('brief-forms').innerText = `Sediaan Tersedia: ${drug.forms}`;
+
+      document.getElementById('range-bayi').innerText = drug.ageRange.bayi;
+      document.getElementById('range-balita').innerText = drug.ageRange.balita;
+      document.getElementById('range-anak').innerText = drug.ageRange.anak;
+      document.getElementById('range-dewasa').innerText = drug.ageRange.dewasa;
+
+      document.getElementById('brief-contra').innerText = drug.contraindications;
+      document.getElementById('brief-cautions').innerText = drug.comorbidCautions;
+
+      // Peringatan Batas Usia
+      const agePill = document.getElementById('brief-age-warning-pill');
+      if (drug.ageWarning.includes('KONTRAINDIKASI')) {
+        agePill.innerHTML = `<span class="px-2.5 py-1 rounded-lg text-[10px] font-black bg-rose-100 text-rose-800 border border-rose-300 block"><i class="fa-solid fa-circle-exclamation mr-1"></i>Batasan Usia Ketat</span>`;
+      } else {
+        agePill.innerHTML = `<span class="px-2.5 py-1 rounded-lg text-[10px] font-bold bg-emerald-100 text-emerald-800 border border-emerald-300 block"><i class="fa-solid fa-check mr-1"></i>Aman Sesuai Dosis</span>`;
+      }
+
+      // Atur Default Sediaan & Frekuensi
+      document.getElementById('input-stock-mg').value = drug.defaultStockMg;
+      document.getElementById('input-stock-vol').value = drug.defaultStockVol;
+      document.getElementById('input-freq').value = drug.defaultFreq;
+
+      autoFillDoseFromCategory();
+    }
+
+    // Auto-fill Dosis Keputusan Sesuai Kategori Usia
+    function autoFillDoseFromCategory() {
+      const cat = document.getElementById('patient-category').value;
+      const decisionInput = document.getElementById('input-decision-dose');
       const mode = document.querySelector('input[name="calc_mode"]:checked').value;
-      const weight = parseFloat(document.getElementById('input-weight').value) || 0;
-      const height = parseFloat(document.getElementById('input-height').value) || 0;
-      const ageMonths = parseFloat(document.getElementById('input-age-months').value) || 0;
-      const targetVal = parseFloat(document.getElementById('input-target-dose').value) || 0;
-      const freq = parseInt(document.getElementById('input-frequency').value) || 3;
-      const days = parseInt(document.getElementById('input-days').value) || 5;
 
-      const stockDose = parseFloat(document.getElementById('input-stock-dose').value) || 125;
-      const stockVol = parseFloat(document.getElementById('input-stock-vol').value) || 5;
-
-      let singleDoseMg = 0;
-      let dailyDoseMg = 0;
-      let courseDoseMg = 0;
-      let explanation = "";
-
-      if (mode === 'bb') {
-        // Berdasarkan Berat Badan (mg/kg/hari)
-        dailyDoseMg = weight * targetVal;
-        singleDoseMg = dailyDoseMg / freq;
-        courseDoseMg = dailyDoseMg * days;
-
-        explanation = `Perhitungan BB: Berat Badan (${weight} kg) × Target (${targetVal} mg/kg/hari) = Total ${dailyDoseMg.toFixed(1)} mg/hari. Dibagi ${freq} dosis = ${singleDoseMg.toFixed(1)} mg sekali minum.`;
-
-      } else if (mode === 'fried') {
-        // Rumus Fried untuk Anak/Bayi (< 2 tahun): (Usia dalam bulan / 150) × Dosis Dewasa
-        const adultDose = targetVal; // targetVal disini adalah dosis dewasa
-        singleDoseMg = (ageMonths / 150) * adultDose;
-        dailyDoseMg = singleDoseMg * freq;
-        courseDoseMg = dailyDoseMg * days;
-
-        explanation = `Rumus Fried: (${ageMonths} bulan / 150) × Dosis Dewasa (${adultDose} mg) = ${singleDoseMg.toFixed(1)} mg per kali minum. Dosis harian (${freq}x) = ${dailyDoseMg.toFixed(1)} mg/hari.`;
-
-      } else if (mode === 'bsa') {
-        // Rumus Mosteller: BSA = sqrt((Tinggi cm * Berat kg) / 3600)
-        let bsa = 0;
-        if (height > 0 && weight > 0) {
-          bsa = Math.sqrt((height * weight) / 3600);
-        }
-        dailyDoseMg = bsa * targetVal;
-        singleDoseMg = dailyDoseMg / freq;
-        courseDoseMg = dailyDoseMg * days;
-
-        explanation = `Rumus Mosteller BSA: √(${height} cm × ${weight} kg / 3600) = ${bsa.toFixed(2)} m². Dosis harian = ${bsa.toFixed(2)} m² × ${targetVal} mg/m² = ${dailyDoseMg.toFixed(1)} mg/hari (${singleDoseMg.toFixed(1)} mg perkali).`;
-
-      } else if (mode === 'pulvis') {
-        // Perhitungan Puyer / Pulvis
-        const pulvisMethod = document.getElementById('pulvis-method').value;
-        const count = parseInt(document.getElementById('pulvis-count').value) || 15;
-        const origStrength = parseFloat(document.getElementById('pulvis-orig-strength').value) || 500;
-
-        if (pulvisMethod === 'dtd') {
-          // dtd: targetVal adalah dosis per bungkus
-          singleDoseMg = targetVal;
-          dailyDoseMg = singleDoseMg * freq;
-          courseDoseMg = singleDoseMg * count;
-          const totalTabsNeeded = (courseDoseMg / origStrength).toFixed(1);
-
-          explanation = `Pulvis d.t.d: Tiap bungkus mengandung ${singleDoseMg} mg. Untuk ${count} bungkus dibutuhkan total ${courseDoseMg} mg atau setara ${totalTabsNeeded} tablet asal (@${origStrength} mg). Aturan minum ${freq} kali sehari.`;
+      if (cat === 'dewasa') {
+        decisionInput.value = currentSelectedDrug.defaultAdultDose;
+        document.getElementById('label-decision-dose').innerText = "Dosis Sekali Minum Dewasa (mg)";
+      } else {
+        if (mode === 'bb') {
+          decisionInput.value = currentSelectedDrug.defaultDosePerKg;
+          document.getElementById('label-decision-dose').innerText = "Keputusan Dosis Target (mg/kg/hari)";
+        } else if (mode === 'fried') {
+          decisionInput.value = currentSelectedDrug.defaultAdultDose;
+          document.getElementById('label-decision-dose').innerText = "Dosis Acuan Dewasa Normal (mg)";
         } else {
-          // Non-dtd: targetVal adalah total dosis untuk seluruh bungkus
-          courseDoseMg = targetVal;
-          singleDoseMg = courseDoseMg / count;
-          dailyDoseMg = singleDoseMg * freq;
-          const totalTabsNeeded = (courseDoseMg / origStrength).toFixed(1);
-
-          explanation = `Pulvis Non-dtd: Total bahan aktif ${courseDoseMg} mg dibagi rata menjadi ${count} bungkus (${singleDoseMg.toFixed(1)} mg/bungkus). Membutuhkan ${totalTabsNeeded} tablet asal (@${origStrength} mg).`;
+          decisionInput.value = currentSelectedDrug.defaultDosePerKg;
         }
       }
 
-      // Hitung volume cair (jika sirup) atau fraksi tablet
-      const singleVolMl = ((singleDoseMg / stockDose) * stockVol).toFixed(1);
-      const singleTabFrac = (singleDoseMg / stockDose).toFixed(2);
-      const totalVolMlNeeded = ((courseDoseMg / stockDose) * stockVol).toFixed(0);
-      const totalBottles = Math.ceil(totalVolMlNeeded / 60); // Asumsi 1 botol = 60ml
-
-      // Render Hasil ke UI
-      document.getElementById('res-dose-single').innerText = `${singleDoseMg.toFixed(1)} mg`;
-      document.getElementById('res-dose-single-vol').innerText = `Setara: ${singleVolMl} ml sirup (atau ~${singleTabFrac} tab @${stockDose}mg)`;
-
-      document.getElementById('res-dose-daily').innerText = `${dailyDoseMg.toFixed(1)} mg / 24 jam`;
-      document.getElementById('res-dose-daily-freq').innerText = `Diberikan dalam ${freq} kali sehari (tiap ${24/freq} jam)`;
-
-      document.getElementById('res-dose-course').innerText = `${courseDoseMg.toFixed(1)} mg`;
-      document.getElementById('res-course-summary').innerText = `Terapi ${days} hari: butuh ~${totalVolMlNeeded} ml (~${totalBottles} botol 60ml) atau ~${(courseDoseMg/stockDose).toFixed(1)} tablet.`;
-
-      document.getElementById('calc-explanation').innerText = explanation;
-    }
-
-    function applyDrugPreset() {
-      const preset = document.getElementById('preset-drug').value;
-      const targetInput = document.getElementById('input-target-dose');
-      const stockDoseInput = document.getElementById('input-stock-dose');
-      const stockVolInput = document.getElementById('input-stock-vol');
-      const freqInput = document.getElementById('input-frequency');
-
-      if (preset === 'amox') {
-        targetInput.value = 35; // mg/kg/hari
-        stockDoseInput.value = 125;
-        stockVolInput.value = 5;
-        freqInput.value = 3;
-      } else if (preset === 'augmentin') {
-        targetInput.value = 30;
-        stockDoseInput.value = 156;
-        stockVolInput.value = 5;
-        freqInput.value = 3;
-      } else if (preset === 'paracetamol') {
-        targetInput.value = 35; // total harian
-        stockDoseInput.value = 120;
-        stockVolInput.value = 5;
-        freqInput.value = 3;
-      } else if (preset === 'ibuprofen') {
-        targetInput.value = 25;
-        stockDoseInput.value = 100;
-        stockVolInput.value = 5;
-        freqInput.value = 3;
-      } else if (preset === 'clindamycin') {
-        targetInput.value = 15;
-        stockDoseInput.value = 150;
-        stockVolInput.value = 1;
-        freqInput.value = 3;
-      } else if (preset === 'metronidazole') {
-        targetInput.value = 25;
-        stockDoseInput.value = 125;
-        stockVolInput.value = 5;
-        freqInput.value = 3;
-      } else if (preset === 'mefenamic') {
-        targetInput.value = 500;
-        stockDoseInput.value = 500;
-        stockVolInput.value = 1;
-        freqInput.value = 3;
+      // Check jika obat dilarang untuk usia ini
+      if (cat === 'bayi' && (currentSelectedDrug.id === 'ibuprofen' || currentSelectedDrug.id === 'natrium-diklofenak' || currentSelectedDrug.id === 'kalium-diklofenak' || currentSelectedDrug.id === 'etoricoxib' || currentSelectedDrug.id === 'cefixime')) {
+        alert(`PERINGATAN DOKTER: ${currentSelectedDrug.name} dikontraindikasikan atau tidak dianjurkan untuk kelompok usia BAYI! Harap tinjau alternatif lain.`);
+      } else if (cat !== 'dewasa' && currentSelectedDrug.id === 'etoricoxib') {
+        alert(`PERINGATAN DOKTER: Etoricoxib KONTRAINDIKASI MUTLAK untuk usia di bawah 16 tahun!`);
       }
-      calculateDose();
     }
 
-    function resetCalculator() {
-      document.getElementById('input-weight').value = 20;
-      document.getElementById('input-height').value = 110;
-      document.getElementById('input-age-months').value = 18;
-      document.getElementById('input-target-dose').value = 30;
-      document.getElementById('input-frequency').value = 3;
-      document.getElementById('input-days').value = 5;
-      calculateDose();
-    }
-
-    function transferToRxSheet() {
+    function handleModeChange() {
       const mode = document.querySelector('input[name="calc_mode"]:checked').value;
-      const singleMg = document.getElementById('res-dose-single').innerText;
-      const freq = document.getElementById('input-frequency').value;
-      const days = document.getElementById('input-days').value;
-      const presetName = document.getElementById('preset-drug').options[document.getElementById('preset-drug').selectedIndex].text.split('(')[0].trim() || "Obat Terkalkulasi";
+      const pulvisBox = document.getElementById('pulvis-details-box');
 
       if (mode === 'pulvis') {
-        document.getElementById('view-rx-pulvis-block').classList.remove('hidden');
-        document.getElementById('view-rx-pulvis-item').innerText = `R/ Pulvis ${presetName} @ ${singleMg}`;
-        document.getElementById('view-rx-pulvis-signa').innerText = `m.f. pulv. d.t.d. No. XV -- S. ${freq} d.d. pulv I p.c. (${days} hari)`;
+        pulvisBox.classList.remove('hidden');
       } else {
-        document.getElementById('view-rx-item-1').innerText = `${presetName} (${singleMg}/dosis) -- Fl. No. II`;
-        document.getElementById('view-rx-signa-1').innerText = `S. ${freq} d d cth 1 (tiap ${24/freq} jam) p.c. selama ${days} hari`;
+        pulvisBox.classList.add('hidden');
       }
-
-      switchTab('tab-rx');
-      alert('Hasil perhitungan dosis berhasil ditransfer ke Lembar Resep Resmi!');
+      autoFillDoseFromCategory();
     }
 
     /* =========================================================
-       6. RENDER DAFTAR PENYAKIT & FILTER PENCARIAN (MOSBY'S)
+       6. EKSEKUSI PUTUSAN DOKTER & KALKULASI RANGKUMAN AKHIR
        ========================================================= */
-    function renderDiseases(list) {
-      const container = document.getElementById('disease-container');
+    function calculateFinalDose() {
+      const cat = document.getElementById('patient-category').value;
+      const weight = parseFloat(document.getElementById('input-weight').value) || 0;
+      const height = parseFloat(document.getElementById('input-height').value) || 0;
+      const ageMonths = parseFloat(document.getElementById('input-age-months').value) || 0;
+      const decidedVal = parseFloat(document.getElementById('input-decision-dose').value) || 0;
+      const freq = parseInt(document.getElementById('input-freq').value) || 3;
+      const days = parseInt(document.getElementById('input-days').value) || 5;
+
+      const stockMg = parseFloat(document.getElementById('input-stock-mg').value) || 125;
+      const stockVol = parseFloat(document.getElementById('input-stock-vol').value) || 5;
+      const mode = document.querySelector('input[name="calc_mode"]:checked').value;
+
+      let singleMg = 0;
+      let dailyMg = 0;
+      let courseMg = 0;
+      let formulaText = "";
+
+      if (cat === 'dewasa') {
+        // Dewasa
+        singleMg = decidedVal;
+        dailyMg = singleMg * freq;
+        courseMg = dailyMg * days;
+        formulaText = `Perhitungan Dewasa: Dokter memutuskan dosis sekali minum sebesar ${singleMg} mg. Frekuensi ${freq} kali sehari menghasilkan dosis harian ${dailyMg} mg/hari. Total kebutuhan terapi ${days} hari adalah ${courseMg} mg.`;
+      } else {
+        // Pediatrik (Bayi / Balita / Anak)
+        if (mode === 'bb') {
+          dailyMg = weight * decidedVal;
+          singleMg = dailyMg / freq;
+          courseMg = dailyMg * days;
+          formulaText = `Rumus Berat Badan (BB): Berat Badan (${weight} kg) × Dosis Keputusan (${decidedVal} mg/kg/hari) = ${dailyMg.toFixed(1)} mg/hari. Dibagi ${freq} dosis = ${singleMg.toFixed(1)} mg per kali minum.`;
+        } else if (mode === 'fried') {
+          // Rumus Fried: (Usia bln / 150) * Dosis Dewasa
+          singleMg = (ageMonths / 150) * decidedVal;
+          dailyMg = singleMg * freq;
+          courseMg = dailyMg * days;
+          formulaText = `Rumus Fried (${ageMonths} bln): (${ageMonths} / 150) × Dosis Dewasa (${decidedVal} mg) = ${singleMg.toFixed(1)} mg perkali minum. Dosis total harian (${freq}x) = ${dailyMg.toFixed(1)} mg/hari.`;
+        } else if (mode === 'bsa') {
+          // Mosteller BSA: sqrt(H*W/3600)
+          const bsa = Math.sqrt((height * weight) / 3600);
+          dailyMg = bsa * decidedVal * (weight > 0 ? weight : 1);
+          singleMg = dailyMg / freq;
+          courseMg = dailyMg * days;
+          formulaText = `Rumus BSA (Mosteller): Luas Permukaan Tubuh = ${bsa.toFixed(2)} m². Dosis harian yang dikalkulasi = ${dailyMg.toFixed(1)} mg/hari. Dosis perkali = ${singleMg.toFixed(1)} mg.`;
+        } else if (mode === 'pulvis') {
+          const method = document.getElementById('pulvis-method').value;
+          const count = parseInt(document.getElementById('pulvis-count').value) || 15;
+          const origMg = parseFloat(document.getElementById('pulvis-origin-mg').value) || 500;
+
+          if (method === 'dtd') {
+            singleMg = decidedVal;
+            dailyMg = singleMg * freq;
+            courseMg = singleMg * count;
+            const tabs = (courseMg / origMg).toFixed(1);
+            formulaText = `Resep Pulvis d.t.d: Tiap bungkus mengandung ${singleMg} mg bahan aktif. Dibuat sebanyak ${count} bungkus (Total ${courseMg} mg). Membutuhkan ${tabs} tablet asal (@${origMg} mg).`;
+          } else {
+            courseMg = decidedVal;
+            singleMg = courseMg / count;
+            dailyMg = singleMg * freq;
+            const tabs = (courseMg / origMg).toFixed(1);
+            formulaText = `Resep Pulvis Non-dtd: Total bahan aktif ${courseMg} mg dibagi rata menjadi ${count} bungkus (@${singleMg.toFixed(1)} mg/bungkus). Membutuhkan ${tabs} tablet asal (@${origMg} mg).`;
+          }
+        }
+      }
+
+      // Konversi Sediaan Fisik
+      const mlPerSingle = ((singleMg / stockMg) * stockVol).toFixed(1);
+      const tabFrac = (singleMg / stockMg).toFixed(2);
+      const totalMlNeeded = ((courseMg / stockMg) * stockVol).toFixed(0);
+      const totalBottles = Math.ceil(totalMlNeeded / 60);
+      const totalTabs = Math.ceil(courseMg / stockMg);
+
+      // Render Hasil
+      document.getElementById('res-single-mg').innerText = `${singleMg.toFixed(1)} mg`;
+      document.getElementById('res-single-measure').innerText = stockVol > 1 
+        ? `Setara: ${mlPerSingle} ml sirup (@${stockMg}mg/${stockVol}ml)` 
+        : `Setara: ~${tabFrac} tablet (@${stockMg}mg)`;
+
+      document.getElementById('res-daily-mg').innerText = `${dailyMg.toFixed(1)} mg / 24 jam`;
+      document.getElementById('res-daily-freq').innerText = `Diberikan dalam ${freq} kali sehari (interval ${24/freq} jam)`;
+
+      document.getElementById('res-course-mg').innerText = `${courseMg.toFixed(1)} mg`;
+      document.getElementById('res-course-desc').innerText = stockVol > 1 
+        ? `Durasi ${days} hari: butuh ${totalMlNeeded} ml (~${totalBottles} botol 60ml)` 
+        : `Durasi ${days} hari: butuh total ${totalTabs} tablet`;
+
+      document.getElementById('res-formula-explanation').innerText = formulaText;
+
+      // Catatan Otomatis Dokter
+      document.getElementById('calc-doc-notes').value = `${currentSelectedDrug.name}: ${formulaText} Perhatian: ${currentSelectedDrug.comorbidCautions}`;
+    }
+
+    function sendToPrescriptionSheet() {
+      const drugName = currentSelectedDrug.name;
+      const singleMg = document.getElementById('res-single-mg').innerText;
+      const singleMeasure = document.getElementById('res-single-measure').innerText;
+      const freq = document.getElementById('input-freq').value;
+      const days = document.getElementById('input-days').value;
+      const mode = document.querySelector('input[name="calc_mode"]:checked').value;
+
+      if (mode === 'pulvis') {
+        document.getElementById('view-pulvis-item-block').classList.remove('hidden');
+        document.getElementById('view-pulvis-formula').innerText = `R/ Pulvis ${drugName} @ ${singleMg}`;
+        document.getElementById('view-pulvis-signa').innerText = `m.f. pulv. d.t.d. No. XV -- S. ${freq} d.d. pulv I p.c. (${days} hari)`;
+      } else {
+        document.getElementById('view-item-1-name').innerText = `${drugName} (${singleMg}/dosis) -- Sediaan Fl/Tab`;
+        document.getElementById('view-item-1-signa').innerText = `S. ${freq} d d ${singleMeasure.includes('ml') ? 'cth ' + (parseFloat(singleMg)/25).toFixed(0) : 'tab 1'} p.c. habiskan selama ${days} hari`;
+      }
+
+      document.getElementById('view-notes-box').innerText = document.getElementById('calc-doc-notes').value;
+
+      switchTab('tab-rx');
+      alert(`Data dosis obat "${drugName}" berhasil ditransfer ke Lembar Resep Resmi!`);
+    }
+
+    /* =========================================================
+       7. RENDER BASIS DATA 15 OBAT & KARTU PENYAKIT PASIEN
+       ========================================================= */
+    function renderDrugsCards(list) {
+      const container = document.getElementById('drugs-card-grid');
+      container.innerHTML = "";
+
+      list.forEach(drug => {
+        const card = document.createElement('div');
+        card.className = "glass-card rounded-2xl p-5 shadow-md flex flex-col justify-between border border-white/80 space-y-3";
+        card.innerHTML = `
+          <div>
+            <div class="flex items-center justify-between">
+              <span class="px-2.5 py-0.5 rounded-md text-[10px] font-extrabold uppercase tracking-wide bg-sky-100 text-sky-800">
+                ${drug.categoryLabel}
+              </span>
+              <span class="text-[10px] text-slate-500 font-semibold font-mono">${drug.sources.split('(')[0]}</span>
+            </div>
+
+            <h3 class="text-base font-extrabold text-slate-900 mt-2">${drug.name}</h3>
+            <p class="text-xs text-slate-600 mb-2 font-medium"><span class="font-bold">Sediaan:</span> ${drug.forms}</p>
+            <p class="text-xs text-slate-700 bg-white/60 p-2.5 rounded-xl border border-white mb-3">
+              <span class="font-bold text-slate-900">Indikasi Klinis:</span> ${drug.indications}
+            </p>
+
+            <!-- Rentang Dosis 4 Kelompok Usia -->
+            <div class="space-y-1 text-xs">
+              <span class="font-bold text-slate-800 block text-[11px] uppercase tracking-wider">Rentang Dosis per Usia (Harian):</span>
+              <div class="grid grid-cols-2 gap-1.5 text-[11px]">
+                <div class="p-1.5 rounded bg-blue-50/70 border border-blue-100">
+                  <span class="font-bold text-blue-900">Bayi:</span> ${drug.ageRange.bayi}
+                </div>
+                <div class="p-1.5 rounded bg-emerald-50/70 border border-emerald-100">
+                  <span class="font-bold text-emerald-900">Balita:</span> ${drug.ageRange.balita}
+                </div>
+                <div class="p-1.5 rounded bg-amber-50/70 border border-amber-100">
+                  <span class="font-bold text-amber-900">Anak:</span> ${drug.ageRange.anak}
+                </div>
+                <div class="p-1.5 rounded bg-purple-50/70 border border-purple-100">
+                  <span class="font-bold text-purple-900">Dewasa:</span> ${drug.ageRange.dewasa}
+                </div>
+              </div>
+            </div>
+
+            <!-- Batasan Usia & Kontraindikasi -->
+            <div class="mt-3 space-y-1.5 text-xs">
+              <p class="text-[11px] text-rose-800 font-semibold bg-rose-50 p-2 rounded-xl border border-rose-200">
+                <i class="fa-solid fa-ban text-rose-600 mr-1"></i><strong>Batasan Usia & Kontraindikasi:</strong> ${drug.ageWarning} ${drug.contraindications}
+              </p>
+              <p class="text-[11px] text-amber-900 bg-amber-50 p-2 rounded-xl border border-amber-200">
+                <i class="fa-solid fa-triangle-exclamation text-amber-600 mr-1"></i><strong>Komorbid:</strong> ${drug.comorbidCautions}
+              </p>
+            </div>
+          </div>
+
+          <div class="pt-3 border-t border-white/60">
+            <button onclick="pickDrugToCalculator('${drug.id}')" class="w-full py-2 rounded-xl bg-gradient-to-r from-sky-600 to-teal-600 hover:from-sky-700 hover:to-teal-700 text-white font-bold text-xs shadow-sm transition-all flex items-center justify-center gap-1.5">
+              <i class="fa-solid fa-calculator"></i> Pilih & Putuskan Dosis di Kalkulator
+            </button>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    function filterDrugTable(category) {
+      document.querySelectorAll('.drug-filter-pill').forEach(btn => btn.classList.remove('bg-white/90', 'text-sky-800', 'font-bold'));
+      event.target.classList.add('bg-white/90', 'text-sky-800', 'font-bold');
+
+      if (category === 'all') {
+        renderDrugsCards(completeDrugDatabase);
+      } else {
+        const filtered = completeDrugDatabase.filter(d => d.category === category);
+        renderDrugsCards(filtered);
+      }
+    }
+
+    function pickDrugToCalculator(drugId) {
+      switchTab('tab-calc');
+      selectDrug(drugId);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function renderOralDiseases(list) {
+      const container = document.getElementById('oral-diseases-grid');
       container.innerHTML = "";
 
       list.forEach(item => {
-        let symptomsHtml = item.symptoms.map(s => `<li class="flex items-start gap-1.5"><i class="fa-solid fa-triangle-exclamation text-amber-500 mt-1 text-[10px]"></i><span>${s}</span></li>`).join('');
-        let drugsHtml = item.drugs.map(d => `
-          <div class="p-2.5 rounded-xl bg-white/70 border border-emerald-200/80 mb-2">
-            <p class="font-bold text-slate-800 text-xs text-emerald-950 flex items-center justify-between">
-              <span><i class="fa-solid fa-capsules text-emerald-600 mr-1.5"></i>${d.name}</span>
-            </p>
-            <p class="text-[11px] text-slate-600 mt-0.5"><span class="font-semibold">Dosis:</span> ${d.dose}</p>
-            <p class="text-[11px] text-slate-700 italic"><span class="font-semibold">Signa:</span> ${d.sig}</p>
-          </div>
-        `).join('');
+        let symptomsList = item.symptoms.map(s => `<li class="flex items-start gap-1.5"><i class="fa-solid fa-circle-exclamation text-amber-500 mt-1 text-[10px]"></i><span>${s}</span></li>`).join('');
+        let therapyList = item.therapy.map(t => `<li class="flex items-start gap-1.5"><i class="fa-solid fa-pills text-emerald-600 mt-1 text-[10px]"></i><span>${t}</span></li>`).join('');
 
         const card = document.createElement('div');
         card.className = "glass-card rounded-2xl p-5 shadow-md flex flex-col justify-between border-t-4 border-t-emerald-500";
         card.innerHTML = `
           <div>
-            <div class="flex items-center justify-between gap-2 mb-2">
-              <span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-800 uppercase tracking-wide">
-                ${item.category}
-              </span>
-              <span class="text-[11px] font-mono text-slate-500">${item.etiology}</span>
-            </div>
-            <h3 class="text-base font-extrabold text-slate-900 mb-2">${item.title}</h3>
+            <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-100 text-emerald-800 uppercase">${item.category}</span>
+            <h3 class="text-base font-extrabold text-slate-900 mt-1 mb-2">${item.title}</h3>
 
             <div class="mb-3">
-              <p class="text-xs font-bold text-slate-700 mb-1 flex items-center gap-1">
-                <i class="fa-solid fa-clipboard-user text-sky-600"></i> Gejala Klinis Pasien:
-              </p>
+              <span class="block text-xs font-bold text-slate-700 mb-1">Gejala yang Dirasakan Pasien:</span>
               <ul class="text-xs text-slate-600 space-y-1 pl-1">
-                ${symptomsHtml}
+                ${symptomsList}
               </ul>
             </div>
 
             <div class="mb-3">
-              <p class="text-xs font-bold text-slate-700 mb-1.5 flex items-center gap-1">
-                <i class="fa-solid fa-receipt text-emerald-600"></i> Terapi Obat Dianjurkan (Mosby's):
-              </p>
-              ${drugsHtml}
+              <span class="block text-xs font-bold text-slate-700 mb-1">Obat yang Diberikan untuk Dikonsumsi Pasien:</span>
+              <ul class="text-xs text-slate-800 font-medium space-y-1 pl-1 bg-white/60 p-2.5 rounded-xl border border-white">
+                ${therapyList}
+              </ul>
             </div>
           </div>
 
           <div class="pt-3 border-t border-white/60">
-            <p class="text-[10px] text-slate-500 italic mb-3"><i class="fa-solid fa-circle-info text-sky-500 mr-1"></i>${item.notes}</p>
-            <button onclick="applyDiseaseToRx('${item.title}', '${item.drugs[0].name}')" class="w-full py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-xs transition-all flex items-center justify-center gap-1.5 shadow-sm">
-              <i class="fa-solid fa-file-prescription"></i> Muat Terapi ke Lembar Resep Pasien
+            <button onclick="applyDiseasePreset('${item.title}', '${item.therapy[0]}')" class="w-full py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-xs shadow-sm transition-all flex items-center justify-center gap-1">
+              <i class="fa-solid fa-file-prescription mr-1"></i> Muat Diagnosa & Terapi ke Lembar R/
             </button>
           </div>
         `;
@@ -1339,110 +1655,46 @@
       });
     }
 
-    function filterDiseases() {
-      const keyword = document.getElementById('search-disease').value.toLowerCase();
-      const filtered = oralDiseasesData.filter(d =>
-        d.title.toLowerCase().includes(keyword) ||
-        d.category.toLowerCase().includes(keyword) ||
-        d.etiology.toLowerCase().includes(keyword) ||
-        d.symptoms.some(s => s.toLowerCase().includes(keyword))
+    function filterOralDiseases() {
+      const q = document.getElementById('disease-search').value.toLowerCase();
+      const filtered = oralDiseasesData.filter(d => 
+        d.title.toLowerCase().includes(q) ||
+        d.category.toLowerCase().includes(q) ||
+        d.symptoms.some(s => s.toLowerCase().includes(q))
       );
-      renderDiseases(filtered);
+      renderOralDiseases(filtered);
     }
 
-    function applyDiseaseToRx(diseaseTitle, drugName) {
-      document.getElementById('rx-diagnosis').value = diseaseTitle;
-      document.getElementById('view-rx-item-1').innerText = drugName + " -- Sesuai Protokol Mosby";
-      document.getElementById('view-rx-signa-1').innerText = "S. Terapi standar lesi oral (habiskan / oleskan)";
+    function applyDiseasePreset(diseaseTitle, drugText) {
+      document.getElementById('rx-pat-diagnosis').value = diseaseTitle;
+      document.getElementById('view-pat-diag').innerText = diseaseTitle;
+      document.getElementById('view-item-1-name').innerText = drugText;
+      document.getElementById('view-item-1-signa').innerText = "S. Diminum teratur sesuai protokol klinis";
       switchTab('tab-rx');
-      updatePrescriptionPreview();
-      alert(`Diagnosa "${diseaseTitle}" dan obat "${drugName}" berhasil dimasukkan ke lembar preskripsi resep!`);
+      refreshRxPreview();
+      alert(`Diagnosa "${diseaseTitle}" dan obat terapi berhasil dimuat ke lembar resep!`);
+    }
+
+    function refreshRxPreview() {
+      document.getElementById('view-doc-name').innerText = document.getElementById('rx-doctor-name').value;
+      document.getElementById('view-sign-doc-name').innerText = document.getElementById('rx-doctor-name').value;
+      document.getElementById('view-pat-name').innerText = document.getElementById('rx-pat-name').value;
+      document.getElementById('view-pat-age-bb').innerText = document.getElementById('rx-pat-age-bb').value;
+      document.getElementById('view-pat-diag').innerText = document.getElementById('rx-pat-diagnosis').value;
+      document.getElementById('view-pat-allergy-text').innerText = document.getElementById('rx-pat-allergy').value;
+      document.getElementById('view-notes-box').innerText = document.getElementById('rx-special-instruction').value;
     }
 
     /* =========================================================
-       7. RENDER KATALOG OBAT GIGI (KDA HANDBOOK)
+       8. EKSEKUSI AWAL SAAT HALAMAN DIMUAT
        ========================================================= */
-    function renderDrugCatalog(list) {
-      const container = document.getElementById('drug-catalog-container');
-      container.innerHTML = "";
-
-      list.forEach(drug => {
-        const card = document.createElement('div');
-        card.className = "glass-card rounded-2xl p-5 shadow-md flex flex-col justify-between border border-white/80";
-        card.innerHTML = `
-          <div>
-            <div class="flex items-center justify-between mb-3">
-              <div class="w-10 h-10 rounded-xl ${drug.color} text-white flex items-center justify-center text-lg shadow-md">
-                <i class="fa-solid fa-pills"></i>
-              </div>
-              <span class="px-2 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-white/70 text-slate-700">
-                ${drug.cat}
-              </span>
-            </div>
-
-            <h3 class="text-base font-bold text-slate-900">${drug.name}</h3>
-            <p class="text-xs font-semibold text-sky-800 mb-2">${drug.brand}</p>
-            <p class="text-xs text-slate-600 mb-3"><span class="font-bold">Bentuk:</span> ${drug.form}</p>
-
-            <div class="space-y-1.5 text-xs text-slate-700 bg-white/50 p-3 rounded-xl mb-3">
-              <p><span class="font-bold text-slate-900">Indikasi:</span> ${drug.indication}</p>
-              <p><span class="font-bold text-sky-900">Dosis Dewasa:</span> ${drug.doseAdult}</p>
-              <p><span class="font-bold text-emerald-900">Dosis Anak:</span> ${drug.dosePed}</p>
-            </div>
-          </div>
-
-          <div class="pt-2 border-t border-white/60">
-            <p class="text-[10px] text-rose-700 mb-2"><i class="fa-solid fa-triangle-exclamation mr-1"></i><span class="font-semibold">Kontraindikasi:</span> ${drug.contra}</p>
-            <button onclick="setDrugToCalculator('${drug.name}')" class="w-full py-2 rounded-xl glass-input hover:bg-sky-600 hover:text-white font-semibold text-xs text-sky-800 transition-all flex items-center justify-center gap-1">
-              <i class="fa-solid fa-calculator"></i> Hitung Dosis Obat Ini
-            </button>
-          </div>
-        `;
-        container.appendChild(card);
-      });
-    }
-
-    function filterDrugCategory(category) {
-      document.querySelectorAll('.drug-cat-btn').forEach(btn => btn.classList.remove('bg-white/80', 'text-sky-800'));
-      event.target.classList.add('bg-white/80', 'text-sky-800');
-
-      if (category === 'all') {
-        renderDrugCatalog(kdaDrugsData);
-      } else {
-        const filtered = kdaDrugsData.filter(d => d.cat === category);
-        renderDrugCatalog(filtered);
-      }
-    }
-
-    function setDrugToCalculator(drugName) {
-      switchTab('tab-calc');
-      if (drugName.includes("Amoxicillin")) document.getElementById('preset-drug').value = "amox";
-      else if (drugName.includes("Paracetamol")) document.getElementById('preset-drug').value = "paracetamol";
-      else if (drugName.includes("Ibuprofen")) document.getElementById('preset-drug').value = "ibuprofen";
-      else if (drugName.includes("Mefenamic")) document.getElementById('preset-drug').value = "mefenamic";
-      else if (drugName.includes("Clindamycin")) document.getElementById('preset-drug').value = "clindamycin";
-      else if (drugName.includes("Metronidazol")) document.getElementById('preset-drug').value = "metronidazole";
-      applyDrugPreset();
-    }
-
-    /* =========================================================
-       8. PREVIEW RESEP DOKTER
-       ========================================================= */
-    function updatePrescriptionPreview() {
-      document.getElementById('view-doc-name').innerText = document.getElementById('doc-name').value;
-      document.getElementById('view-doc-sign-name').innerText = document.getElementById('doc-name').value;
-      document.getElementById('view-patient-name').innerText = document.getElementById('rx-patient-name').value;
-      document.getElementById('view-patient-age').innerText = document.getElementById('rx-patient-age').value;
-      document.getElementById('view-rx-allergy').innerText = document.getElementById('rx-allergy').value;
-      document.getElementById('view-doc-notes').innerText = document.getElementById('rx-doc-notes').value;
-    }
-
-    // Eksekusi Render Awal
     window.addEventListener('DOMContentLoaded', () => {
-      renderDiseases(oralDiseasesData);
-      renderDrugCatalog(kdaDrugsData);
-      calculateDose();
-      updatePrescriptionPreview();
+      initDrugDropdown();
+      selectDrug('amoxicillin');
+      renderDrugsCards(completeDrugDatabase);
+      renderOralDiseases(oralDiseasesData);
+      calculateFinalDose();
+      refreshRxPreview();
     });
   </script>
 </body>
