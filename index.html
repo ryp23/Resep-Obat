@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Perhitungan Obat</title>
+  <title>Perhitungan Obat - Dental Clinical Workstation</title>
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- Font Awesome Icons -->
@@ -123,7 +123,6 @@
       border-color: rgba(255, 255, 255, 0.95);
     }
 
-    /* Interactive Hover / Touch Tooltip Items */
     .rx-hover-term {
       position: relative;
       cursor: pointer;
@@ -137,7 +136,6 @@
       color: #0369a1;
     }
 
-    /* Print Setup */
     @media print {
       body {
         background: white !important;
@@ -155,7 +153,6 @@
       }
     }
 
-    /* Scrollbars */
     ::-webkit-scrollbar {
       width: 6px;
       height: 6px;
@@ -201,7 +198,7 @@
             Perhitungan Obat
           </h1>
           <p class="text-xs md:text-sm text-slate-600 font-medium">
-            Pemilihan sediaan (Tab/Syr), penentuan rentang dosis usia, validasi keputusan dokter, & kaidah penulisan resep rasional
+            Sistem kalkulasi preskripsi, penjelasan farmakologi & indikasi-kontraindikasi di halaman depan, validasi dosis dokter, dan kalkulator manual
           </p>
         </div>
       </div>
@@ -251,12 +248,12 @@
     </div>
 
     <!-- =========================================================================
-         TAB 1: KALKULATOR DOSIS TERPADU & ALUR PEMILIHAN SEDIAAN DAHULU
+         TAB 1: HALAMAN DEPAN (KALKULATOR, INFORMASI LENGKAP OBAT, & KEPUTUSAN DOSIS)
          ========================================================================= -->
     <div id="tab-calc" class="tab-content space-y-6">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
 
-        <!-- Kolom Kiri: Pemilihan Obat, Pemilihan Sediaan, Parameter Fisik & Rentang -->
+        <!-- Kolom Kiri: Pemilihan Obat, Penjelasan Obat Lengkap di Depan, Sediaan, & Parameter -->
         <div class="lg:col-span-7 space-y-6">
           <div class="glass-card rounded-3xl p-6 shadow-xl space-y-5">
 
@@ -278,6 +275,66 @@
               <!-- Scrollable List Options -->
               <div id="drug-dropdown-list" class="hidden absolute left-0 right-0 top-full mt-1.5 max-h-60 overflow-y-auto glass-card bg-white/95 rounded-2xl shadow-2xl border border-white z-50 p-1.5 space-y-1">
                 <!-- Diisi otomatis dari Javascript -->
+              </div>
+            </div>
+
+            <!-- PANEL INFORMASI LENGKAP OBAT DI HALAMAN DEPAN: PENJELASAN, INDIKASI, KONTRAINDIKASI -->
+            <div id="front-drug-detail-card" class="p-4 rounded-2xl bg-white/75 border-2 border-sky-300 shadow-md space-y-3">
+              <div class="flex items-start justify-between gap-3 border-b border-sky-100 pb-2.5">
+                <div>
+                  <div class="flex items-center gap-2">
+                    <span id="front-drug-badge" class="px-2.5 py-0.5 rounded-md text-[10px] font-extrabold bg-sky-100 text-sky-800 uppercase tracking-wide">
+                      Antibiotik Aminopenisilin
+                    </span>
+                    <span id="front-drug-source" class="text-[10px] font-semibold text-slate-500">
+                      KDA 5th Ed • Mosby 10th Ed
+                    </span>
+                  </div>
+                  <h3 id="front-drug-name" class="text-lg font-black text-slate-900 mt-1">Amoxicillin</h3>
+                </div>
+                <div id="front-drug-warning-pill" class="text-right">
+                  <!-- Tag batasan usia -->
+                </div>
+              </div>
+
+              <!-- A. PENJELASAN OBAT & MEKANISME KERJA -->
+              <div class="p-3 rounded-xl bg-sky-50/80 border border-sky-200 text-xs space-y-1">
+                <span class="font-extrabold text-sky-950 block text-[11px] uppercase tracking-wide flex items-center gap-1.5">
+                  <i class="fa-solid fa-dna text-sky-700"></i> Penjelasan Obat & Mekanisme Kerja:
+                </span>
+                <p id="front-drug-explanation" class="text-slate-700 leading-relaxed text-[11px]">
+                  Memuat penjelasan mekanisme farmakologis zat aktif obat di dalam jaringan tubuh.
+                </p>
+              </div>
+
+              <!-- B. INDIKASI KLINIS LENGKAP -->
+              <div class="p-3 rounded-xl bg-emerald-50/80 border border-emerald-200 text-xs space-y-1">
+                <span class="font-extrabold text-emerald-950 block text-[11px] uppercase tracking-wide flex items-center gap-1.5">
+                  <i class="fa-solid fa-notes-medical text-emerald-700"></i> Indikasi Klinis Dokter Gigi:
+                </span>
+                <p id="front-drug-indication" class="text-emerald-900 leading-relaxed text-[11px] font-medium">
+                  Memuat indikasi klinis patologi rongga mulut dan maksilofasial.
+                </p>
+              </div>
+
+              <!-- C. KONTRAINDIKASI & LARANGAN USIA -->
+              <div class="p-3 rounded-xl bg-rose-50/80 border border-rose-200 text-xs space-y-1">
+                <span class="font-extrabold text-rose-950 block text-[11px] uppercase tracking-wide flex items-center gap-1.5">
+                  <i class="fa-solid fa-ban text-rose-600"></i> Kontraindikasi & Larangan Usia Pasien:
+                </span>
+                <p id="front-drug-contra" class="text-rose-900 leading-relaxed text-[11px]">
+                  Memuat kontraindikasi mutlak serta batasan usia tidak boleh mengonsumsi obat ini.
+                </p>
+              </div>
+
+              <!-- D. PENGINGAT KOMORBID & PERHATIAN KHUSUS -->
+              <div class="p-3 rounded-xl bg-amber-50/80 border border-amber-200 text-xs space-y-1">
+                <span class="font-extrabold text-amber-950 block text-[11px] uppercase tracking-wide flex items-center gap-1.5">
+                  <i class="fa-solid fa-triangle-exclamation text-amber-600"></i> Pengingat Komorbid & Perhatian Dokter:
+                </span>
+                <p id="front-drug-cautions" class="text-amber-900 leading-relaxed text-[11px]">
+                  Penyakit penyerta (hepar, ginjal, asma, lambung, kehamilan, dan interaksi alkohol).
+                </p>
               </div>
             </div>
 
@@ -320,7 +377,7 @@
                     <option value="bayi">👶 Bayi (&lt; 1 th)</option>
                     <option value="balita">🧒 Balita (1 - 5 th)</option>
                     <option value="anak" selected>🧑 Anak (6 - 12 th)</option>
-                    <option value="dewasa">🧑‍‍🦰 Dewasa (&gt; 12 th)</option>
+                    <option value="dewasa">🧑‍🦰 Dewasa (&gt; 12 th)</option>
                   </select>
                 </div>
                 <div>
@@ -593,7 +650,6 @@
           </div>
         </div>
 
-        <!-- Tabel / Kartu 15 Obat -->
         <div id="drugs-card-grid" class="grid grid-cols-1 md:grid-cols-2 gap-5">
           <!-- Rendered by JavaScript -->
         </div>
@@ -787,7 +843,7 @@
           </div>
         </div>
 
-        <!-- Kolom Kanan: KOTAK KETERANGAN KAIDAH PENULISAN & ARTI RESEP INTERAKTIF (BILA DISENTUH ADA PENJELASANNYA) -->
+        <!-- Kolom Kanan: KOTAK KETERANGAN KAIDAH PENULISAN & ARTI RESEP INTERAKTIF -->
         <div class="lg:col-span-4 space-y-4 no-print">
           <div class="glass-card rounded-3xl p-5 shadow-xl space-y-4 border-2 border-sky-300/80">
 
@@ -800,7 +856,7 @@
               </span>
             </div>
 
-            <!-- Panel Penjelasan Interaktif Dinamis (Berubah Saat Disentuh / Diklik) -->
+            <!-- Panel Penjelasan Interaktif Dinamis -->
             <div id="rx-interactive-explanation-card" class="p-3.5 rounded-2xl bg-white/80 border border-sky-100 shadow-sm space-y-2">
               <div class="flex items-center gap-2">
                 <span id="exp-badge" class="px-2 py-0.5 rounded text-[10px] font-black uppercase bg-teal-100 text-teal-900">
@@ -816,7 +872,7 @@
               </div>
             </div>
 
-            <!-- Kamus Cepat Singkatan Latin yang Sering Digunakan (Interactive Pills) -->
+            <!-- Kamus Cepat Singkatan Latin -->
             <div>
               <p class="text-[11px] font-bold text-slate-700 uppercase tracking-wider mb-2 flex items-center gap-1">
                 <i class="fa-solid fa-language text-sky-600"></i> Sentuh Singkatan Latin Berikut:
@@ -919,20 +975,21 @@
   </div>
 
   <!-- =========================================================================
-       JAVASCRIPT LOGIC & DATABASE
-       ========================================================================= -->
+       JAVASCRIPT LOGIC & DATABASE LENGKAP DENGAN PENJELASAN
+       ========================================================= -->
   <script>
     /* =========================================================
-       1. DATABASE LENGKAP 15 OBAT DENGAN SEDIAAN TERSTRUKTUR
+       1. DATABASE LENGKAP 15 OBAT DENGAN PENJELASAN, INDIKASI & KONTRAINDIKASI
        ========================================================= */
     const completeDrugDatabase = [
       {
         id: "metronidazole",
         name: "Metronidazol",
         category: "antibiotik",
-        categoryLabel: "Antibiotik Anaerob",
+        categoryLabel: "Antibiotik Sintetis Antimikroba Anaerob",
         sources: "KDA 5th Ed (Hal 29), Mosby 10th Ed, BNF 69, CPO USU",
-        indications: "Infeksi anaerobik, ANUG, periodontitis agresif, abses dentoalveolar kombinasi.",
+        explanation: "Antibiotik derivat nitroimidazol dengan aktivitas bakterisidal kuat terhadap bakteri anaerob obligat dan protozoa. Bekerja dengan merusak sintesis DNA dan menyebabkan fragmentasi untai heliks DNA kuman patogen anaerob di kantung poket periodontal dan jaringan pulpa nekrotik.",
+        indications: "Infeksi bakteri anaerob odontogenik berat, ANUG (Acute Necrotizing Ulcerative Gingivitis), periodontitis agresif/kronis dalam, abses dentoalveolar kombinasi dengan penisilin, profilaksis perikoronitis.",
         tabOptions: [
           { label: "Tablet 200 mg", mg: 200, unit: "tab" },
           { label: "Tablet 400 mg", mg: 400, unit: "tab" },
@@ -948,18 +1005,19 @@
           anak: { minMgKg: 20, maxMgKg: 35, isFixedAdult: false, note: "Bagi 3 dosis tiap 8 jam" },
           dewasa: { minMg: 400, maxMg: 500, isFixedAdult: true, note: "400 - 500 mg tiap 8 jam (1200 - 1500 mg/hari)" }
         },
-        ageWarning: "Hindari pada neonatus < 4 minggu kecuali kondisi darurat. Evaluasi ketat pada anak < 1 tahun.",
-        contraindications: "Hipersensitivitas metronidazol. KONTRAINDIKASI dengan ALKOHOL (reaksi disulfiram-like: mual, muntah hebat, palpitasi, takikardia). Trimester 1 kehamilan.",
-        comorbidCautions: "Gangguan hepar berat (turunkan dosis 50%), riwayat kejang, diskrasia darah.",
+        ageWarning: "Hindari pada neonatus < 4 minggu kecuali kondisi darurat. Evaluasi ketat fungsi organ pada bayi < 1 tahun.",
+        contraindications: "Hipersensitivitas terhadap metronidazol/nitroimidazol. KONTRAINDIKASI MUTLAK dengan ALKOHOL (menyebabkan reaksi disulfiram-like: mual muntah masif, takikardia, flushing, kolaps sirkulasi). Kehamilan trimester 1.",
+        comorbidCautions: "Gangguan fungsi hati/hepar berat (kurangi dosis hingga 50%), riwayat kejang atau epilepsi, diskrasia darah aktif.",
         defaultFreq: 3
       },
       {
         id: "amoxicillin",
         name: "Amoxicillin",
         category: "antibiotik",
-        categoryLabel: "Antibiotik Aminopenisilin",
+        categoryLabel: "Antibiotik Aminopenisilin Spektrum Luas",
         sources: "KDA 5th Ed (Hal 21), Mosby 10th Ed, AAPD Guidelines, CPO USU",
-        indications: "Lini pertama infeksi odontogenik orofasial, abses periapikal, profilaksis endokarditis (2g oral).",
+        explanation: "Antibiotik bakterisidal bakterisid beta-laktam yang bekerja dengan cara menghambat sintesis dinding sel bakteri (peptidoglikan) pada tahap transpeptidasi. Menjadi pilihan utama lini pertama dalam kedokteran gigi untuk infeksi odontogenik karena bioavailabilitas oral tinggi dan penetrasi jaringan baik.",
+        indications: "Lini pertama infeksi orofasial odontogenik dengan manifestasi sistemik (demam, limfadenopati), abses periapikal, selulitis fasial dini, profilaksis bakteremia endokarditis infektif (2 g dosis tunggal 30-60 menit sebelum tindakan).",
         tabOptions: [
           { label: "Kapsul / Kaplet 250 mg", mg: 250, unit: "cap" },
           { label: "Kapsul / Kaplet 500 mg", mg: 500, unit: "cap" }
@@ -974,18 +1032,19 @@
           anak: { minMgKg: 25, maxMgKg: 50, isFixedAdult: false, note: "Bagi 3 dosis tiap 8 jam" },
           dewasa: { minMg: 500, maxMg: 500, isFixedAdult: true, note: "500 mg tiap 8 jam (1500 mg/hari)" }
         },
-        ageWarning: "Aman untuk semua kelompok usia dengan penyesuaian dosis berat badan teliti.",
-        contraindications: "Riwayat hipersensitivitas anafilaksis terhadap penisilin atau antibiotik beta-laktam.",
-        comorbidCautions: "Gangguan fungsi ginjal berat (CrCl < 30 ml/min: perpanjang interval q12h), mononukleosis infeksiosa (risiko erupsi ruam kulit masif).",
+        ageWarning: "Aman untuk semua kelompok usia dengan penyesuaian dosis mg/kgBB yang tepat.",
+        contraindications: "Riwayat hipersensitivitas anafilaksis berat terhadap penisilin atau antibiotik beta-laktam lainnya.",
+        comorbidCautions: "Insufisiensi ginjal berat (CrCl < 30 ml/menit: sesuaikan frekuensi tiap 12 jam), mononukleosis infeksiosa (risiko erupsi ruam makulopapular tinggi).",
         defaultFreq: 3
       },
       {
         id: "co-amoxiclav",
         name: "Co-Amoxiclav (Augmentin)",
         category: "antibiotik",
-        categoryLabel: "Penisilin + Inhibitor Beta-Laktamase",
+        categoryLabel: "Aminopenisilin + Inhibitor Beta-Laktamase",
         sources: "KDA 5th Ed (Hal 22), Mosby 10th Ed, CPO USU",
-        indications: "Infeksi odontogenik resisten penisilinase, selulitis spasium fasial, abses periapikal refrakter.",
+        explanation: "Kombinasi sinergis antara Amoksisilin dengan Asam Klavulanat (penghambat enzim beta-laktamase). Menghambat kuman penghasil penisilinase yang resisten terhadap amoksisilin tunggal, memulihkan spektrum antimikroba terhadap Staphylococcus aureus dan flora anaerob rongga mulut.",
+        indications: "Infeksi odontogenik refrakter penghasil beta-laktamase, selulitis spasium fasial masif, abses submandibula/angina Ludwig, kegagalan terapi amoksisilin tunggal setelah 48-72 jam.",
         tabOptions: [
           { label: "Tablet 625 mg (500mg Amox + 125mg Klav)", mg: 625, unit: "tab" },
           { label: "Tablet 1000 mg (875mg Amox + 125mg Klav)", mg: 1000, unit: "tab" }
@@ -1001,18 +1060,19 @@
           anak: { minMgKg: 25, maxMgKg: 45, isFixedAdult: false, note: "Bagi 3 dosis tiap 8 jam" },
           dewasa: { minMg: 625, maxMg: 1000, isFixedAdult: true, note: "625 mg q8h atau 1000 mg q12h" }
         },
-        ageWarning: "Tablet 1000 mg tidak direkomendasikan untuk anak dengan berat badan < 40 kg.",
-        contraindications: "Alergi penisilin, riwayat ikterus kolestatik / hepatitis terkait amoksisilin-klavulanat sebelumnya.",
-        comorbidCautions: "Insufisiensi hepar, insufisiensi ginjal berat, hati-hati efek samping diare pada anak.",
+        ageWarning: "Tablet 1000 mg dikontraindikasikan untuk anak dengan berat badan < 40 kg.",
+        contraindications: "Alergi penisilin, riwayat ikterus kolestatik atau gangguan fungsi hepar terkait asam klavulanat sebelumnya.",
+        comorbidCautions: "Gangguan fungsi hati, insufisiensi ginjal berat, waspada diare akut akibat stimulasi motilitas usus oleh klavulanat.",
         defaultFreq: 3
       },
       {
         id: "clindamycin",
         name: "Clindamycine (Klindamisin)",
         category: "antibiotik",
-        categoryLabel: "Antibiotik Linkosamid",
+        categoryLabel: "Antibiotik Golongan Linkosamid",
         sources: "KDA 5th Ed (Hal 23), Mosby 10th Ed, AHA Guidelines, CPO USU",
-        indications: "Infeksi anaerob tulang rahang, penetrasi tulang superior, pilihan lini 1 pasien alergi berat penisilin.",
+        indications: "Infeksi bakteri anaerob tulang rahang (osteomielitis), abses periapikal parah, pilihan lini pertama pasien dengan riwayat alergi berat penisilin.",
+        explanation: "Menghambat sintesis protein bakteri dengan mengikat subunit ribosom 50S. Memiliki daya penetrasi jaringan tulang alveolar mandibula dan maksila yang sangat superior dibanding antibiotik lain, menjadikannya terapi pilihan utama pada infeksi odontogenik tulang.",
         tabOptions: [
           { label: "Kapsul 150 mg", mg: 150, unit: "cap" },
           { label: "Kapsul 300 mg", mg: 300, unit: "cap" }
@@ -1027,18 +1087,19 @@
           anak: { minMgKg: 10, maxMgKg: 25, isFixedAdult: false, note: "Bagi 3-4 dosis tiap 6-8 jam" },
           dewasa: { minMg: 150, maxMg: 300, isFixedAdult: true, note: "150 - 300 mg tiap 6-8 jam (maks 1800 mg/hari)" }
         },
-        ageWarning: "Neonatus dilarang sediaan parenteral berpengawet benzil alkohol (gasping syndrome).",
-        contraindications: "Hipersensitivitas klindamisin, riwayat kolitis ulserativa atau kolitis pseudomembranosa.",
-        comorbidCautions: "Wajib diminum dengan segelas penuh air dalam posisi tegak untuk mencegah ulkus esofagus. Segera hentikan jika timbul diare berdarah.",
+        ageWarning: "Neonatus dilarang sediaan parenteral yang mengandung benzil alkohol (risiko fatal gasping syndrome).",
+        contraindications: "Hipersensitivitas klindamisin, riwayat kolitis ulseratif atau kolitis pseudomembranosa terkait antibiotik (Clostridium difficile).",
+        comorbidCautions: "Wajib diminum dengan 1 gelas penuh air putih dalam posisi duduk tegak untuk mencegah iritasi dan ulserasi esofagus. Hentikan segera jika terjadi diare berair berat berdarah.",
         defaultFreq: 3
       },
       {
         id: "cefadroxil",
         name: "Cefadroxil (Sefadroksil)",
         category: "antibiotik",
-        categoryLabel: "Sefalosporin Generasi 1",
+        categoryLabel: "Sefalosporin Generasi Pertama",
         sources: "BNF 69, Pediatrik Formularium IDAI, Mosby 10th Ed, CPO USU",
-        indications: "Infeksi jaringan lunak orofasial, selulitis ringan, alternatif alergi penisilin non-anafilaktik.",
+        explanation: "Sefalosporin oral generasi 1 dengan stabilitas metabolik tinggi. Bekerja bakterisidal dengan menghambat pembentukan dinding sel bakteri, terutama efektif terhadap Streptococcus viridans dan Staphylococcus penghasil penisilinase di mukosa mulut.",
+        indications: "Infeksi jaringan lunak orofasial, selulitis ringan, abses dentoalveolar alternatif pada pasien alergi penisilin non-anafilaktik.",
         tabOptions: [
           { label: "Kapsul 500 mg", mg: 500, unit: "cap" },
           { label: "Tablet 1000 mg", mg: 1000, unit: "tab" }
@@ -1053,18 +1114,19 @@
           anak: { minMgKg: 30, maxMgKg: 50, isFixedAdult: false, note: "Bagi 2 dosis tiap 12 jam" },
           dewasa: { minMg: 500, maxMg: 1000, isFixedAdult: true, note: "500 - 1000 mg tiap 12 jam (1 - 2 g/hari)" }
         },
-        ageWarning: "Keamanan pada bayi usia < 6 bulan belum ditetapkan secara definitif.",
-        contraindications: "Alergi berat (anafilaksis / angioedema) terhadap sefalosporin.",
-        comorbidCautions: "Cross-reactivity 5-10% pada alergi penisilin sejati. Sesuaikan dosis pada insufisiensi ginjal.",
+        ageWarning: "Keamanan pada bayi usia di bawah 6 bulan belum ditetapkan secara definitif.",
+        contraindications: "Alergi berat (riwayat syok anafilaktik, angioedema) terhadap golongan antibiotik sefalosporin.",
+        comorbidCautions: "Cross-reactivity 5-10% pada pasien alergi penisilin sejati. Sesuaikan dosis jika terjadi penurunan klirens kreatinin ginjal.",
         defaultFreq: 2
       },
       {
         id: "cefixime",
         name: "Cefixime (Sefiksim)",
         category: "antibiotik",
-        categoryLabel: "Sefalosporin Generasi 3",
+        categoryLabel: "Sefalosporin Generasi Ketiga Oral",
         sources: "IDAI Pediatrik, BNF 69, Mosby 10th Ed",
-        indications: "Infeksi bakteri gram negatif odontogenik berat, sinusitis maksilaris dentogenik refrakter.",
+        explanation: "Sefalosporin generasi ke-3 dengan ketahanan luar biasa terhadap hidrolisis enzim beta-laktamase. Memiliki aktivitas sangat superior terhadap kuman gram negatif dan basil anaerob tertentu pada infeksi sinus dentogenik.",
+        indications: "Infeksi bakteri gram negatif orofasial refrakter, sinusitis maksilaris akut akibat perluasan infeksi apikal gigi molar atas.",
         tabOptions: [
           { label: "Kapsul 100 mg", mg: 100, unit: "cap" },
           { label: "Kapsul 200 mg", mg: 200, unit: "cap" }
@@ -1079,18 +1141,19 @@
           anak: { minMgKg: 8, maxMgKg: 10, isFixedAdult: false, note: "8 - 10 mg/kg/hari dibagi 1-2 dosis" },
           dewasa: { minMg: 200, maxMg: 400, isFixedAdult: true, note: "200 mg q12h atau 400 mg q24h" }
         },
-        ageWarning: "PERINGATAN: KONTRAINDIKASI / Tidak dianjurkan untuk bayi usia < 6 bulan.",
-        contraindications: "Hipersensitivitas berat terhadap sefalosporin.",
-        comorbidCautions: "Insufisiensi ginjal berat (CrCl < 20 ml/min: turunkan dosis 50%), riwayat kolitis.",
+        ageWarning: "PERINGATAN KETAT: KONTRAINDIKASI / Tidak dianjurkan untuk bayi di bawah usia 6 bulan.",
+        contraindications: "Hipersensitivitas terhadap sefalosporin.",
+        comorbidCautions: "Penurunan fungsi ginjal berat (CrCl < 20 ml/menit: turunkan dosis 50%), riwayat kolitis.",
         defaultFreq: 2
       },
       {
         id: "ibuprofen",
         name: "Ibuprofen",
         category: "analgesik",
-        categoryLabel: "NSAID Analgesik Antiinflamasi",
+        categoryLabel: "NSAID Analgesik Non-Selektif COX-1 & COX-2",
         sources: "KDA 5th Ed (Hal 11), Mosby 10th Ed, AAPD Guidelines, CPO USU",
-        indications: "Nyeri inflamasi akut dental sedang-berat, pulpitis, pasca odontektomi molar 3, artritis TMJ.",
+        explanation: "Derivat asam propionat yang bekerja menghambat enzim siklooksigenase (COX-1 dan COX-2), menekan biosintesis prostaglandin mediator nyeri, vasodilatasi, dan edema di area luka pulpa serta ligamen periodontal.",
+        indications: "Nyeri inflamasi akut dental sedang hingga berat, pulpitis akut ireversibel, nyeri pasca bedah impaksi odontektomi molar 3, artritis sendi temporomandibula (TMJ).",
         tabOptions: [
           { label: "Tablet 200 mg", mg: 200, unit: "tab" },
           { label: "Tablet 400 mg", mg: 400, unit: "tab" },
@@ -1107,17 +1170,18 @@
           dewasa: { minMg: 400, maxMg: 600, isFixedAdult: true, note: "400 - 600 mg tiap 6-8 jam p.c. (maks 2400 mg/hari)" }
         },
         ageWarning: "PERINGATAN USIA: KONTRAINDIKASI untuk bayi di bawah usia 3 - 6 bulan atau BB < 5 kg.",
-        contraindications: "Tukak lambung aktif, asma bronkial terpicu aspirin/NSAID, gagal jantung kongestif berat, kehamilan trimester 3.",
-        comorbidCautions: "Hipertensi tidak terkontrol, penyakit ginjal kronis, gangguan koagulasi darah, riwayat perdarahan lambung.",
+        contraindications: "Ulkus peptikum/tukak lambung aktif, perdarahan saluran cerna, asma terpicu NSAID/aspirin, gagal jantung kongestif berat, kehamilan trimester 3 (risiko penutupan dini duktus arteriosus).",
+        comorbidCautions: "Hipertensi tidak terkontrol, penyakit ginjal kronis, gangguan koagulasi darah, lansia.",
         defaultFreq: 3
       },
       {
         id: "paracetamol",
         name: "Paracetamol (Acetaminophen)",
         category: "antipiretik",
-        categoryLabel: "Analgesik & Antipiretik Non-Opioid",
+        categoryLabel: "Analgesik & Antipiretik Non-Opioid Sentral",
         sources: "KDA 5th Ed (Hal 8), Mosby 10th Ed, BNF 69, CPO USU",
-        indications: "Lini pertama pereda nyeri ringan-sedang pasca restorasi/ekstraksi, antipiretik demam dentogenik.",
+        explanation: "Menghambat sintesis prostaglandin terutama di susunan saraf pusat (sentral) dan bekerja pada pusat pengatur suhu di hipotalamus untuk menurunkan demam. Tidak memiliki efek iritasi lambung dan tidak mengganggu agregasi trombosit darah.",
+        indications: "Lini pertama pereda nyeri ringan-sedang pasca restorasi kavitas, pembersihan karang gigi (scaling), ekstraksi sederhana, serta antipiretik penurun demam akibat infeksi dentoalveolar.",
         tabOptions: [
           { label: "Tablet 500 mg", mg: 500, unit: "tab" },
           { label: "Kaplet 650 mg", mg: 650, unit: "tab" }
@@ -1133,18 +1197,19 @@
           anak: { minMgKg: 10, maxMgKg: 15, isFixedAdult: false, note: "10 - 15 mg/kg/kali tiap 4-6 jam" },
           dewasa: { minMg: 500, maxMg: 1000, isFixedAdult: true, note: "500 - 1000 mg tiap 4-6 jam (maks 4000 mg/hari)" }
         },
-        ageWarning: "Aman untuk semua kelompok usia dengan penyesuaian dosis sesuai berat badan.",
-        contraindications: "Penyakit hepar aktif berat, sirosis hati dekompensata, hipersensitivitas parasetamol.",
-        comorbidCautions: "Alkoholisme kronis, malnutrisi berat, defisiensi enzim G6PD. Jangan melebihi 4g/hari untuk cegah hepatotoksisitas.",
+        ageWarning: "Aman untuk segala kelompok usia dari neonatus hingga geriatri dengan dosis ketat sesuai BB.",
+        contraindications: "Penyakit hepar aktif parah, kegagalan fungsi hati dekompensata, hipersensitivitas parasetamol.",
+        comorbidCautions: "Pecandu alkohol kronis, malnutrisi berat, defisiensi enzim G6PD. Dosis tidak boleh melebihi 4000 mg/hari untuk mencegah nekrosis hepar akut.",
         defaultFreq: 3
       },
       {
         id: "dexamethasone",
         name: "Dexametason (Dexamethasone)",
         category: "steroid",
-        categoryLabel: "Kortikosteroid Antiinflamasi Kuat",
+        categoryLabel: "Kortikosteroid Glukokortikoid Sintetik Potensi Sangat Tinggi",
         sources: "Mosby 10th Ed (Hal 7, 15), BNF 69, CPO USU",
-        indications: "Pencegahan edema fasial masif pasca odontektomi, SAR multipel parah (eliksir kumur).",
+        explanation: "Kortikosteroid kerja panjang dengan potensi antiinflamasi 25 kali lipat lebih kuat dari hidrokortison dan tanpa aktivitas retensi natrium (mineralokortikoid). Bekerja menstabilkan membran lisosom, menekan migrasi leukosit, dan mencegah pelepasan mediator inflamasi masif pasca trauma operasi.",
+        indications: "Pencegahan edema fasial masif, trismus, dan inflamasi pasca odontektomi impaksi kompleks, SAR multipel erosi parah (eliksir kumur).",
         tabOptions: [
           { label: "Tablet 0.5 mg", mg: 0.5, unit: "tab" },
           { label: "Tablet 4 mg", mg: 4, unit: "tab" }
@@ -1158,18 +1223,19 @@
           anak: { minMgKg: 0.08, maxMgKg: 0.3, isFixedAdult: false, note: "Bagi 2-3 dosis" },
           dewasa: { minMg: 0.5, maxMg: 4, isFixedAdult: true, note: "0.5 - 4 mg/hari oral (atau 4-8mg IV operatif)" }
         },
-        ageWarning: "Hindari penggunaan jangka panjang pada bayi dan anak karena menekan aksis HPA dan pertumbuhan.",
-        contraindications: "Infeksi fungal atau herpes simpleks aktif tanpa antivirus (risiko penyebaran agresif), ulkus peptikum.",
-        comorbidCautions: "Diabetes melitus (memicu hiperglikemia tajam), hipertensi, tuberkulosis aktif, osteoporosis.",
+        ageWarning: "Hindari pemberian jangka panjang pada anak karena menekan aksis HPA dan menghambat pertumbuhan tulang.",
+        contraindications: "Infeksi fungal atau herpes simpleks aktif tanpa antivirus (risiko penyebaran agresif), ulkus peptikum aktif.",
+        comorbidCautions: "Diabetes melitus (memicu lonjakan gula darah mendadak), hipertensi, tuberkulosis aktif, osteoporosis.",
         defaultFreq: 2
       },
       {
         id: "natrium-diklofenak",
         name: "Natrium Diklofenak (Diclofenac Sodium)",
         category: "analgesik",
-        categoryLabel: "NSAID Saluran Cerna / Sendi",
+        categoryLabel: "NSAID Derivat Asam Fenilasetat Salut Enterik",
         sources: "KDA 5th Ed (Hal 14), Mosby 10th Ed, CPO USU",
-        indications: "Nyeri hebat pasca reduksi fraktur, osteoartritis sendi TMJ, periostitis.",
+        explanation: "NSAID poten dengan formulasi pelepasan lambat di usus (enteric coated). Bekerja menghambat sintesis prostaglandin dan lipooksigenase. Pelepasan yang terjadi di usus membantu mengurangi iritasi lambung langsung namun memiliki onset kerja lebih lambat dibanding garam kalium.",
+        indications: "Nyeri inflamasi berat pasca bedah maksilofasial/reduksi fraktur, periostitis rahang, osteoartritis kronis sendi temporomandibula (TMJ).",
         tabOptions: [
           { label: "Tablet Enterik 25 mg", mg: 25, unit: "tab" },
           { label: "Tablet Enterik 50 mg", mg: 50, unit: "tab" }
@@ -1181,18 +1247,19 @@
           anak: { minMgKg: 0, maxMgKg: 0, isFixedAdult: false, note: "Tidak dianjurkan untuk anak < 14 tahun" },
           dewasa: { minMg: 50, maxMg: 50, isFixedAdult: true, note: "50 mg 2-3 kali sehari sesudah makan (maks 150 mg/hari)" }
         },
-        ageWarning: "PERINGATAN KETAT: KONTRAINDIKASI pada BAYI, BALITA, dan ANAK < 14 tahun di praktek gigi umum.",
-        contraindications: "Ulkus lambung aktif, penyakit jantung iskemik, gagal jantung kongestif (NYHA II-IV), stroke.",
-        comorbidCautions: "Retensi cairan dan hipertensi. Batasi durasi pengobatan 3-5 hari saja.",
+        ageWarning: "PERINGATAN KETAT: KONTRAINDIKASI pada BAYI, BALITA, dan ANAK < 14 tahun dalam praktik gigi umum.",
+        contraindications: "Tukak lambung/duodenum aktif, penyakit jantung iskemik, gagal jantung kongestif (NYHA II-IV), riwayat stroke.",
+        comorbidCautions: "Retensi natrium/cairan dan hipertensi. Batasi durasi penggunaan hanya 3-5 hari.",
         defaultFreq: 3
       },
       {
         id: "etoricoxib",
         name: "Etoricoxib",
         category: "analgesik",
-        categoryLabel: "Penghambat Selektif COX-2",
+        categoryLabel: "Penghambat Sangat Selektif COX-2 Generasi Baru",
         sources: "BNF 69, Clinical Consensus Orofacial Pain",
-        indications: "Nyeri akut pasca odontektomi molar 3 impaksi, nyeri disfungsi kronis sendi TMJ.",
+        explanation: "Penghambat enzim siklooksigenase-2 (COX-2) generasi kedua dengan rasio selektivitas sangat tinggi dibanding COX-1 (>100x). Memberikan efek analgesik antiinflamasi maksimal tanpa mengikis mukosa lambung dan tanpa mengganggu pembekuan darah soket gigi.",
+        indications: "Nyeri hebat pasca odontektomi molar ketiga impaksi (dosis 90-120 mg jangka pendek), nyeri kronis disfungsi sendi TMJ.",
         tabOptions: [
           { label: "Tablet Salut 60 mg", mg: 60, unit: "tab" },
           { label: "Tablet Salut 90 mg", mg: 90, unit: "tab" },
@@ -1206,17 +1273,18 @@
           dewasa: { minMg: 60, maxMg: 90, isFixedAdult: true, note: "60 - 90 mg sekali sehari (bedah gigi akut maks 120 mg)" }
         },
         ageWarning: "PERINGATAN MUTLAK: KONTRAINDIKASI pada ANAK & REMAJA di bawah usia 16 TAHUN.",
-        contraindications: "Usia < 16 tahun, hipertensi tak terkontrol (>140/90 mmHg), infark miokard, bypass koroner, stroke.",
-        comorbidCautions: "Pantau tekanan darah. Jangan diberikan pada gagal jantung atau penyakit arteri perifer.",
+        contraindications: "Usia < 16 tahun, hipertensi berat tidak terkontrol (>140/90 mmHg), riwayat infark miokard, bypass arteri koroner, stroke iskemia.",
+        comorbidCautions: "Pantau tekanan darah. Jangan diberikan pada gagal jantung kongestif atau penyakit arteri perifer.",
         defaultFreq: 1
       },
       {
         id: "methylprednisolone",
         name: "Metilprednisolone",
         category: "steroid",
-        categoryLabel: "Kortikosteroid Glukokortikoid",
+        categoryLabel: "Kortikosteroid Glukokortikoid Sintetik Menengah",
         sources: "Mosby 10th Ed, Pediatrik Endokrin Formularium, CPO USU",
-        indications: "Supresi inflamasi lesi oral berat (Lichen Planus, Eritema Multiforme), pasca osteotomi.",
+        explanation: "Glukokortikoid sintetis potensi menengah dengan efek antiinflamasi 5 kali lebih kuat dari hidrokortison dan efek mineralokortikoid minimal. Menekan pembentukan prostaglandin dan leukotrien melalui induksi sintesis lipokortin penghambat fosfolipase A2.",
+        indications: "Supresi reaksi inflamasi dan vesikulobulosa lesi oral berat (Lichen Planus erosif, Eritema Multiforme oral), pencegahan edema pasca osteotomi rahang.",
         tabOptions: [
           { label: "Tablet 4 mg", mg: 4, unit: "tab" },
           { label: "Tablet 8 mg", mg: 8, unit: "tab" },
@@ -1229,18 +1297,19 @@
           anak: { minMgKg: 0.5, maxMgKg: 1.5, isFixedAdult: false, note: "Bagi 2-3 dosis" },
           dewasa: { minMg: 4, maxMg: 16, isFixedAdult: true, note: "4 - 16 mg/hari (dilakukan tapering-off)" }
         },
-        ageWarning: "Hindari pemberian terus-menerus tanpa tapering off untuk mencegah supresi korteks adrenal.",
-        contraindications: "Infeksi sistemik parah tanpa antimikroba adekuat, infeksi virus herpetik aktif.",
-        comorbidCautions: "Tukak lambung (beri bersama PPI/antasida), osteoporosis, diabetes melitus.",
+        ageWarning: "Hindari pemberian terus-menerus tanpa penghentian bertahap (tapering off) untuk mencegah insufisiensi adrenal akut.",
+        contraindications: "Infeksi sistemik parah tanpa antimikroba adekuat, infeksi virus herpetik mata/mulut aktif.",
+        comorbidCautions: "Tukak lambung (berikan bersama antasida/PPI), osteoporosis, diabetes melitus.",
         defaultFreq: 2
       },
       {
         id: "kalium-diklofenak",
         name: "Kalium Diklofenak (Diclofenac Potassium)",
         category: "analgesik",
-        categoryLabel: "NSAID Onset Cepat (Cataflam)",
+        categoryLabel: "NSAID Analgesik Onset Sangat Cepat (Cataflam)",
         sources: "KDA 5th Ed (Hal 14), Mosby 10th Ed, CPO USU",
-        indications: "Pereda nyeri akut onset cepat odontalgia berdenyut, pulpitis akut, pasca pencabutan gigi bedah.",
+        explanation: "Garam kalium dari diklofenak yang larut sempurna dan diabsorpsi sangat cepat di lambung (onset 15-30 menit). Menghambat biosintesis prostaglandin perifer secara cepat, sangat diunggulkan dokter gigi untuk mengatasi nyeri tajam akut mendadak.",
+        indications: "Pereda nyeri akut onset sangat cepat pada sakit gigi berdenyut akut (odontalgia), pulpitis akut, periostitis, dry socket, pasca ekstraksi pembedahan.",
         tabOptions: [
           { label: "Tablet Salut 25 mg", mg: 25, unit: "tab" },
           { label: "Tablet Salut 50 mg", mg: 50, unit: "tab" }
@@ -1255,17 +1324,18 @@
           dewasa: { minMg: 50, maxMg: 50, isFixedAdult: true, note: "50 mg tiap 8 jam sesudah makan (100 - 150 mg/hari)" }
         },
         ageWarning: "PERINGATAN: KONTRAINDIKASI pada BAYI, BALITA, dan ANAK di bawah 14 TAHUN.",
-        contraindications: "Tukak lambung aktif, perdarahan saluran cerna, penyakit kardiovaskular koroner berat.",
-        comorbidCautions: "Minum segera sesudah makan. Hati-hati pada pasien asma bronkial.",
+        contraindications: "Tukak lambung/duodenum aktif, riwayat perdarahan lambung, penyakit jantung koroner berat.",
+        comorbidCautions: "Minum segera sesudah makan (p.c.) dengan air putih. Hati-hati pada pasien asma bronkial.",
         defaultFreq: 3
       },
       {
         id: "vitamin-c",
         name: "Vitamin C (Asam Askorbat)",
         category: "vitamin",
-        categoryLabel: "Vitamin Antioksidan & Kolagen",
+        categoryLabel: "Vitamin Antioksidan & Kofaktor Sintesis Kolagen",
         sources: "Formularium Nasional, Nutritional Reference Intake, CPO USU",
-        indications: "Mempercepat sintesis kolagen penyembuhan luka soket pasca pencabutan & bedah periodontal.",
+        explanation: "Kofaktor esensial dalam hidroksilasi prolin dan lisin menjadi prokolagen untuk pembentukan jaringan granulasi, serat kolagen periodontal, dan integritas kapiler darah. Mempercepat pembentukan bekuan darah dan epitelisasi soket gigi.",
+        indications: "Mempercepat penyembuhan luka soket pasca pencabutan gigi, pasca bedah gingivektomi / flap periodontal, stomatitis aftosa rekuren, perdarahan gingiva akibat skorbut/defisiensi.",
         tabOptions: [
           { label: "Tablet 100 mg", mg: 100, unit: "tab" },
           { label: "Tablet 250 mg", mg: 250, unit: "tab" },
@@ -1280,18 +1350,19 @@
           anak: { minMgKg: 5, maxMgKg: 15, isFixedAdult: false, note: "100 - 250 mg/hari (terapi)" },
           dewasa: { minMg: 250, maxMg: 500, isFixedAdult: true, note: "250 - 500 mg 1-2 kali sehari (500 - 1000 mg/hari)" }
         },
-        ageWarning: "Aman untuk segala umur. Hindari dosis megadose berlebih pada anak.",
+        ageWarning: "Aman untuk semua kelompok usia. Hindari pemberian megadose berlebih pada anak.",
         contraindications: "Hipersensitivitas, riwayat hiperoksaluria atau batu ginjal kalsium oksalat.",
-        comorbidCautions: "Defisiensi G6PD pada dosis sangat tinggi, hemokromatosis.",
+        comorbidCautions: "Defisiensi enzim G6PD (pada dosis masif IV), penyakit hemokromatosis (meningkatkan absorpsi zat besi).",
         defaultFreq: 2
       },
       {
         id: "vitamin-b12",
         name: "Vitamin B12 (Cyanocobalamin) / Neurobion",
         category: "vitamin",
-        categoryLabel: "Vitamin Neurotropik / B-Kompleks",
+        categoryLabel: "Vitamin Neurotropik / Pembentukan Mielin Saraf",
         sources: "KDA 5th Ed (Hal 45), Mosby 10th Ed (Hal 21), CPO USU",
-        indications: "Adjuvan parestesia n. alveolaris inferior pasca odontektomi, glositis atrofik, BMS.",
+        explanation: "Vitamin esensial untuk sintesis mielin selubung saraf dan metabolisme asam nukleat neuron. Bekerja meregenerasi akson saraf yang mengalami trauma kompresi atau traksi saat prosedur pembedahan gigi.",
+        indications: "Adjuvan pemulihan neuropati/parestesia nervus alveolaris inferior atau n. lingualis pasca odontektomi molar 3, glositis atrofik, neuralgia trigeminal, Burning Mouth Syndrome.",
         tabOptions: [
           { label: "Tablet 50 mcg", mg: 0.05, unit: "tab" },
           { label: "Tablet 100 mcg", mg: 0.1, unit: "tab" },
@@ -1304,9 +1375,9 @@
           anak: { minMgKg: 0, maxMgKg: 0, isFixedAdult: false, note: "1.5 - 2.5 mcg/hari" },
           dewasa: { minMg: 0.1, maxMg: 0.5, isFixedAdult: true, note: "100 - 500 mcg oral sekali sehari" }
         },
-        ageWarning: "Injeksi Neurobion dosis tinggi dikontraindikasikan pada anak-anak (KDA Handbook).",
-        contraindications: "Hipersensitivitas kobalt, penyakit neuropati optik herediter (Leber’s disease).",
-        comorbidCautions: "Pasien pengguna Levodopa (B6 dalam kombinasi dapat mengantagonis efek obat Parkinson).",
+        ageWarning: "Injeksi Neurobion dosis tinggi dikontraindikasikan pada anak-anak (KDA Handbook Hal 45).",
+        contraindications: "Hipersensitivitas terhadap kobalt, atrofi saraf optik herediter (Leber's disease).",
+        comorbidCautions: "Pasien pengguna terapi Levodopa (kandungan B6 pada kombinasi dapat mengantagonis efek obat Parkinson).",
         defaultFreq: 1
       }
     ];
@@ -1531,9 +1602,27 @@
       document.getElementById('selected-drug-title').innerText = drug.name;
       document.getElementById('drug-dropdown-list').classList.add('hidden');
 
+      // TAMPILKAN DI PANEL INFORMASI LENGKAP HALAMAN DEPAN
+      document.getElementById('front-drug-name').innerText = drug.name;
+      document.getElementById('front-drug-badge').innerText = drug.categoryLabel;
+      document.getElementById('front-drug-source').innerText = drug.sources;
+      document.getElementById('front-drug-explanation').innerText = drug.explanation;
+      document.getElementById('front-drug-indication').innerText = drug.indications;
+      document.getElementById('front-drug-contra').innerText = `${drug.ageWarning} ${drug.contraindications}`;
+      document.getElementById('front-drug-cautions').innerText = drug.comorbidCautions;
+
+      const warningPill = document.getElementById('front-drug-warning-pill');
+      if (drug.ageWarning.includes('KONTRAINDIKASI')) {
+        warningPill.innerHTML = `<span class="px-2.5 py-1 rounded-lg text-[10px] font-black bg-rose-100 text-rose-800 border border-rose-300 block"><i class="fa-solid fa-circle-exclamation mr-1"></i>Batasan Usia Ketat</span>`;
+      } else {
+        warningPill.innerHTML = `<span class="px-2.5 py-1 rounded-lg text-[10px] font-bold bg-emerald-100 text-emerald-800 border border-emerald-300 block"><i class="fa-solid fa-check mr-1"></i>Aman Sesuai Dosis</span>`;
+      }
+
+      // Tampilkan kontraindikasi & pengingat di panel kanan
       document.getElementById('side-contra-text').innerText = `${drug.ageWarning} ${drug.contraindications}`;
       document.getElementById('side-cautions-text').innerText = drug.comorbidCautions;
 
+      // Defaultkan jenis sediaan: jika anak sirup, jika dewasa tablet
       const ageCategory = document.getElementById('patient-category').value;
       if (ageCategory === 'dewasa' && drug.tabOptions.length > 0) {
         setDosageFormType('tab');
@@ -2052,7 +2141,7 @@
 
           <div class="pt-3 border-t border-white/60">
             <button onclick="pickDrugToCalculator('${drug.id}')" class="w-full py-2.5 rounded-xl bg-gradient-to-r from-sky-600 to-teal-600 hover:from-sky-700 hover:to-teal-700 text-white font-bold text-xs shadow-sm transition-all flex items-center justify-center gap-1.5">
-              <i class="fa-solid fa-calculator"></i> Pilih & Masukkan ke Kalkulator Dosis
+              <i class="fa-solid fa-calculator"></i> Pilih & Tampilkan di Halaman Depan
             </button>
           </div>
         `;
